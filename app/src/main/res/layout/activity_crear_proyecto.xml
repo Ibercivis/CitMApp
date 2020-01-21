@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/drawer_layout3"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_view3"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/main_menu"
+        android:layout_gravity="start"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar3"
+        layout="@layout/toolbar" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/baloo"
+                        android:text="Datos del Proyecto:"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorPrimary"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_margin="16dp">
+
+                        <LinearLayout
+                            android:layout_width="148dp"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="8dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="37dp"
+                                android:fontFamily="@font/antic"
+                                android:gravity="center"
+                                android:text="Título del proyecto: "
+                                android:textSize="14dp"
+                                android:textColor="@color/colorPrimary"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="39dp"
+                                android:fontFamily="@font/antic"
+                                android:gravity="center"
+                                android:text="Descripción: "
+                                android:textSize="14dp"
+                                android:textColor="@color/colorPrimary"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="47dp"
+                                android:layout_marginTop="125dp"
+                                android:fontFamily="@font/antic"
+                                android:gravity="center"
+                                android:text="Logo: "
+                                android:textSize="14dp"
+                                android:textColor="@color/colorPrimary"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="39dp"
+                                android:fontFamily="@font/antic"
+                                android:gravity="center_vertical"
+                                android:text="Área a la que pertenece: "
+                                android:textSize="14dp"
+                                android:textColor="@color/colorPrimary"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="39dp"
+                                android:fontFamily="@font/antic"
+                                android:gravity="center"
+                                android:text="Sitio web: "
+                                android:textSize="14dp"
+                                android:textColor="@color/colorPrimary"/>
+
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <EditText
+                                android:id="@+id/edit_titulo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="8dp"
+                                android:textSize="13dp"
+                                android:hint="Título de ejemplo"
+                                android:maxLines="1"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="161dp" >
+
+                                <EditText
+                                    android:id="@+id/edit_descripcion"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="8dp"
+                                    android:hint="Máx. 240 caracteres"
+                                    android:maxLength="240"
+                                    android:textSize="13dp" />
+
+                            </LinearLayout>
+
+                            <Button
+                                android:id="@+id/btn_logo"
+                                style="@android:style/Widget.Material.Light.Button.Inset"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Subir Logo"
+                                android:textSize="12dp" />
+                            <EditText
+                                android:id="@+id/edit_keywords"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="13dp"
+                                android:hint="Separados por comas"
+                                android:layout_marginRight="8dp"/>
+                            <EditText
+                                android:id="@+id/edit_web"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textSize="13dp"
+                                android:hint="URL del sitio web"
+                                android:layout_marginRight="8dp"
+                                android:maxLines="1"/>
+
+
+
+                        </LinearLayout>
+
+
+
+                    </LinearLayout>
+
+
+                    <Switch
+                        android:id="@+id/switchprivado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/antic"
+                        android:text="Privado    "
+                        android:textColor="@color/colorPrimary"/>
+
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/baloo"
+                    android:text="Marcadores"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/colorPrimary"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/texto_marcadores"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No hay marcadores añadidos"
+                        android:textStyle="italic"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="8dp"/>
+
+                    <Button
+                        android:id="@+id/add_marker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Añadir marcador"
+                        android:paddingHorizontal="20dp"
+                        android:layout_gravity="center_horizontal"
+                        android:background="#419FBB"
+                        android:textColor="#fff"/>
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/btn_crearproyecto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Crear proyecto"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="#1F41A8"
+                    android:textColor="#fff"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

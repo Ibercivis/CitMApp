@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:title="Home"
+            android:icon="@drawable/home_icon"/>
+
+        <item
+            android:id="@+id/nav_projects"
+            android:title="Proyectos"
+            android:icon="@drawable/projects_icon"/>
+
+        <item
+            android:id="@+id/nav_crear"
+            android:title="Crear proyecto"
+            android:icon="@drawable/add_icon"/>
+
+    </group>
+
+
+
+        <item
+            android:title="Usuario" >
+
+        <menu>
+
+            <group android:checkableBehavior="single">
+
+
+            <item
+                android:id="@+id/nav_misproyectos"
+                android:title="Mis proyectos"
+                android:icon="@drawable/misproyectos_icon"/>
+
+            <item
+                android:id="@+id/nav_logout"
+                android:title="Logout"
+                android:icon="@drawable/logout_icon"/>
+
+            </group>
+        </menu>
+
+        </item>
+
+
+
+</menu>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/carta"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="5dp"
+    android:elevation="5dp"
+    app:cardBackgroundColor="#2196F3">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Título"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:textSize="16sp"
+            android:textAllCaps="true"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:id="@+id/descripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Descripción limitada a 140 caracteres que pretende explicar el objetivo del proyecto."
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Este proyecto tiene "
+                android:layout_marginLeft="16dp"
+                android:textSize="13sp"
+                android:textStyle="italic"
+                android:textColor="#FFFFFF"
+                />
+
+            <TextView
+                android:id="@+id/numaportaciones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="16"
+                android:textSize="13sp"
+                android:textStyle="italic"
+                android:textColor="#FFFFFF"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" aportaciones."
+                android:textSize="13sp"
+                android:textStyle="italic"
+                android:textColor="#FFFFFF"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn"
+                style="@android:style/Widget.Material.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PARTICIPAR"
+                android:textSize="12dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_marginTop="-15dp"
+            android:layout_marginBottom="-5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                app:lottie_imageAssetsFolder="assets"
+                app:lottie_fileName="347-like.json"
+                app:lottie_loop="false"
+                app:lottie_autoPlay="false"
+                android:layout_gravity="right"
+                app:lottie_progress="0.2"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="40dp"
+                />
+
+            <TextView
+                android:id="@+id/numeroLikes"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:text="15"
+                android:layout_toRightOf="@id/animation_view"
+                android:layout_marginLeft="-45dp"
+                />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

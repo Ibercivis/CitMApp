@@ -1,9 +1,13 @@
 package com.ibercivis.mapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Pair;
@@ -14,14 +18,18 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ibercivis.mapp.clases.SessionManager;
+
 public class SplashActivity extends AppCompatActivity {
 
-    private static int SPLASH_SCREEN = 5000;
+    private static int SPLASH_SCREEN = 3000;
 
     // Variables
     Animation topAnim, bottomAnim;
     ImageView logo;
     TextView titulo, slogan;
+
+    final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +38,19 @@ public class SplashActivity extends AppCompatActivity {
 
 
         setContentView(R.layout.activity_splash);
+
+        if ( Build.VERSION.SDK_INT >= 23){
+            if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) !=
+                    PackageManager.PERMISSION_GRANTED  ){
+                requestPermissions(new String[]{
+                                android.Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA},
+                        REQUEST_CODE_ASK_PERMISSIONS);
+
+                recreate();
+
+                return ;
+            }
+        }
 
         //Animations
 
@@ -46,6 +67,24 @@ public class SplashActivity extends AppCompatActivity {
         titulo.setAnimation(bottomAnim);
         slogan.setAnimation(bottomAnim);
 
+        verificarLog();
+
+
+    }
+
+    public void verificarLog(){
+
+        SessionManager session = new SessionManager(getApplicationContext());
+        if(session.isLoggedIn()==true){
+            esperarYMain(SPLASH_SCREEN);
+        } else if (session.isLoggedIn()==false){
+            esperarYLogin(SPLASH_SCREEN);
+        }
+
+    }
+
+    public void esperarYLogin(int milisegundos) {
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -59,4 +98,19 @@ public class SplashActivity extends AppCompatActivity {
             }
         }, SPLASH_SCREEN);
     }
+
+    public void esperarYMain(int milisegundos) {
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                // acciones que se ejecutan tras los milisegundos
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                finish();
+                startActivity(intent);
+            }
+        }, milisegundos);
+    }
+
+
 }

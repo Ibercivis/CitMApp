@@ -7,15 +7,41 @@ public class proyectos {
     int color;
     int aportaciones;
     int likes;
-    boolean legusta;
+    int legusta;
+    int idProyecto;
+    int privado;
+    String password;
 
-    public proyectos(String titulo, String descripcion, int color, int aportaciones, int likes, boolean legusta) {
+    public proyectos(int idProyecto, String titulo, String descripcion, int color, int aportaciones, int likes, int legusta, int privado, String password) {
+        this.idProyecto = idProyecto;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.color = color;
         this.aportaciones = aportaciones;
         this.likes = likes;
         this.legusta = legusta;
+        this.privado = privado;
+        this.password = password;
+    }
+
+    public int getLegusta() {
+        return legusta;
+    }
+
+    public int getPrivado() {
+        return privado;
+    }
+
+    public void setPrivado(int privado) {
+        this.privado = privado;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getTitulo() {
@@ -58,12 +84,19 @@ public class proyectos {
         this.likes = likes;
     }
 
-    public boolean isLegusta() {
+    public int isLegusta() {
         return legusta;
     }
 
-    public void setLegusta(boolean legusta) {
+    public void setLegusta(int legusta) {
         this.legusta = legusta;
     }
 
+    public int getIdProyecto() {
+        return idProyecto;
+    }
+
+    public void setIdProyecto(int idProyecto) {
+        this.idProyecto = idProyecto;
+    }
 }

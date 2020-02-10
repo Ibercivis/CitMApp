@@ -3,4 +3,7 @@
 
     <string name="navigation_open_drawer">Open Navigation Drawer</string>
     <string name="navigation_close_drawer">Close Navigation Drawer</string>
+
+    <string name="base_url">https://citmapp.ibercivis.es</string>
+
 </resources>

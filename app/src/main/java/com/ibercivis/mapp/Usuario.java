@@ -17,10 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -37,35 +34,41 @@ import com.ibercivis.mapp.clases.proyectos;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class ListadoProyectos extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class Usuario extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    //Comunes: Navigation y Toolbar
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
 
     //Propios de esta Activity
-    RecyclerView recyclerLista;
-    ArrayList<proyectos> ListaProyectos = new ArrayList<>();
+    RecyclerView recyclerListaGustan;
+    ArrayList<proyectos> ListaProyectosGustan = new ArrayList<>();
+
+    RecyclerView recyclerListaPropios;
+    ArrayList<proyectos> ListaProyectosPropios = new ArrayList<>();
+
+    TextView texto_noHayGustan, texto_noHayPropios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listado_proyectos);
+        setContentView(R.layout.activity_usuario);
 
         /*-----Hooks-----*/
 
-        drawerLayout = findViewById(R.id.drawer_layout2);
-        navigationView = findViewById(R.id.nav_view2);
-        toolbar = findViewById(R.id.toolbar2);
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.toolbar);
 
-        toolbar.setBackgroundColor(getColor(R.color.colorBlanco));
+        texto_noHayGustan = findViewById(R.id.texto_megusta);
+        texto_noHayPropios = findViewById(R.id.texto_misproyectos);
 
         /*-----Toolbar-----*/
         setSupportActionBar(toolbar);
@@ -86,20 +89,10 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setCheckedItem(R.id.nav_projects);
+        navigationView.setCheckedItem(R.id.nav_misproyectos);
 
-        /*-----MÉTODOS PROPIOS DE ESTA ACTIVITY-----*/
+        getUserRequest();
 
-        getInfoRequest();
-
-        /* recyclerLista = findViewById(R.id.recyclerproyectos);
-        //llenarLista(ListaProyectos);
-        getInfoRequest();
-        recyclerLista.setHasFixedSize(true);
-        LinearLayoutManager layout = new LinearLayoutManager(this);
-        layout.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerLista.setAdapter(new Adaptador(ListaProyectos));
-        recyclerLista.setLayoutManager(layout); */
     }
 
     @Override
@@ -118,17 +111,17 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
 
         switch (menuItem.getItemId()){
             case R.id.nav_home:
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                Intent intent3 = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent3);
                 break;
             case R.id.nav_projects:
-
+                Intent intent = new Intent(getApplicationContext(), ListadoProyectos.class);
+                startActivity(intent);
                 break;
             case R.id.nav_crear:
                 Intent intent2 = new Intent(getApplicationContext(), CrearProyecto.class);
                 startActivity(intent2);
                 break;
-
             case R.id.nav_logout:
                 SessionManager session = new SessionManager(getApplicationContext());
                 session.setClear();
@@ -136,10 +129,7 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
                 startActivity(intent4);
                 finish();
                 break;
-            case R.id.nav_misproyectos:
-                Intent intent5 = new Intent(getApplicationContext(), Usuario.class);
-                startActivity(intent5);
-                break;
+
 
         }
 
@@ -152,31 +142,14 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
 
     }
 
-    private void llenarLista(ArrayList<proyectos> lista) {
-     /*   lista.add(new proyectos("OdourCollect", "Proyecto para reportar malos olores en tu ciudad", getRandomColor(), 20, 0, false));
-        lista.add(new proyectos("Stop Amianto", "Proyecto para reportar amianto", getRandomColor(), 250, 54, true));
-        lista.add(new proyectos("OSM", "Ayuda a elaborar un mapa de tu ciudad", getRandomColor(), 76, 7, false));
-        lista.add(new proyectos("D-NOSES", "Proyecto para reportar malos olores en tu continente", getRandomColor(), 47, 4, false));
-        lista.add(new proyectos("Movilidad Inteligente", "Localiza puntos críticos para personas con movilidad reducida", getRandomColor(), 121, 19, true));
-        lista.add(new proyectos("Vigilantes del Aire", "Mide la calidad del aire en tu barrio", getRandomColor(), 19, 6, false));
-        lista.add(new proyectos("Amigos de las Plantas", "Proyecto para reportar especies insectívoras", getRandomColor(), 7, 2, false));
-        lista.add(new proyectos("Luces para las Sombras", "Proyecto para localizar sitios de interés", getRandomColor(), 476, 145, false));
-        lista.add(new proyectos("Almozara Intoxicada", "Proyecto para reportar residuos toxicos", getRandomColor(), 55, 5, false));
-        lista.add(new proyectos("Localiza tu Almendro", "Proyecto para localizar almendros", getRandomColor(), 25, 13, false)); */
-    }
-
-    public int getRandomColor(){
-        Random rnd = new Random();
-        return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
-    }
-
-    public void getInfoRequest () {
+    public void getUserRequest () {
         final LinearLayout cargar = findViewById(R.id.cargando);
-        String idUser, toktok;
+        final String idUser, toktok;
         int item;
-        SessionManager session = new SessionManager(ListadoProyectos.this);
+        SessionManager session = new SessionManager(Usuario.this);
         cargar.setVisibility(View.VISIBLE);
-        recyclerLista = findViewById(R.id.recyclerproyectos);
+        recyclerListaPropios = findViewById(R.id.recyclermisproyectos);
+        recyclerListaGustan = findViewById(R.id.recyclerproyectosgustan);
 
         // Input data ok, so go with the request
 
@@ -186,7 +159,7 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
 
         String url = getString(R.string.base_url) + "/listaDeProyectos.php?idUser=" + idUser +"&token=" + toktok;
 
-        RequestQueue queue = Volley.newRequestQueue(ListadoProyectos.this);
+        RequestQueue queue = Volley.newRequestQueue(Usuario.this);
         queue.getCache().clear();
         StringRequest sr = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -212,18 +185,52 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
                             int aportaciones = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("marcadores")));
                             int likes = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("votos")));
                             int privado = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("privado")));
+                            String idUser_proyecto = String.valueOf(jsonArray.getJSONObject(i).get("IdUser"));
                             String title = String.valueOf(jsonArray.getJSONObject(i).get("titulo"));
                             String description = String.valueOf(jsonArray.getJSONObject(i).get("descripcion"));
                             String password = String.valueOf(jsonArray.getJSONObject(i).get("password"));
-                            ListaProyectos.add(new proyectos(id, title, description, getRandomColor(), aportaciones, likes, voted, privado, password));
+
+                            if(voted == 1) {
+
+                                ListaProyectosGustan.add(new proyectos(id, title, description, getRandomColor(), aportaciones, likes, voted, privado, password));
+
+                            }
+
+                            if(idUser.equals(idUser_proyecto)){
+
+                                ListaProyectosPropios.add(new proyectos(id, title, description, getRandomColor(), aportaciones, likes, voted, privado, password));
+                            }
+
+
+
 
 
                         }
-                        recyclerLista.setHasFixedSize(true);
-                        LinearLayoutManager layout = new LinearLayoutManager(ListadoProyectos.this);
-                        layout.setOrientation(LinearLayoutManager.VERTICAL);
-                        recyclerLista.setAdapter(new Adaptador(ListaProyectos));
-                        recyclerLista.setLayoutManager(layout);
+
+                        if(ListaProyectosGustan.size() > 0){
+                            texto_noHayGustan.setVisibility(View.GONE);
+                            recyclerListaGustan.setVisibility(View.VISIBLE);
+                            recyclerListaGustan.setHasFixedSize(true);
+                            LinearLayoutManager layout = new LinearLayoutManager(Usuario.this);
+                            layout.setOrientation(LinearLayoutManager.VERTICAL);
+                            recyclerListaGustan.setAdapter(new Adaptador(ListaProyectosGustan));
+                            recyclerListaGustan.setLayoutManager(layout);
+                        }
+
+                        if(ListaProyectosPropios.size() > 0){
+                            texto_noHayPropios.setVisibility(View.GONE);
+                            recyclerListaPropios.setVisibility(View.VISIBLE);
+                            recyclerListaPropios.setHasFixedSize(true);
+                            LinearLayoutManager layout2 = new LinearLayoutManager(Usuario.this);
+                            layout2.setOrientation(LinearLayoutManager.VERTICAL);
+                            recyclerListaPropios.setAdapter(new Adaptador(ListaProyectosPropios));
+                            recyclerListaPropios.setLayoutManager(layout2);
+                        }
+
+
+
+
+
                         cargar.setVisibility(View.GONE);
 
 
@@ -263,6 +270,11 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
         queue.add(sr);
     }
 
+    public int getRandomColor(){
+        Random rnd = new Random();
+        return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+    }
 
 }
+
 

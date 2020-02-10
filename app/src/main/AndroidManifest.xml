@@ -3,9 +3,16 @@
     package="com.ibercivis.mapp">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +23,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".add_marker"></activity>
+        <activity android:name=".ProyectoPrivado"></activity>
+        <activity android:name=".Usuario" />
+        <activity android:name=".QuienesSomos" />
+        <activity android:name=".add_marker" />
         <activity android:name=".Mapa" />
         <activity android:name=".Login" />
         <activity android:name=".SplashActivity">
@@ -30,6 +40,10 @@
         <activity android:name=".ListadoProyectos" />
         <activity android:name=".CrearProyecto" />
         <activity android:name=".MainActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

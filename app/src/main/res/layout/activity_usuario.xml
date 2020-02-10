@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/drawer_layout"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_view"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/main_menu"
+        android:layout_gravity="start"
+        />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/toolbar" />
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/antic"
+                    android:text="Mis proyectos:"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:transitionName="logo_desc"
+                    android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:id="@+id/texto_misproyectos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Todavía no has creado ningún proyecto"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclermisproyectos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginTop="24dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/antic"
+                    android:text="Los proyectos que me gustan:"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:transitionName="logo_desc"
+                    android:layout_marginBottom="12dp"/>
+
+                    <TextView
+                        android:id="@+id/texto_megusta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Todavía no has dado Me Gusta a ningún proyecto."/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerproyectosgustan"
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+                </LinearLayout>
+
+        </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cargando"
+            android:layout_width="match_parent"
+            android:layout_height="770dp"
+            android:background="#A4363030"
+            android:gravity="center"
+            android:visibility="gone"
+            >
+
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/marcobotonsolido">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Obteniendo proyectos..."
+                    android:fontFamily="sans-serif-condensed"/>
+
+                <ProgressBar
+                    android:layout_marginTop="8dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

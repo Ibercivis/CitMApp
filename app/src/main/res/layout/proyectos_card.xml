@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/carta"
     android:orientation="vertical"
@@ -8,12 +8,17 @@
     android:layout_margin="5dp"
     app:cardCornerRadius="5dp"
     android:elevation="5dp"
-    app:cardBackgroundColor="#2196F3">
+    app:strokeColor="#000000"
+    app:strokeWidth="1dp"
+    >
+
+    //app:cardBackgroundColor="#2196F3"
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <TextView
             android:id="@+id/titulo"
@@ -24,20 +29,22 @@
             android:layout_marginTop="16dp"
             android:textSize="16sp"
             android:textAllCaps="true"
-            android:textColor="#FFFFFF"
+            android:textColor="#030101"
             android:textStyle="bold"
+            android:fontFamily="@font/noto_sans"
             />
 
         <TextView
             android:id="@+id/descripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Descripción limitada a 140 caracteres que pretende explicar el objetivo del proyecto."
+            android:text="Descripción limitada a 240 caracteres que pretende explicar el objetivo del proyecto."
             android:layout_marginLeft="16dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:textSize="14sp"
-            android:textColor="#FFFFFF"
+            android:textColor="#423C3C"
+            android:fontFamily="@font/noto_sans"
             />
 
         <LinearLayout
@@ -52,7 +59,7 @@
                 android:layout_marginLeft="16dp"
                 android:textSize="13sp"
                 android:textStyle="italic"
-                android:textColor="#FFFFFF"
+                android:textColor="#4E4A4A"
                 />
 
             <TextView
@@ -62,7 +69,7 @@
                 android:text="16"
                 android:textSize="13sp"
                 android:textStyle="italic"
-                android:textColor="#FFFFFF"
+                android:textColor="#4E4A4A"
                 />
 
             <TextView
@@ -71,25 +78,30 @@
                 android:text=" aportaciones."
                 android:textSize="13sp"
                 android:textStyle="italic"
-                android:textColor="#FFFFFF"
+                android:textColor="#4E4A4A"
                 />
 
         </LinearLayout>
 
         <LinearLayout
+            android:layout_marginTop="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:gravity="center">
 
             <Button
                 android:id="@+id/btn"
                 style="@android:style/Widget.Material.Button.Colored"
+                android:background="#419FBB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:paddingVertical="-5dp"
+                android:paddingHorizontal="32dp"
                 android:text="PARTICIPAR"
-                android:textSize="12dp"
-                android:textStyle="bold" />
+                android:textSize="15dp"
+                android:textStyle="bold"
+                />
 
         </LinearLayout>
         <RelativeLayout
@@ -99,6 +111,16 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:text="Me gusta"
+                android:layout_toLeftOf="@id/animation_view"
+                android:layout_marginLeft="-45dp"
+                android:fontFamily="@font/noto_sans"
+                />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/animation_view"
@@ -122,9 +144,10 @@
                 android:text="15"
                 android:layout_toRightOf="@id/animation_view"
                 android:layout_marginLeft="-45dp"
+                android:fontFamily="@font/noto_sans"
                 />
 
         </RelativeLayout>
     </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

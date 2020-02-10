@@ -35,7 +35,7 @@ public class Adaptador extends RecyclerView.Adapter<viewHolder> {
         holder.likes.setText(Integer.toString(ListaObjeto.get(position).getLikes()));
 
 
-        if(ListaObjeto.get(position).isLegusta() == true) {
+        if(ListaObjeto.get(position).legusta == 1) {
             holder.animation.setProgress(1);
         }
 
@@ -47,4 +47,6 @@ public class Adaptador extends RecyclerView.Adapter<viewHolder> {
     public int getItemCount() {
         return ListaObjeto.size();
     }
+
+
 }

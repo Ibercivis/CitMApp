@@ -18,6 +18,10 @@
         android:layout_gravity="start"
         />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -48,7 +52,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/baloo"
-                        android:text="Datos del Proyecto:"
+                        android:text="Datos del Proyecto"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         android:textColor="@color/colorPrimary"/>
@@ -56,124 +60,67 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                         android:layout_margin="16dp">
 
-                        <LinearLayout
-                            android:layout_width="148dp"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginLeft="8dp">
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="37dp"
-                                android:fontFamily="@font/antic"
-                                android:gravity="center"
-                                android:text="Título del proyecto: "
-                                android:textSize="14dp"
-                                android:textColor="@color/colorPrimary"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="39dp"
-                                android:fontFamily="@font/antic"
-                                android:gravity="center"
-                                android:text="Descripción: "
-                                android:textSize="14dp"
-                                android:textColor="@color/colorPrimary"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="47dp"
-                                android:layout_marginTop="125dp"
-                                android:fontFamily="@font/antic"
-                                android:gravity="center"
-                                android:text="Logo: "
-                                android:textSize="14dp"
-                                android:textColor="@color/colorPrimary"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="39dp"
-                                android:fontFamily="@font/antic"
-                                android:gravity="center_vertical"
-                                android:text="Área a la que pertenece: "
-                                android:textSize="14dp"
-                                android:textColor="@color/colorPrimary"/>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="39dp"
-                                android:fontFamily="@font/antic"
-                                android:gravity="center"
-                                android:text="Sitio web: "
-                                android:textSize="14dp"
-                                android:textColor="@color/colorPrimary"/>
-
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/edit_titulo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:hint="Título del proyecto"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                            <EditText
-                                android:id="@+id/edit_titulo"
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/project_titulo"
                                 android:layout_width="match_parent"
+                                android:inputType="textCapWords|textAutoCorrect"
                                 android:layout_height="wrap_content"
-                                android:layout_marginRight="8dp"
-                                android:textSize="13dp"
-                                android:hint="Título de ejemplo"
                                 android:maxLines="1"/>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="161dp" >
+                        </com.google.android.material.textfield.TextInputLayout>
 
-                                <EditText
-                                    android:id="@+id/edit_descripcion"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginRight="8dp"
-                                    android:hint="Máx. 240 caracteres"
-                                    android:maxLength="240"
-                                    android:textSize="13dp" />
 
-                            </LinearLayout>
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/edit_descripcion"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Descripción"
+                            app:counterMaxLength="240"
+                            app:counterEnabled="true"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                            <Button
-                                android:id="@+id/btn_logo"
-                                style="@android:style/Widget.Material.Light.Button.Inset"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Subir Logo"
-                                android:textSize="12dp" />
-                            <EditText
-                                android:id="@+id/edit_keywords"
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/project_description"
                                 android:layout_width="match_parent"
+                                android:inputType="textCapWords|textAutoCorrect"
                                 android:layout_height="wrap_content"
-                                android:textSize="13dp"
-                                android:hint="Separados por comas"
-                                android:layout_marginRight="8dp"/>
-                            <EditText
-                                android:id="@+id/edit_web"
+                                android:maxLength="240"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/edit_web"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Sitio web"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/project_web"
                                 android:layout_width="match_parent"
+
                                 android:layout_height="wrap_content"
-                                android:textSize="13dp"
-                                android:hint="URL del sitio web"
-                                android:layout_marginRight="8dp"
+                                android:inputType="textWebEmailAddress"
                                 android:maxLines="1"/>
 
-
-
-                        </LinearLayout>
+                        </com.google.android.material.textfield.TextInputLayout>
 
 
 
                     </LinearLayout>
+
 
 
                     <Switch
@@ -184,6 +131,26 @@
                         android:fontFamily="@font/antic"
                         android:text="Privado    "
                         android:textColor="@color/colorPrimary"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/edit_privado"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Contraseña"
+                        android:layout_marginHorizontal="16dp"
+                        app:counterMaxLength="16"
+                        android:maxLength="16"
+                        app:counterEnabled="true"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:visibility="gone">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/project_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
                 </LinearLayout>
@@ -205,24 +172,647 @@
                     android:layout_margin="8dp"
                     android:orientation="vertical">
 
+                    <LinearLayout
+                        android:id="@+id/photo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:visibility="gone"
+                        >
+
+                        <ImageView
+                            android:id="@+id/camera"
+                            android:layout_width="72dp"
+                            android:layout_height="72dp"
+                            android:src="@drawable/ic_photo_camera_black_24dp"/>
+
+
+                    </LinearLayout>
+
+                    <Switch
+                        android:id="@+id/switchfoto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/antic"
+                        android:text="Incluye foto    "
+                        android:textColor="@color/colorPrimary"/>
+
                     <TextView
                         android:id="@+id/texto_marcadores"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="No hay marcadores añadidos"
+                        android:text="Añade los atributos que necesites (Máx. 16)"
                         android:textStyle="italic"
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="8dp"/>
 
-                    <Button
-                        android:id="@+id/add_marker"
-                        android:layout_width="wrap_content"
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Añadir marcador"
-                        android:paddingHorizontal="20dp"
-                        android:layout_gravity="center_horizontal"
-                        android:background="#419FBB"
-                        android:textColor="#fff"/>
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/atributo1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            android:gravity="center">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/hint1"
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                android:hint="Atributo 1 (Respuesta texto)"
+
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_atributo1"
+                                    android:inputType="textCapWords|textAutoCorrect"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"
+                                    android:maxLength="30"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:id="@+id/cancel_atributo1"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_clear_red_24dp"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/atributo2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/hint2"
+                                android:hint="Atributo 2 (Respuesta texto)"
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_atributo2"
+                                    android:inputType="textCapWords|textAutoCorrect"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+
+                            <ImageView
+                                android:id="@+id/cancel_atributo2"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_clear_red_24dp"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/atributo3"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:visibility="gone"
+                            android:gravity="center">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/hint3"
+                                android:hint="Atributo 3 (Respuesta texto)"
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_atributo3"
+                                    android:inputType="textCapWords|textAutoCorrect"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:id="@+id/cancel_atributo3"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_clear_red_24dp"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/atributo4"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/hint4"
+                                android:hint="Atributo 4 (Respuesta texto)"
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_atributo4"
+                                    android:inputType="textCapWords|textAutoCorrect"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:id="@+id/cancel_atributo4"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_clear_red_24dp"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/atributo5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/hint5"
+                                android:hint="Atributo 5 (Respuesta texto)"
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_atributo5"
+                                    android:inputType="textCapWords|textAutoCorrect"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:id="@+id/cancel_atributo5"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_clear_red_24dp"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/atributo6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/hint6"
+                                android:hint="Atributo 6 (Respuesta texto)"
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_atributo6"
+                                    android:inputType="textCapWords|textAutoCorrect"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:id="@+id/cancel_atributo6"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_clear_red_24dp"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/atributo7"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/hint7"
+                                android:hint="Atributo 7 (Respuesta texto)"
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_atributo7"
+                                    android:inputType="textCapWords|textAutoCorrect"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:id="@+id/cancel_atributo7"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_clear_red_24dp"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/atributo8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/hint8"
+                                android:hint="Atributo 8 (Respuesta texto)"
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_atributo8"
+                                    android:inputType="textCapWords|textAutoCorrect"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:id="@+id/cancel_atributo8"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_clear_red_24dp"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/atributo9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/hint9"
+                                android:hint="Atributo 9 (Respuesta texto)"
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_atributo9"
+                                    android:inputType="textCapWords|textAutoCorrect"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:id="@+id/cancel_atributo9"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_clear_red_24dp"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/atributo10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/hint10"
+                                android:hint="Atributo 10 (Respuesta texto)"
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_atributo10"
+                                    android:inputType="textCapWords|textAutoCorrect"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:id="@+id/cancel_atributo10"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_clear_red_24dp"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/atributo11"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/hint11"
+                                android:hint="Atributo 11 (Respuesta texto)"
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_atributo11"
+                                    android:inputType="textCapWords|textAutoCorrect"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:id="@+id/cancel_atributo11"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_clear_red_24dp"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/atributo12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/hint12"
+                                android:hint="Atributo 12 (Respuesta texto)"
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_atributo12"
+                                    android:inputType="textCapWords|textAutoCorrect"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:id="@+id/cancel_atributo12"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_clear_red_24dp"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/atributo13"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/hint13"
+                                android:hint="Atributo 13 (Respuesta texto)"
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_atributo13"
+                                    android:textSize="15dp"
+                                    android:inputType="textCapWords|textAutoCorrect"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:id="@+id/cancel_atributo13"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_clear_red_24dp"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/atributo14"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/hint14"
+                                android:hint="Atributo 14 (Respuesta texto)"
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_atributo14"
+                                    android:inputType="textCapWords|textAutoCorrect"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:id="@+id/cancel_atributo14"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_clear_red_24dp"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/atributo15"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/hint15"
+                                android:hint="Atributo 15 (Respuesta texto)"
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_atributo15"
+                                    android:inputType="textCapWords|textAutoCorrect"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:id="@+id/cancel_atributo15"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_clear_red_24dp"
+                                />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/atributo16"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center"
+                            android:visibility="gone">
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/hint16"
+                                android:hint="Atributo 16 (Respuesta texto)"
+                                android:layout_width="270dp"
+                                android:layout_height="wrap_content"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_atributo16"
+                                    android:inputType="textCapWords|textAutoCorrect"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLines="1"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <ImageView
+                                android:id="@+id/cancel_atributo16"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="16dp"
+                                android:clickable="true"
+                                android:src="@drawable/ic_clear_red_24dp"
+                                />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <Button
+                            android:id="@+id/add_textatribute"
+                            android:layout_width="270dp"
+                            android:layout_height="wrap_content"
+                            android:text="Añadir atributo texto"
+                            android:layout_marginTop="8dp"
+                            android:layout_margin="8dp"
+                            android:paddingHorizontal="20dp"
+                            android:background="#419FBB"
+                            android:textColor="#fff"/>
+
+                        <Button
+                            android:id="@+id/add_numberatribute"
+                            android:layout_width="270dp"
+                            android:layout_height="wrap_content"
+                            android:text="Añadir atributo número"
+                            android:layout_marginTop="8dp"
+                            android:layout_margin="8dp"
+                            android:paddingHorizontal="20dp"
+                            android:background="#419FBB"
+                            android:textColor="#fff"/>
+
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -236,12 +826,46 @@
                     android:background="#1F41A8"
                     android:textColor="#fff"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"/>
+                    android:layout_marginBottom="20dp"
+                    android:onClick="addprojectRequest"/>
 
             </LinearLayout>
 
         </ScrollView>
 
     </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/cargando"
+            android:layout_width="match_parent"
+            android:layout_height="770dp"
+            android:background="#A4363030"
+            android:gravity="center"
+            android:visibility="gone"
+            >
+
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="100dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/marcobotonsolido">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Por favor, espere..."
+                    android:fontFamily="sans-serif-condensed"/>
+
+                <ProgressBar
+                    android:layout_marginTop="8dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>

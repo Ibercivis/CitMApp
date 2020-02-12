@@ -192,7 +192,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginStart="60dp"
                     android:fontFamily="@font/acme"
-                    android:text="Usuario"
+                    android:text="Mi perfil"
                     android:textSize="18sp" />
 
                 <ImageView
@@ -237,7 +237,7 @@
                     android:layout_alignParentEnd="false"
                     android:layout_centerHorizontal="true"
                     android:fontFamily="@font/acme"
-                    android:text="¿Quiénes somos?"
+                    android:text="¿Qué es CitMApp?"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

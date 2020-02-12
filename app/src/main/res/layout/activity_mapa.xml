@@ -54,13 +54,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="start"
+                android:layout_marginLeft="23dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/baloo"
-                android:text="Nuevo marcador"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="NUEVO MARCADOR"
+                android:textColor="@color/colorPrimary"
                 android:textSize="18dp"
-                android:textStyle="bold"
-                android:textColor="@color/colorPrimary"/>
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:id="@+id/photo"
@@ -113,6 +114,16 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <ImageView
+                    android:id="@+id/info1"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_info_black_24dp"
+                    />
+
 
             </LinearLayout>
 
@@ -139,6 +150,16 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <ImageView
+                    android:id="@+id/info2"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_info_black_24dp"
+                    />
+
 
             </LinearLayout>
 
@@ -164,6 +185,16 @@
                         android:maxLines="1"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/info3"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_info_black_24dp"
+                    />
 
 
             </LinearLayout>
@@ -192,6 +223,16 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <ImageView
+                    android:id="@+id/info4"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_info_black_24dp"
+                    />
+
             </LinearLayout>
 
             <LinearLayout
@@ -217,6 +258,16 @@
                         android:maxLines="1"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/info5"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_info_black_24dp"
+                    />
 
             </LinearLayout>
 
@@ -244,6 +295,15 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <ImageView
+                    android:id="@+id/info6"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_info_black_24dp"
+                    />
 
             </LinearLayout>
 
@@ -271,6 +331,16 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <ImageView
+                    android:id="@+id/info7"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_info_black_24dp"
+                    />
+
             </LinearLayout>
 
             <LinearLayout
@@ -296,6 +366,16 @@
                         android:maxLines="1"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/info8"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_info_black_24dp"
+                    />
 
             </LinearLayout>
 
@@ -323,6 +403,16 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <ImageView
+                    android:id="@+id/info9"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_info_black_24dp"
+                    />
+
             </LinearLayout>
 
             <LinearLayout
@@ -348,6 +438,16 @@
                         android:maxLines="1"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/info10"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_info_black_24dp"
+                    />
 
             </LinearLayout>
 
@@ -375,6 +475,16 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <ImageView
+                    android:id="@+id/info11"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_info_black_24dp"
+                    />
+
             </LinearLayout>
 
             <LinearLayout
@@ -400,6 +510,16 @@
                         android:maxLines="1"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/info12"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_info_black_24dp"
+                    />
 
             </LinearLayout>
 
@@ -427,6 +547,16 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <ImageView
+                    android:id="@+id/info13"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_info_black_24dp"
+                    />
+
             </LinearLayout>
 
             <LinearLayout
@@ -452,6 +582,16 @@
                         android:maxLines="1"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/info14"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_info_black_24dp"
+                    />
 
             </LinearLayout>
 
@@ -479,6 +619,16 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <ImageView
+                    android:id="@+id/info15"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_info_black_24dp"
+                    />
+
             </LinearLayout>
 
             <LinearLayout
@@ -504,6 +654,16 @@
                         android:maxLines="1"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/info16"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="16dp"
+                    android:clickable="true"
+                    android:src="@drawable/ic_info_black_24dp"
+                    />
 
             </LinearLayout>
 
@@ -639,7 +799,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:paddingHorizontal="10dp">
 
 
                         <ImageView
@@ -1344,9 +1505,23 @@
                 </LinearLayout>
 
                     <Button
+                        android:id="@+id/borrar_marcador"
+                        android:background="#F44336"
+                        android:layout_width="200dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="12dp"
+                        android:paddingHorizontal="48dp"
+                        android:text="ELIMINAR"
+                        android:textColor="#E9EBF1"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        />
+
+                    <Button
                         android:id="@+id/cerrar_marcador"
-                        android:background="#1F4ABB"
-                        android:layout_width="wrap_content"
+                        android:background="#419FBB"
+                        android:layout_width="200dp"
                         android:layout_height="35dp"
                         android:layout_marginTop="12dp"
                         android:paddingHorizontal="48dp"
@@ -1365,6 +1540,46 @@
 
 
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/displayinfo"
+            android:layout_width="match_parent"
+            android:layout_height="770dp"
+            android:background="#A4363030"
+            android:gravity="center"
+            android:visibility="gone"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:background="@drawable/marcobotonsolido"
+                android:layout_marginHorizontal="8dp"
+                android:padding="20dp">
+                <TextView
+                    android:id="@+id/text_info"
+                    android:layout_marginTop="4dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="El administrador del proyecto no ha añadido una descripción para este atributo."
+                    android:fontFamily="sans-serif-condensed"/>
+
+                <Button
+                    android:layout_marginTop="16dp"
+                    android:id="@+id/volver_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Volver"
+                    android:paddingVertical="-5dp"
+                    android:paddingHorizontal="20dp"
+                    android:background="#419FBB"
+                    android:textColor="#fff"
+                    android:layout_gravity="center"/>
+
+            </LinearLayout>
         </LinearLayout>
 
     </RelativeLayout>

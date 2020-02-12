@@ -10,12 +10,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -38,6 +43,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -49,6 +56,7 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    Bitmap bitmap_logo;
 
     //Propios de esta Activity
     RecyclerView recyclerLista;
@@ -212,10 +220,22 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
                             int aportaciones = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("marcadores")));
                             int likes = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("votos")));
                             int privado = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("privado")));
+                            int hasLogo = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("logo")));
+                            int idUser = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("idUser")));
                             String title = String.valueOf(jsonArray.getJSONObject(i).get("titulo"));
                             String description = String.valueOf(jsonArray.getJSONObject(i).get("descripcion"));
                             String password = String.valueOf(jsonArray.getJSONObject(i).get("password"));
-                            ListaProyectos.add(new proyectos(id, title, description, getRandomColor(), aportaciones, likes, voted, privado, password));
+                            String web = String.valueOf(jsonArray.getJSONObject(i).get("web"));
+                            if(hasLogo == 1) {
+
+                                String URL_logo = "https://citmapp.ibercivis.es/uploads/proyectos/"+String.valueOf(id)+".jpg";
+
+                                ListaProyectos.add(new proyectos(id, idUser, title, description, web, getRandomColor(), aportaciones, likes, voted, privado, password, hasLogo, URL_logo));
+
+                            } else {
+                                ListaProyectos.add(new proyectos(id, idUser, title, description, web, getRandomColor(), aportaciones, likes, voted, privado, password, hasLogo));
+                            }
+
 
 
                         }
@@ -261,6 +281,50 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
         };
         sr.setShouldCache(false);
         queue.add(sr);
+    }
+
+   /* public class GetImageFromUrl extends AsyncTask<String, Void, Bitmap> {
+        ImageView imageView;
+        Bitmap bitmap;
+        Bitmap bitmap_para_logo;
+        proyectos proyecto;
+        public GetImageFromUrl(proyectos proyecto){
+
+            this.proyecto = proyecto;
+        }
+        @Override
+        protected Bitmap doInBackground(String... url) {
+            String stringUrl = url[0];
+            bitmap = null;
+            InputStream inputStream;
+            try {
+                inputStream = new java.net.URL(stringUrl).openStream();
+                bitmap = BitmapFactory.decodeStream(inputStream);
+                bitmap_logo = bitmap;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+        @Override
+        protected void onPostExecute(Bitmap bitmap){
+            super.onPostExecute(bitmap);
+            // imageView.setImageBitmap(bitmap);
+
+            bitmap_para_logo = bitmap;
+            bitmap_logo = bitmap;
+            proyecto.setLogo(bitmap);
+
+
+        }
+    } */
+
+    public Bitmap devolver_bitmap(Bitmap bm){
+
+
+
+
+        return bm;
     }
 
 

@@ -10,12 +10,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -36,6 +40,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -55,6 +61,8 @@ public class Usuario extends AppCompatActivity implements NavigationView.OnNavig
     ArrayList<proyectos> ListaProyectosPropios = new ArrayList<>();
 
     TextView texto_noHayGustan, texto_noHayPropios;
+
+    Bitmap bitmap_logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -185,20 +193,41 @@ public class Usuario extends AppCompatActivity implements NavigationView.OnNavig
                             int aportaciones = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("marcadores")));
                             int likes = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("votos")));
                             int privado = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("privado")));
-                            String idUser_proyecto = String.valueOf(jsonArray.getJSONObject(i).get("IdUser"));
+                            int hasLogo = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("logo")));
+                            int idUser_int = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("idUser")));
+                            String idUser_proyecto = String.valueOf(jsonArray.getJSONObject(i).get("idUser"));
                             String title = String.valueOf(jsonArray.getJSONObject(i).get("titulo"));
                             String description = String.valueOf(jsonArray.getJSONObject(i).get("descripcion"));
                             String password = String.valueOf(jsonArray.getJSONObject(i).get("password"));
+                            String web = String.valueOf(jsonArray.getJSONObject(i).get("web"));
 
                             if(voted == 1) {
 
-                                ListaProyectosGustan.add(new proyectos(id, title, description, getRandomColor(), aportaciones, likes, voted, privado, password));
+                                if(hasLogo == 1) {
+                                    String URL_logo = "https://citmapp.ibercivis.es/uploads/proyectos/"+String.valueOf(id)+".jpg";
+
+                                    ListaProyectosGustan.add(new proyectos(id, idUser_int, title, description, web, getRandomColor(), aportaciones, likes, voted, privado, password, hasLogo, URL_logo));
+
+                                } else {
+                                    ListaProyectosGustan.add(new proyectos(id, idUser_int, title, description, web, getRandomColor(), aportaciones, likes, voted, privado, password, hasLogo));
+                                }
+
+                               // ListaProyectosGustan.add(new proyectos(id, title, description, getRandomColor(), aportaciones, likes, voted, privado, password));
 
                             }
 
                             if(idUser.equals(idUser_proyecto)){
 
-                                ListaProyectosPropios.add(new proyectos(id, title, description, getRandomColor(), aportaciones, likes, voted, privado, password));
+                                if(hasLogo == 1) {
+                                    String URL_logo = "https://citmapp.ibercivis.es/uploads/proyectos/"+String.valueOf(id)+".jpg";
+                                    new GetImageFromUrl().execute(URL_logo);
+                                    ListaProyectosPropios.add(new proyectos(id, idUser_int, title, description, web, getRandomColor(), aportaciones, likes, voted, privado, password, hasLogo, URL_logo));
+
+                                } else {
+                                    ListaProyectosPropios.add(new proyectos(id, idUser_int, title, description, web, getRandomColor(), aportaciones, likes, voted, privado, password, hasLogo));
+                                }
+
+                                // ListaProyectosPropios.add(new proyectos(id, title, description, getRandomColor(), aportaciones, likes, voted, privado, password));
                             }
 
 
@@ -273,6 +302,33 @@ public class Usuario extends AppCompatActivity implements NavigationView.OnNavig
     public int getRandomColor(){
         Random rnd = new Random();
         return Color.argb(255, rnd.nextInt(256), rnd.nextInt(256), rnd.nextInt(256));
+    }
+
+    public class GetImageFromUrl extends AsyncTask<String, Void, Bitmap> {
+        ImageView imageView;
+        Bitmap bitmap;
+        /* public GetImageFromUrl(ImageView img){
+             this.imageView = img;
+         } */
+        @Override
+        protected Bitmap doInBackground(String... url) {
+            String stringUrl = url[0];
+            bitmap = null;
+            InputStream inputStream;
+            try {
+                inputStream = new java.net.URL(stringUrl).openStream();
+                bitmap = BitmapFactory.decodeStream(inputStream);
+                bitmap_logo = bitmap;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+        @Override
+        protected void onPostExecute(Bitmap bitmap){
+            super.onPostExecute(bitmap);
+            //imageView.setImageBitmap(bitmap);
+        }
     }
 
 }

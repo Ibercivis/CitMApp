@@ -1,9 +1,12 @@
 package com.ibercivis.mapp.clases;
 
 import android.content.Intent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +22,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.ibercivis.mapp.BorrarProyecto;
+import com.ibercivis.mapp.DescargarDatos;
 import com.ibercivis.mapp.ListadoProyectos;
 import com.ibercivis.mapp.Mapa;
 import com.ibercivis.mapp.ProyectoPrivado;
@@ -39,11 +44,15 @@ public class viewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     TextView titulo;
     TextView descripcion;
     TextView aportaciones;
+    TextView buttonViewOptions;
+    TextView web;
     CardView card;
     Button btn;
     LottieAnimationView animation;
     TextView likes;
+    ImageView logo;
     List<proyectos> ListaProyectos;
+
 
     public viewHolder(@NonNull View itemView, List<proyectos> datos) {
         super(itemView);
@@ -56,9 +65,15 @@ public class viewHolder extends RecyclerView.ViewHolder implements View.OnClickL
         likes = itemView.findViewById(R.id.numeroLikes);
         ListaProyectos = datos;
         card = itemView.findViewById(R.id.carta);
+        logo= itemView.findViewById(R.id.logo_proyecto);
+        buttonViewOptions = itemView.findViewById(R.id.textViewOptions);
+        web = itemView.findViewById(R.id.sitioweb);
 
         btn.setOnClickListener(this);
         animation.setOnClickListener(this);
+        buttonViewOptions.setOnClickListener(this);
+
+
 
 
 
@@ -68,8 +83,56 @@ public class viewHolder extends RecyclerView.ViewHolder implements View.OnClickL
     @Override
     public void onClick(View v) {
         int position = getAdapterPosition();
-        proyectos proyecto = ListaProyectos.get(position);
+        final proyectos proyecto = ListaProyectos.get(position);
 
+
+        if(v.getId() == buttonViewOptions.getId()){
+
+            PopupMenu popup = new PopupMenu(buttonViewOptions.getContext(), buttonViewOptions);
+            //inflating menu from xml resource
+            popup.inflate(R.menu.menu_card);
+            //adding click listener
+            popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    switch (item.getItemId()) {
+                        case R.id.menu1:
+                            //handle menu1 click
+
+                            int id = proyecto.getIdProyecto();
+                            Intent intent = new Intent(buttonViewOptions.getContext(), DescargarDatos.class);
+                            intent.putExtra("idProyecto", id);
+                            startActivity(btn.getContext(), intent, null);
+
+                            break;
+
+                        case R.id.menu2:
+                            //handle menu1 click
+
+                            int id2 = proyecto.getIdProyecto();
+                            Intent intent2 = new Intent(buttonViewOptions.getContext(), BorrarProyecto.class);
+                            intent2.putExtra("idProyecto", id2);
+                            startActivity(btn.getContext(), intent2, null);
+
+                            break;
+
+                    }
+                    return false;
+                }
+            });
+
+            SessionManager session = new SessionManager(buttonViewOptions.getContext());
+
+            if(proyecto.getIdUser() != session.getIdUser()){
+
+                MenuItem item_delete = popup.getMenu().findItem(R.id.menu2);
+                item_delete.setVisible(false);
+
+            }
+
+            popup.show();
+
+        }
 
         if (v.getId() == btn.getId()) {
             if(proyecto.privado == 0){

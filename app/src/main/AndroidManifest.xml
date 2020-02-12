@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
+
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
@@ -23,23 +25,38 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ProyectoPrivado"></activity>
-        <activity android:name=".Usuario" />
-        <activity android:name=".QuienesSomos" />
-        <activity android:name=".add_marker" />
-        <activity android:name=".Mapa" />
-        <activity android:name=".Login" />
-        <activity android:name=".SplashActivity">
+        <activity android:name=".BorrarProyecto"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".DescargarDatos"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ProyectoPrivado"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Usuario"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".QuienesSomos"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".add_marker"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Mapa"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Login"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUp" />
-        <activity android:name=".ListadoProyectos" />
-        <activity android:name=".CrearProyecto" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".SignUp"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ListadoProyectos"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CrearProyecto"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="preloaded_fonts"

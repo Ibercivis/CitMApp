@@ -42,6 +42,7 @@ public class ProyectoPrivado extends AppCompatActivity {
                     Intent intent = new Intent(ProyectoPrivado.this, Mapa.class);
                     intent.putExtra("idProyecto", idProyecto);
                     startActivity(intent, null);
+                    finish();
                 } else {
 
                     edit_contraseña.setText("");

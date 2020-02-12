@@ -49,21 +49,22 @@
                     android:orientation="vertical">
 
                 <TextView
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/antic"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textAllCaps="true"
                     android:text="Mis proyectos:"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:transitionName="logo_desc"
-                    android:layout_marginBottom="12dp"/>
+                    android:layout_marginBottom="12dp"
+                    android:textColor="#419FBB"/>
 
                     <TextView
                         android:id="@+id/texto_misproyectos"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Todavía no has creado ningún proyecto"/>
+                        android:text="Todavía no has creado ningún proyecto."/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclermisproyectos"
@@ -82,18 +83,20 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/antic"
-                    android:text="Los proyectos que me gustan:"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textAllCaps="true"
+                    android:text="Proyectos que me gustan:"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     android:transitionName="logo_desc"
-                    android:layout_marginBottom="12dp"/>
+                    android:layout_marginBottom="12dp"
+                    android:textColor="#419FBB"/>
 
                     <TextView
                         android:id="@+id/texto_megusta"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Todavía no has dado Me Gusta a ningún proyecto."/>
+                        android:text="Todavía no has dado Me Gusta a ningún proyecto. Recuerda dar Me Gusta a los proyectos en los que participas para que aparezcan aquí."/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerproyectosgustan"

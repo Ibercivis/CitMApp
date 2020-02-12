@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BorrarProyecto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="770dp"
+        android:background="#A4363030"
+        android:gravity="center"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+
+            android:padding="24dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/marcobotonsolido">
+            <TextView
+                android:layout_marginHorizontal="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:text="¿Estás seguro de que deseas eliminar este proyecto?"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"/>
+
+            <TextView
+                android:layout_marginHorizontal="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:text="Está acción borrará todos los marcadores asociados de manera irreversible. Te recomendamos que descargues los marcadores de este proyecto antes de eliminarlo definitivamente."
+                android:fontFamily="sans-serif-condensed"/>
+
+
+
+            <Button
+                android:id="@+id/btn_delete"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#F44336"
+                android:textColor="#ffffff"
+                android:text="Eliminar proyecto"
+                />
+
+            <Button
+                android:id="@+id/btn_volver_delete"
+                android:layout_marginTop="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="#419FBB"
+                android:textColor="#ffffff"
+                android:text="Volver"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cargando"
+        android:layout_width="match_parent"
+        android:layout_height="770dp"
+        android:background="#A4363030"
+        android:gravity="center"
+        android:visibility="gone"
+        >
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/marcobotonsolido">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Por favor, espere..."
+                android:fontFamily="sans-serif-condensed"/>
+
+            <ProgressBar
+                android:layout_marginTop="8dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

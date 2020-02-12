@@ -1,9 +1,12 @@
 package com.ibercivis.mapp.clases;
 
+import android.graphics.Bitmap;
+
 public class proyectos {
 
     String titulo;
     String descripcion;
+    int idUser;
     int color;
     int aportaciones;
     int likes;
@@ -11,9 +14,28 @@ public class proyectos {
     int idProyecto;
     int privado;
     String password;
+    int hasLogo;
+    String logo;
+    String web;
 
-    public proyectos(int idProyecto, String titulo, String descripcion, int color, int aportaciones, int likes, int legusta, int privado, String password) {
+    public proyectos(int idProyecto, int idUser, String titulo, String descripcion, String web, int color, int aportaciones, int likes, int legusta, int privado, String password, int hasLogo) {
         this.idProyecto = idProyecto;
+        this.titulo = titulo;
+        this.idUser = idUser;
+        this.descripcion = descripcion;
+        this.color = color;
+        this.aportaciones = aportaciones;
+        this.likes = likes;
+        this.legusta = legusta;
+        this.privado = privado;
+        this.password = password;
+        this.hasLogo = hasLogo;
+        this.web = web;
+    }
+
+    public proyectos(int idProyecto, int idUser, String titulo, String descripcion, String web, int color, int aportaciones, int likes, int legusta, int privado, String password, int hasLogo, String logo) {
+        this.idProyecto = idProyecto;
+        this.idUser = idUser;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.color = color;
@@ -22,6 +44,41 @@ public class proyectos {
         this.legusta = legusta;
         this.privado = privado;
         this.password = password;
+        this.hasLogo = hasLogo;
+        this.logo = logo;
+        this.web = web;
+    }
+
+    public String getWeb() {
+        return web;
+    }
+
+    public void setWeb(String web) {
+        this.web = web;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
+    public int getHasLogo() {
+        return hasLogo;
+    }
+
+    public void setHasLogo(int hasLogo) {
+        this.hasLogo = hasLogo;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
     public int getLegusta() {

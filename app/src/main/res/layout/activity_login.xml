@@ -81,6 +81,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:id="@+id/pass_forgotten"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="¿Olvidaste tu contraseña?"
@@ -149,5 +150,73 @@
 
 
 </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/recover_layout"
+        android:layout_width="match_parent"
+        android:layout_height="770dp"
+        android:background="#A4363030"
+        android:gravity="center"
+        android:visibility="gone"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+
+            android:padding="24dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/marcobotonsolido">
+            <TextView
+                android:layout_marginHorizontal="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:text="Introduce la dirección de email asociada a tu usuario para recuperar tu contraseña."
+                android:fontFamily="sans-serif-condensed"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_marginTop="12dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="E-mail"
+                android:transitionName="password_tran"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_email_recover"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_recover"
+                android:layout_marginTop="8dp"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="ACEPTAR"
+                android:background="#419FBB"
+                android:textColor="#ffffff"
+                />
+            <Button
+                android:id="@+id/btn_cancel_recover"
+                android:layout_marginTop="8dp"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:background="#A7261B"
+                android:textColor="#ffffff"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 </RelativeLayout>

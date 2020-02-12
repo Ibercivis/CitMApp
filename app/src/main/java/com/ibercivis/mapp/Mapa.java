@@ -106,11 +106,11 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
     TextInputLayout titulo1, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, titulo11, titulo12, titulo13, titulo14, titulo15, titulo16;
     TextInputEditText edit_atri1, edit_atri2, edit_atri3, edit_atri4, edit_atri5, edit_atri6, edit_atri7, edit_atri8, edit_atri9, edit_atri10, edit_atri11, edit_atri12, edit_atri13, edit_atri14, edit_atri15, edit_atri16;
     ImageView marco_foto;
-    LinearLayout marcador_mostrado;
+    LinearLayout marcador_mostrado, layout_info;
     TextView enunciado_atri1, enunciado_atri2, enunciado_atri3, enunciado_atri4, enunciado_atri5, enunciado_atri6, enunciado_atri7, enunciado_atri8, enunciado_atri9, enunciado_atri10, enunciado_atri11, enunciado_atri12, enunciado_atri13, enunciado_atri14, enunciado_atri15, enunciado_atri16;
     TextView respuesta_atri1, respuesta_atri2, respuesta_atri3, respuesta_atri4, respuesta_atri5, respuesta_atri6, respuesta_atri7, respuesta_atri8, respuesta_atri9, respuesta_atri10, respuesta_atri11, respuesta_atri12, respuesta_atri13, respuesta_atri14, respuesta_atri15, respuesta_atri16;
-    Button back;
-    Button cancelar, aceptar, btnfoto;
+    Button back, back_info;
+    Button cancelar, aceptar, btnfoto, btndelete;
     double mLatitude, mLongitude;
     Location currentLocation;
     LocationManager lm;
@@ -123,8 +123,10 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
     Marcador marcador_pulsado;
 
     String urlfoto;
+    TextView txt_info;
+    ImageView btninfo1, btninfo2, btninfo3, btninfo4, btninfo5, btninfo6, btninfo7, btninfo8, btninfo9, btninfo10, btninfo11, btninfo12, btninfo13, btninfo14, btninfo15, btninfo16;
 
-
+    String info_atributo1, info_atributo2, info_atributo3, info_atributo4, info_atributo5, info_atributo6, info_atributo7, info_atributo8, info_atributo9, info_atributo10, info_atributo11, info_atributo12, info_atributo13, info_atributo14, info_atributo15, info_atributo16;
 
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
@@ -162,6 +164,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         marco_foto = findViewById(R.id.foto_marcador);
 
         back = findViewById(R.id.cerrar_marcador);
+        btndelete = findViewById(R.id.borrar_marcador);
         enunciado_atri1 = findViewById(R.id.enunciado_at1); enunciado_atri2 = findViewById(R.id.enunciado_at2); enunciado_atri3 = findViewById(R.id.enunciado_at3); enunciado_atri4 = findViewById(R.id.enunciado_at4);
         enunciado_atri5 = findViewById(R.id.enunciado_at5); enunciado_atri6 = findViewById(R.id.enunciado_at6); enunciado_atri7 = findViewById(R.id.enunciado_at7); enunciado_atri8 = findViewById(R.id.enunciado_at8);
         enunciado_atri9 = findViewById(R.id.enunciado_at9); enunciado_atri10 = findViewById(R.id.enunciado_at10); enunciado_atri11 = findViewById(R.id.enunciado_at11); enunciado_atri12 = findViewById(R.id.enunciado_at12);
@@ -178,7 +181,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         layout_atributo9 = findViewById(R.id.marco_atributo9); layout_atributo10 = findViewById(R.id.marco_atributo10); layout_atributo11 = findViewById(R.id.marco_atributo11); layout_atributo12 = findViewById(R.id.marco_atributo12);
         layout_atributo13 = findViewById(R.id.marco_atributo13); layout_atributo14 = findViewById(R.id.marco_atributo14); layout_atributo15 = findViewById(R.id.marco_atributo15); layout_atributo16 = findViewById(R.id.marco_atributo16);
 
-        layout_marcador = findViewById(R.id.marco_marker); layout_foto = findViewById(R.id.photo); paraMapa = findViewById(R.id.mapa);
+        layout_marcador = findViewById(R.id.marco_marker); layout_foto = findViewById(R.id.photo); paraMapa = findViewById(R.id.mapa); layout_info = findViewById(R.id.displayinfo);
 
         atri1 = findViewById(R.id.atributo1); atri2 = findViewById(R.id.atributo2); atri3 = findViewById(R.id.atributo3); atri4 = findViewById(R.id.atributo4);
         atri5 = findViewById(R.id.atributo5); atri6 = findViewById(R.id.atributo6); atri7 = findViewById(R.id.atributo7); atri8 = findViewById(R.id.atributo8);
@@ -200,6 +203,14 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
 
         cancelar = findViewById(R.id.cancel_but); aceptar = findViewById(R.id.acept_but); btnfoto = findViewById(R.id.btn_foto);
         miniatura_camara = findViewById(R.id.camera);
+        txt_info = findViewById(R.id.text_info);
+
+        btninfo1 = findViewById(R.id.info1); btninfo2 = findViewById(R.id.info2); btninfo3 = findViewById(R.id.info3); btninfo4 = findViewById(R.id.info4);
+        btninfo5 = findViewById(R.id.info5); btninfo6 = findViewById(R.id.info6); btninfo7 = findViewById(R.id.info7); btninfo8 = findViewById(R.id.info8);
+        btninfo9 = findViewById(R.id.info9); btninfo10 = findViewById(R.id.info10); btninfo11 = findViewById(R.id.info11); btninfo12 = findViewById(R.id.info12);
+        btninfo13 = findViewById(R.id.info13); btninfo14 = findViewById(R.id.info14); btninfo15 = findViewById(R.id.info15); btninfo16 = findViewById(R.id.info16);
+
+        back_info = findViewById(R.id.volver_info);
 
 
         /*-----Toolbar-----*/
@@ -278,8 +289,6 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         IMapController mapController = map.getController();
         mapController.setZoom(9);
         map.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.NEVER);
-        GeoPoint startPoint = new GeoPoint(48.8583, 2.2944);
-        mapController.setCenter(startPoint);
 
         GeoPoint myPoint = new GeoPoint(currentLocation.getLatitude(), currentLocation.getLongitude());
         mapController.setCenter(myPoint);
@@ -300,7 +309,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
                     map.getController().animateTo(myPosition);
                     map.getController().setZoom(17.00);
                 } else {
-                    Location lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                    Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                     GeoPoint myPosition = new GeoPoint(lastLocation.getLatitude(), lastLocation.getLongitude());
                     map.getController().animateTo(myPosition);
                     map.getController().setZoom(17.00);
@@ -351,6 +360,205 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
 
         map.getOverlays().add(overlay);
 
+        back_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.GONE);
+            }
+        });
+
+        btninfo1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo1.equals("")){
+                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                } else {
+                    txt_info.setText(info_atributo1);
+                }
+            }
+        });
+
+        btninfo2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo2.equals("")){
+                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                } else {
+                    txt_info.setText(info_atributo2);
+                }
+            }
+        });
+
+        btninfo3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo3.equals("")){
+                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                } else {
+                    txt_info.setText(info_atributo3);
+                }
+            }
+        });
+
+        btninfo4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo4.equals("")){
+                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                } else {
+                    txt_info.setText(info_atributo4);
+                }
+            }
+        });
+
+        btninfo5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo5.equals("")){
+                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                } else {
+                    txt_info.setText(info_atributo5);
+                }
+            }
+        });
+
+        btninfo6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo6.equals("")){
+                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                } else {
+                    txt_info.setText(info_atributo6);
+                }
+            }
+        });
+
+        btninfo7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo7.equals("")){
+                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                } else {
+                    txt_info.setText(info_atributo7);
+                }
+            }
+        });
+
+        btninfo8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo8.equals("")){
+                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                } else {
+                    txt_info.setText(info_atributo8);
+                }
+            }
+        });
+
+        btninfo9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo9.equals("")){
+                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                } else {
+                    txt_info.setText(info_atributo9);
+                }
+            }
+        });
+
+        btninfo10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo10.equals("")){
+                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                } else {
+                    txt_info.setText(info_atributo10);
+                }
+            }
+        });
+
+        btninfo11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo11.equals("")){
+                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                } else {
+                    txt_info.setText(info_atributo11);
+                }
+            }
+        });
+
+        btninfo12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo12.equals("")){
+                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                } else {
+                    txt_info.setText(info_atributo12);
+                }
+            }
+        });
+
+        btninfo13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo13.equals("")){
+                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                } else {
+                    txt_info.setText(info_atributo13);
+                }
+            }
+        });
+
+        btninfo14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo14.equals("")){
+                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                } else {
+                    txt_info.setText(info_atributo14);
+                }
+            }
+        });
+
+        btninfo15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo15.equals("")){
+                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                } else {
+                    txt_info.setText(info_atributo15);
+                }
+            }
+        });
+
+        btninfo16.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo16.equals("")){
+                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                } else {
+                    txt_info.setText(info_atributo16);
+                }
+            }
+        });
+
 
 
    /*     markpress.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
@@ -365,6 +573,14 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
                 return true;
             }
         }); */
+
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast;
+        CharSequence text;
+
+        text = "Mantén pulsado sobre el mapa en la posición en la que quieras añadir un Marcador.";
+        toast = Toast.makeText(getApplicationContext(), text, duration);
+        toast.show();
 
     }
 
@@ -961,6 +1177,22 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
                             int esTexto14 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText14")));
                             int esTexto15 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText15")));
                             int esTexto16 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText16")));
+                            info_atributo1 = String.valueOf(jsonArray.getJSONObject(i).get("desc1"));
+                            info_atributo2 = String.valueOf(jsonArray.getJSONObject(i).get("desc2"));
+                            info_atributo3 = String.valueOf(jsonArray.getJSONObject(i).get("desc3"));
+                            info_atributo4 = String.valueOf(jsonArray.getJSONObject(i).get("desc4"));
+                            info_atributo5 = String.valueOf(jsonArray.getJSONObject(i).get("desc5"));
+                            info_atributo6 = String.valueOf(jsonArray.getJSONObject(i).get("desc6"));
+                            info_atributo7 = String.valueOf(jsonArray.getJSONObject(i).get("desc7"));
+                            info_atributo8 = String.valueOf(jsonArray.getJSONObject(i).get("desc8"));
+                            info_atributo9 = String.valueOf(jsonArray.getJSONObject(i).get("desc9"));
+                            info_atributo10 = String.valueOf(jsonArray.getJSONObject(i).get("desc10"));
+                            info_atributo11 = String.valueOf(jsonArray.getJSONObject(i).get("desc11"));
+                            info_atributo12 = String.valueOf(jsonArray.getJSONObject(i).get("desc12"));
+                            info_atributo13 = String.valueOf(jsonArray.getJSONObject(i).get("desc13"));
+                            info_atributo14 = String.valueOf(jsonArray.getJSONObject(i).get("desc14"));
+                            info_atributo15 = String.valueOf(jsonArray.getJSONObject(i).get("desc15"));
+                            info_atributo16 = String.valueOf(jsonArray.getJSONObject(i).get("desc16"));
                             marcador_tipo = new marcadorTipo(numeroatributos, tieneFoto, atribu1, atribu2, atribu3, atribu4, atribu5, atribu6, atribu7, atribu8, atribu9, atribu10, atribu11, atribu12, atribu13, atribu14, atribu15, atribu16, esTexto1, esTexto2, esTexto3, esTexto4, esTexto5, esTexto6, esTexto7, esTexto8, esTexto9, esTexto10, esTexto11, esTexto12, esTexto13, esTexto14, esTexto15, esTexto16);
 
 
@@ -1043,6 +1275,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
 
 
                             int id = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("id")));
+                            int idUser = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("idUser")));
                             double latitud = Double.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("latitud")));
                             double longitud = Double.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("longitud")));
                             int hasFoto = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("hasphoto")));
@@ -1063,7 +1296,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
                             String atributo15 = String.valueOf(jsonArray.getJSONObject(i).get("atributo15"));
                             String atributo16 = String.valueOf(jsonArray.getJSONObject(i).get("atributo16"));
 
-                            marcador_descargado = new Marcador(id, hasFoto, latitud, longitud, atributo1, atributo2, atributo3, atributo4, atributo5, atributo6, atributo7, atributo8, atributo9, atributo10, atributo11, atributo12, atributo13, atributo14, atributo15, atributo16);
+                            marcador_descargado = new Marcador(id, idUser, hasFoto, latitud, longitud, atributo1, atributo2, atributo3, atributo4, atributo5, atributo6, atributo7, atributo8, atributo9, atributo10, atributo11, atributo12, atributo13, atributo14, atributo15, atributo16);
 
                             addMarcadores2(map, marcador_descargado, marcador_tipo, mapaMarcadores, i);
 
@@ -1261,9 +1494,30 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
 
     }
 
-    public void mostrarMarcador(Marcador marcador, marcadorTipo marcadorTipo){
+    public void mostrarMarcador(final Marcador marcador, marcadorTipo marcadorTipo){
 
             marcador_mostrado.setVisibility(View.VISIBLE);
+
+        SessionManager session = new SessionManager(Mapa.this);
+
+
+
+        if(marcador.getIdUser() == session.getIdUser()) {
+
+            btndelete.setVisibility(View.VISIBLE);
+
+            btndelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deleteMarkerRequest(marcador);
+                }
+            });
+
+        } else {
+            btndelete.setVisibility(View.GONE);
+        }
+
+
             if (marcador.getHasPhoto() == 0){
 
                 marco_foto.setVisibility(View.GONE);
@@ -1644,14 +1898,106 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
     public void mostrarFoto(Marcador marcador){
 
 
-        urlfoto = "https://citmapp.ibercivis.es/uploads/"+String.valueOf(marcador.getId())+".jpg";
+        urlfoto = "https://citmapp.ibercivis.es/uploads/marcadores/"+String.valueOf(marcador.getId())+".jpg";
        // Bitmap foto = new DownloadFilesTask().execute(urlfoto);
         Picasso.with(this).load(urlfoto).into(marco_foto);
+
         marco_foto.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
 
        // marco_foto.setRotation(90);
 
+    }
+
+    public void deleteMarkerRequest (final Marcador marcador_delete) {
+
+        final LinearLayout cargar = findViewById(R.id.cargando);
+
+        cargar.setVisibility(View.VISIBLE);
+
+
+
+
+
+        // Url for the webservice
+        String url = getString(R.string.base_url) + "/deleteMarcador.php";
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    System.out.println(response.toString());
+
+                    JSONObject responseJSON = new JSONObject(response);
+
+                    if ((int) responseJSON.get("result") == 1) {
+
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast toast;
+                        CharSequence text;
+
+                        text = "El marcador ha sido eliminado";
+                        toast = Toast.makeText(getApplicationContext(), text, duration);
+                        toast.show();
+
+                        cargar.setVisibility(View.GONE);
+
+                        recreate();
+
+
+                    } else {
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast toast;
+                        CharSequence text;
+
+                        text = "Algo ha ocurrido. Inténtalo más tarde.";
+                        toast = Toast.makeText(getApplicationContext(), text, duration);
+                        toast.show();
+
+                        // Clean the text fields for new entries
+
+                        cargar.setVisibility(View.GONE);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    cargar.setVisibility(View.GONE);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast;
+                CharSequence text;
+                text = "Error while login: " + error.getLocalizedMessage() + ".";
+                toast = Toast.makeText(getApplicationContext(), text, duration);
+                toast.show();
+                cargar.setVisibility(View.GONE);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> login_params = new HashMap<String, String>();
+
+                SessionManager session = new SessionManager(getApplicationContext());
+                login_params.put("idUser", String.valueOf(session.getIdUser()));
+                login_params.put("token", String.valueOf(session.getToken()));
+                login_params.put("id", String.valueOf(marcador_delete.getId()));
+
+
+                return login_params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        queue.add(sr);
     }
 
     }

@@ -51,8 +51,9 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="16dp"
-                        android:fontFamily="@font/baloo"
+                        android:fontFamily="@font/montserrat_bold"
                         android:text="Datos del Proyecto"
+                        android:textAllCaps="true"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         android:textColor="@color/colorPrimary"/>
@@ -93,7 +94,6 @@
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/project_description"
                                 android:layout_width="match_parent"
-                                android:inputType="textCapWords|textAutoCorrect"
                                 android:layout_height="wrap_content"
                                 android:maxLength="240"/>
 
@@ -116,6 +116,60 @@
                                 android:maxLines="1"/>
 
                         </com.google.android.material.textfield.TextInputLayout>
+
+                        <LinearLayout
+                            android:layout_marginTop="2dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                >
+
+                            <Button
+                                android:layout_marginTop="16dp"
+                                android:id="@+id/upload_logo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Subir Logo"
+                                android:paddingHorizontal="20dp"
+                                android:background="#78B5DF"
+                                android:textColor="#fff"
+                                android:layout_gravity="center"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:textSize="9dp"
+                                    android:text="Resolución recomendada: 200x200"/>
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:gravity="center">
+
+                                <ImageView
+                                    android:id="@+id/miniatura_logo"
+                                    android:layout_width="100dp"
+                                    android:layout_height="100dp"
+                                    android:text="Subir Logo"
+                                    android:paddingHorizontal="20dp"
+                                    android:textColor="#fff"
+                                    android:src="@drawable/miniatura_insertar_logo"
+                                    android:scaleType="centerCrop"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
 
 
 
@@ -160,7 +214,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/baloo"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textAllCaps="true"
                     android:text="Marcadores"
                     android:textSize="18dp"
                     android:textStyle="bold"
@@ -219,17 +274,23 @@
                             android:id="@+id/atributo1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:visibility="gone"
                             android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/hint1"
                                 android:layout_width="270dp"
                                 android:layout_height="wrap_content"
                                 android:hint="Atributo 1 (Respuesta texto)"
-
-                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                                >
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/edit_atributo1"
@@ -237,7 +298,8 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:maxLines="1"
-                                    android:maxLength="30"/>
+                                    android:maxLength="30"
+                                    android:textSize="15sp"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -252,13 +314,39 @@
                                 />
                         </LinearLayout>
 
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción del atributo 1 (Opcional)"
+                                app:counterMaxLength="240"
+                                app:counterEnabled="true"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_desc1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="240"
+                                    android:textSize="15sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
                         <LinearLayout
                             android:id="@+id/atributo2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:gravity="center"
                             android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/hint2"
@@ -272,7 +360,8 @@
                                     android:inputType="textCapWords|textAutoCorrect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:maxLines="1"/>
+                                    android:maxLines="1"
+                                    android:textSize="15sp"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -288,13 +377,39 @@
                                 />
                         </LinearLayout>
 
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción del atributo 2 (Opcional)"
+                                app:counterMaxLength="240"
+                                app:counterEnabled="true"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_desc2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="240"
+                                    android:textSize="15sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                        </LinearLayout>
+
                         <LinearLayout
                             android:id="@+id/atributo3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:visibility="gone"
                             android:gravity="center">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/hint3"
@@ -308,7 +423,8 @@
                                     android:inputType="textCapWords|textAutoCorrect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:maxLines="1"/>
+                                    android:maxLines="1"
+                                    android:textSize="15sp"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -321,15 +437,43 @@
                                 android:clickable="true"
                                 android:src="@drawable/ic_clear_red_24dp"
                                 />
+
+                            </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción del atributo 3 (Opcional)"
+                                app:counterMaxLength="240"
+                                app:counterEnabled="true"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_desc3"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="240"
+                                    android:textSize="15sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/atributo4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:gravity="center"
                             android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center"
+                                >
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/hint4"
@@ -343,7 +487,8 @@
                                     android:inputType="textCapWords|textAutoCorrect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:maxLines="1"/>
+                                    android:maxLines="1"
+                                    android:textSize="15sp"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -356,15 +501,42 @@
                                 android:clickable="true"
                                 android:src="@drawable/ic_clear_red_24dp"
                                 />
+
+                            </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción del atributo 4 (Opcional)"
+                                app:counterMaxLength="240"
+                                app:counterEnabled="true"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_desc4"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="240"
+                                    android:textSize="15sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/atributo5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:gravity="center"
                             android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/hint5"
@@ -378,7 +550,8 @@
                                     android:inputType="textCapWords|textAutoCorrect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:maxLines="1"/>
+                                    android:maxLines="1"
+                                    android:textSize="15sp"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -391,15 +564,41 @@
                                 android:clickable="true"
                                 android:src="@drawable/ic_clear_red_24dp"
                                 />
+
+                            </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción del atributo 5 (Opcional)"
+                                app:counterMaxLength="240"
+                                app:counterEnabled="true"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_desc5"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="240"
+                                    android:textSize="15sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/atributo6"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:gravity="center"
                             android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/hint6"
@@ -413,7 +612,8 @@
                                     android:inputType="textCapWords|textAutoCorrect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:maxLines="1"/>
+                                    android:maxLines="1"
+                                    android:textSize="15sp"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -426,15 +626,42 @@
                                 android:clickable="true"
                                 android:src="@drawable/ic_clear_red_24dp"
                                 />
+
+                            </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción del atributo 6 (Opcional)"
+                                app:counterMaxLength="240"
+                                app:counterEnabled="true"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_desc6"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="240"
+                                    android:textSize="15sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/atributo7"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:gravity="center"
                             android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/hint7"
@@ -448,7 +675,8 @@
                                     android:inputType="textCapWords|textAutoCorrect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:maxLines="1"/>
+                                    android:maxLines="1"
+                                    android:textSize="15sp"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -461,15 +689,42 @@
                                 android:clickable="true"
                                 android:src="@drawable/ic_clear_red_24dp"
                                 />
+
+                            </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción del atributo 7 (Opcional)"
+                                app:counterMaxLength="240"
+                                app:counterEnabled="true"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_desc7"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="240"
+                                    android:textSize="15sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/atributo8"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:gravity="center"
                             android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/hint8"
@@ -483,7 +738,8 @@
                                     android:inputType="textCapWords|textAutoCorrect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:maxLines="1"/>
+                                    android:maxLines="1"
+                                    android:textSize="15sp"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -496,15 +752,41 @@
                                 android:clickable="true"
                                 android:src="@drawable/ic_clear_red_24dp"
                                 />
+
+                            </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción del atributo 8 (Opcional)"
+                                app:counterMaxLength="240"
+                                app:counterEnabled="true"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_desc8"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="240"
+                                    android:textSize="15sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/atributo9"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:gravity="center"
                             android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/hint9"
@@ -518,7 +800,8 @@
                                     android:inputType="textCapWords|textAutoCorrect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:maxLines="1"/>
+                                    android:maxLines="1"
+                                    android:textSize="15sp"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -531,15 +814,41 @@
                                 android:clickable="true"
                                 android:src="@drawable/ic_clear_red_24dp"
                                 />
+
+                            </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción del atributo 9 (Opcional)"
+                                app:counterMaxLength="240"
+                                app:counterEnabled="true"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_desc9"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="240"
+                                    android:textSize="15sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/atributo10"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:gravity="center"
                             android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/hint10"
@@ -553,7 +862,8 @@
                                     android:inputType="textCapWords|textAutoCorrect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:maxLines="1"/>
+                                    android:maxLines="1"
+                                    android:textSize="15sp"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -566,15 +876,41 @@
                                 android:clickable="true"
                                 android:src="@drawable/ic_clear_red_24dp"
                                 />
+
+                            </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción del atributo 10 (Opcional)"
+                                app:counterMaxLength="240"
+                                app:counterEnabled="true"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_desc10"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="240"
+                                    android:textSize="15sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/atributo11"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:gravity="center"
                             android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/hint11"
@@ -588,7 +924,8 @@
                                     android:inputType="textCapWords|textAutoCorrect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:maxLines="1"/>
+                                    android:maxLines="1"
+                                    android:textSize="15sp"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -601,15 +938,41 @@
                                 android:clickable="true"
                                 android:src="@drawable/ic_clear_red_24dp"
                                 />
+
+                        </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción del atributo 11 (Opcional)"
+                                app:counterMaxLength="240"
+                                app:counterEnabled="true"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_desc11"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="240"
+                                    android:textSize="15sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/atributo12"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:gravity="center"
                             android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/hint12"
@@ -623,7 +986,8 @@
                                     android:inputType="textCapWords|textAutoCorrect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:maxLines="1"/>
+                                    android:maxLines="1"
+                                    android:textSize="15sp"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -636,15 +1000,41 @@
                                 android:clickable="true"
                                 android:src="@drawable/ic_clear_red_24dp"
                                 />
+
+                        </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción del atributo 12 (Opcional)"
+                                app:counterMaxLength="240"
+                                app:counterEnabled="true"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_desc12"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="240"
+                                    android:textSize="15sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/atributo13"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:gravity="center"
                             android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/hint13"
@@ -655,11 +1045,11 @@
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/edit_atributo13"
-                                    android:textSize="15dp"
+                                    android:textSize="15sp"
                                     android:inputType="textCapWords|textAutoCorrect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:maxLines="1"/>
+                                    android:maxLines="1" />
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -672,15 +1062,41 @@
                                 android:clickable="true"
                                 android:src="@drawable/ic_clear_red_24dp"
                                 />
+
+                        </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción del atributo 13 (Opcional)"
+                                app:counterMaxLength="240"
+                                app:counterEnabled="true"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_desc13"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="240"
+                                    android:textSize="15sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/atributo14"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:gravity="center"
                             android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/hint14"
@@ -694,7 +1110,8 @@
                                     android:inputType="textCapWords|textAutoCorrect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:maxLines="1"/>
+                                    android:maxLines="1"
+                                    android:textSize="15sp"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -707,15 +1124,42 @@
                                 android:clickable="true"
                                 android:src="@drawable/ic_clear_red_24dp"
                                 />
+
+                        </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción del atributo 14 (Opcional)"
+                                app:counterMaxLength="240"
+                                app:counterEnabled="true"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_desc14"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="240"
+                                    android:textSize="15sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
+
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/atributo15"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:gravity="center"
                             android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/hint15"
@@ -729,7 +1173,8 @@
                                     android:inputType="textCapWords|textAutoCorrect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:maxLines="1"/>
+                                    android:maxLines="1"
+                                    android:textSize="15sp"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -742,15 +1187,41 @@
                                 android:clickable="true"
                                 android:src="@drawable/ic_clear_red_24dp"
                                 />
+
+                        </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción del atributo 15 (Opcional)"
+                                app:counterMaxLength="240"
+                                app:counterEnabled="true"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_desc15"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="240"
+                                    android:textSize="15sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
                         <LinearLayout
                             android:id="@+id/atributo16"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
+                            android:orientation="vertical"
                             android:gravity="center"
                             android:visibility="gone">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/hint16"
@@ -764,7 +1235,8 @@
                                     android:inputType="textCapWords|textAutoCorrect"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:maxLines="1"/>
+                                    android:maxLines="1"
+                                    android:textSize="15sp"/>
 
                             </com.google.android.material.textfield.TextInputLayout>
 
@@ -777,6 +1249,26 @@
                                 android:clickable="true"
                                 android:src="@drawable/ic_clear_red_24dp"
                                 />
+
+                        </LinearLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Descripción del atributo 16 (Opcional)"
+                                app:counterMaxLength="240"
+                                app:counterEnabled="true"
+                                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/edit_desc16"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:maxLength="240"
+                                    android:textSize="15sp"/>
+
+                            </com.google.android.material.textfield.TextInputLayout>
                         </LinearLayout>
 
 
@@ -796,7 +1288,7 @@
                             android:layout_marginTop="8dp"
                             android:layout_margin="8dp"
                             android:paddingHorizontal="20dp"
-                            android:background="#419FBB"
+                            android:background="#78B5DF"
                             android:textColor="#fff"/>
 
                         <Button
@@ -807,7 +1299,7 @@
                             android:layout_marginTop="8dp"
                             android:layout_margin="8dp"
                             android:paddingHorizontal="20dp"
-                            android:background="#419FBB"
+                            android:background="#78B5DF"
                             android:textColor="#fff"/>
 
 
@@ -823,7 +1315,7 @@
                     android:text="Crear proyecto"
                     android:layout_marginHorizontal="20dp"
                     android:layout_gravity="center_horizontal"
-                    android:background="#1F41A8"
+                    android:background="#419FBB"
                     android:textColor="#fff"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"

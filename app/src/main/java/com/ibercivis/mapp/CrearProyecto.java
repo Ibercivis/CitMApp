@@ -8,8 +8,12 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.InputType;
+import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -37,6 +41,8 @@ import com.ibercivis.mapp.clases.SessionManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -46,18 +52,23 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
-    int atributo_added = 0, photo_added = 0, esPrivado = 0;
+    int atributo_added = 0, photo_added = 0, esPrivado = 0, logo_added = 0;
     TextView textomarcadores;
-    Button addphoto, addtextatribute, addnumberatribute, createproject;
+    Button addLogo, addtextatribute, addnumberatribute, createproject;
     LinearLayout phot, atri1, atri2, atri3, atri4, atri5, atri6, atri7, atri8, atri9, atri10, atri11, atri12, atri13, atri14, atri15, atri16;
     Integer isText1 = 0, isText2 = 0, isText3 = 0, isText4 = 0, isText5 = 0, isText6 = 0, isText7 = 0, isText8 = 0, isText9 = 0, isText10 = 0, isText11 = 0, isText12 = 0, isText13 = 0, isText14 = 0, isText15 = 0, isText16 = 0;
-    ImageView cancelphoto, cancelatri1, cancelatri2, cancelatri3, cancelatri4, cancelatri5, cancelatri6, cancelatri7, cancelatri8, cancelatri9, cancelatri10, cancelatri11, cancelatri12, cancelatri13, cancelatri14, cancelatri15, cancelatri16;
+    ImageView logo_miniatura, cancelatri1, cancelatri2, cancelatri3, cancelatri4, cancelatri5, cancelatri6, cancelatri7, cancelatri8, cancelatri9, cancelatri10, cancelatri11, cancelatri12, cancelatri13, cancelatri14, cancelatri15, cancelatri16;
     TextInputEditText atributo1, atributo2, atributo3, atributo4, atributo5, atributo6, atributo7, atributo8, atributo9, atributo10, atributo11, atributo12, atributo13, atributo14, atributo15, atributo16;
+    TextInputEditText desc1, desc2, desc3, desc4, desc5, desc6, desc7, desc8, desc9, desc10, desc11, desc12, desc13, desc14, desc15, desc16;
     TextInputLayout pass_privado, hintatributo1, hintatributo2, hintatributo3, hintatributo4, hintatributo5, hintatributo6, hintatributo7, hintatributo8, hintatributo9, hintatributo10, hintatributo11, hintatributo12, hintatributo13, hintatributo14, hintatributo15, hintatributo16;
     TextInputEditText titulo_proyecto, descripcion_proyecto, web_proyecto, pass_proyecto;
     Switch foto, switch_privado;
 
     String error_check;
+    private static final int PICK_IMAGE = 100;
+    Uri imageUri;
+    String base64String="";
+
 
 
     @Override
@@ -70,8 +81,9 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
         drawerLayout = findViewById(R.id.drawer_layout3);
         navigationView = findViewById(R.id.nav_view3);
         toolbar = findViewById(R.id.toolbar3);
-
         textomarcadores = findViewById(R.id.texto_marcadores);
+
+        logo_miniatura = findViewById(R.id.miniatura_logo);
 
         //Buttons
         foto = findViewById(R.id.switchfoto);
@@ -81,6 +93,7 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
         addtextatribute = findViewById(R.id.add_textatribute);
         addnumberatribute = findViewById(R.id.add_numberatribute);
         createproject = findViewById(R.id.btn_crearproyecto);
+        addLogo = findViewById(R.id.upload_logo);
 
         //EditText
         atributo1 = findViewById(R.id.edit_atributo1); atributo9 = findViewById(R.id.edit_atributo9);
@@ -96,7 +109,17 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
         atributo5.setText(""); atributo6.setText(""); atributo7.setText(""); atributo8.setText("");
         atributo9.setText(""); atributo10.setText(""); atributo11.setText(""); atributo12.setText("");
         atributo13.setText(""); atributo14.setText(""); atributo15.setText(""); atributo16.setText("");
-      //  atributo1.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo2.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo3.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo4.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS);
+
+        desc1 = findViewById(R.id.edit_desc1); desc2 = findViewById(R.id.edit_desc2); desc3 = findViewById(R.id.edit_desc3); desc4 = findViewById(R.id.edit_desc4);
+        desc5 = findViewById(R.id.edit_desc5); desc6 = findViewById(R.id.edit_desc6); desc7 = findViewById(R.id.edit_desc7); desc8 = findViewById(R.id.edit_desc8);
+        desc9 = findViewById(R.id.edit_desc9); desc10 = findViewById(R.id.edit_desc10); desc11 = findViewById(R.id.edit_desc11); desc12 = findViewById(R.id.edit_desc12);
+        desc13 = findViewById(R.id.edit_desc13); desc14 = findViewById(R.id.edit_desc14); desc15 = findViewById(R.id.edit_desc15); desc16 = findViewById(R.id.edit_desc16);
+
+        desc1.setText(""); desc2.setText(""); desc3.setText(""); desc4.setText("");
+        desc5.setText(""); desc6.setText(""); desc7.setText(""); desc8.setText("");
+        desc9.setText(""); desc10.setText(""); desc11.setText(""); desc12.setText("");
+        desc13.setText(""); desc14.setText(""); desc15.setText(""); desc16.setText("");
+        //  atributo1.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo2.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo3.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo4.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS);
       //  atributo5.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo6.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo7.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo8.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS);
       //  atributo9.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo10.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo11.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo12.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS);
       //  atributo13.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo14.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo15.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo16.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS);
@@ -471,6 +494,20 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
             }
         });
 
+        addLogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
+        });
+
+        logo_miniatura.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openGallery();
+            }
+        });
+
         cancelatri1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -644,6 +681,11 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
             case R.id.nav_crear:
 
                 break;
+
+            case  R.id.nav_misproyectos:
+                Intent intent5 = new Intent(getApplicationContext(), Usuario.class);
+                startActivity(intent5);
+                break;
             case R.id.nav_logout:
                 SessionManager session = new SessionManager(getApplicationContext());
                 session.setClear();
@@ -795,6 +837,23 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
                         login_params.put("isText14", String.valueOf(isText14));
                         login_params.put("isText15", String.valueOf(isText15));
                         login_params.put("isText16", String.valueOf(isText16));
+                        login_params.put("desc1", desc1.getText().toString());
+                        login_params.put("desc2", desc2.getText().toString());
+                        login_params.put("desc3", desc3.getText().toString());
+                        login_params.put("desc4", desc4.getText().toString());
+                        login_params.put("desc5", desc5.getText().toString());
+                        login_params.put("desc6", desc6.getText().toString());
+                        login_params.put("desc7", desc7.getText().toString());
+                        login_params.put("desc8", desc8.getText().toString());
+                        login_params.put("desc9", desc9.getText().toString());
+                        login_params.put("desc10", desc10.getText().toString());
+                        login_params.put("desc11", desc11.getText().toString());
+                        login_params.put("desc12", desc12.getText().toString());
+                        login_params.put("desc13", desc13.getText().toString());
+                        login_params.put("desc14", desc14.getText().toString());
+                        login_params.put("desc15", desc15.getText().toString());
+                        login_params.put("desc16", desc16.getText().toString());
+                        login_params.put("logo", base64String);
 
                         return login_params;
                     }
@@ -831,17 +890,6 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
         finish();
     }
 
-    public Boolean checkCorrectInput(){
-
-        if(esPrivado == 1){
-            if(pass_proyecto.getText().equals("")){
-                return false; //el proyecto no lleva contraseña asociada.
-            }
-        }
-
-
-        return true;
-    }
 
     private void showError (CharSequence error) {
         int duration = Toast.LENGTH_LONG;
@@ -890,307 +938,307 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
 
         if(atributo_added == 1){
             valid = checkLength( atributo1.getText().toString(), "Atributo1", 1, 100 ) && valid;
-            valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+            // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
 
         } else if(atributo_added == 2){
             valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
-            valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
-            valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
 
         } else if(atributo_added == 3){
             valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
-            valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
-            valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
-            valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
 
         } else if(atributo_added == 4){
             valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
-            valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
-            valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
-            valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
-            valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
 
         } else if(atributo_added == 5){
             valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
-            valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
-            valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
-            valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
-            valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
-            valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
 
         } else if(atributo_added == 6){
             valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
-            valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
-            valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
-            valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
-            valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
-            valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
-            valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
 
         } else if(atributo_added == 7){
             valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
-            valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
-            valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
-            valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
-            valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
-            valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
-            valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
-            valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
 
         } else if(atributo_added == 8){
             valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
-            valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
-            valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
-            valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
-            valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
-            valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
-            valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
-            valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
-            valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
 
         } else if(atributo_added == 9){
             valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
-            valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
-            valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
-            valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
-            valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
-            valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
-            valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
-            valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
-            valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo9.getText().toString(), "Atributo 9", 1, 100 ) && valid;
-            valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
 
         } else if(atributo_added == 10){
             valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
-            valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
-            valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
-            valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
-            valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
-            valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
-            valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
-            valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
-            valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo9.getText().toString(), "Atributo 9", 1, 100 ) && valid;
-            valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo10.getText().toString(), "Atributo 10", 1, 100 ) && valid;
-            valid = checkRegexp( atributo10.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo10.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
 
         } else if(atributo_added == 11){
             valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
-            valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
-            valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
-            valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
-            valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
-            valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
-            valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
-            valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
-            valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo9.getText().toString(), "Atributo 9", 1, 100 ) && valid;
-            valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo10.getText().toString(), "Atributo 10", 1, 100 ) && valid;
-            valid = checkRegexp( atributo10.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo10.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo11.getText().toString(), "Atributo 11", 1, 100 ) && valid;
-            valid = checkRegexp( atributo11.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo11.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
 
         } else if(atributo_added == 12){
             valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
-            valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
-            valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
-            valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
-            valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
-            valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
-            valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
-            valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
-            valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo9.getText().toString(), "Atributo 9", 1, 100 ) && valid;
-            valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo10.getText().toString(), "Atributo 10", 1, 100 ) && valid;
-            valid = checkRegexp( atributo10.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo10.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo11.getText().toString(), "Atributo 11", 1, 100 ) && valid;
-            valid = checkRegexp( atributo11.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo11.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo12.getText().toString(), "Atributo 12", 1, 100 ) && valid;
-            valid = checkRegexp( atributo12.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo12.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
 
         } else if(atributo_added == 13){
             valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
-            valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
-            valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
-            valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
-            valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
-            valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
-            valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
-            valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
-            valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo9.getText().toString(), "Atributo 9", 1, 100 ) && valid;
-            valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo10.getText().toString(), "Atributo 10", 1, 100 ) && valid;
-            valid = checkRegexp( atributo10.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo10.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo11.getText().toString(), "Atributo 11", 1, 100 ) && valid;
-            valid = checkRegexp( atributo11.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo11.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo12.getText().toString(), "Atributo 12", 1, 100 ) && valid;
-            valid = checkRegexp( atributo12.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo12.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo13.getText().toString(), "Atributo 13", 1, 100 ) && valid;
-            valid = checkRegexp( atributo13.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo13.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
 
         } else if(atributo_added == 14){
             valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
-            valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
-            valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
-            valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
-            valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
-            valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
-            valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
-            valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
-            valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo9.getText().toString(), "Atributo 9", 1, 100 ) && valid;
-            valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo10.getText().toString(), "Atributo 10", 1, 100 ) && valid;
-            valid = checkRegexp( atributo10.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo10.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo11.getText().toString(), "Atributo 11", 1, 100 ) && valid;
-            valid = checkRegexp( atributo11.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo11.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo12.getText().toString(), "Atributo 12", 1, 100 ) && valid;
-            valid = checkRegexp( atributo12.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo12.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo13.getText().toString(), "Atributo 13", 1, 100 ) && valid;
-            valid = checkRegexp( atributo13.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo13.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo14.getText().toString(), "Atributo 14", 1, 100 ) && valid;
-            valid = checkRegexp( atributo14.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo14.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
 
         } else if(atributo_added == 15){
             valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
-            valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
-            valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
-            valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
-            valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
-            valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
-            valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
-            valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
-            valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo9.getText().toString(), "Atributo 9", 1, 100 ) && valid;
-            valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo10.getText().toString(), "Atributo 10", 1, 100 ) && valid;
-            valid = checkRegexp( atributo10.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo10.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo11.getText().toString(), "Atributo 11", 1, 100 ) && valid;
-            valid = checkRegexp( atributo11.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo11.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo12.getText().toString(), "Atributo 12", 1, 100 ) && valid;
-            valid = checkRegexp( atributo12.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo12.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo13.getText().toString(), "Atributo 13", 1, 100 ) && valid;
-            valid = checkRegexp( atributo13.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo13.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo14.getText().toString(), "Atributo 14", 1, 100 ) && valid;
-            valid = checkRegexp( atributo14.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo14.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo15.getText().toString(), "Atributo 15", 1, 100 ) && valid;
-            valid = checkRegexp( atributo15.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo15.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
 
         } else if(atributo_added == 16){
             valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
-            valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
-            valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
-            valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
-            valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
-            valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
-            valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
-            valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+            // valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
-            valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+            // valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo9.getText().toString(), "Atributo 9", 1, 100 ) && valid;
-            valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo10.getText().toString(), "Atributo 10", 1, 100 ) && valid;
-            valid = checkRegexp( atributo10.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo10.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo11.getText().toString(), "Atributo 11", 1, 100 ) && valid;
-            valid = checkRegexp( atributo11.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo11.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo12.getText().toString(), "Atributo 12", 1, 100 ) && valid;
-            valid = checkRegexp( atributo12.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo12.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo13.getText().toString(), "Atributo 13", 1, 100 ) && valid;
-            valid = checkRegexp( atributo13.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo13.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo14.getText().toString(), "Atributo 14", 1, 100 ) && valid;
-            valid = checkRegexp( atributo14.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo14.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo15.getText().toString(), "Atributo 15", 1, 100 ) && valid;
-            valid = checkRegexp( atributo15.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo15.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo16.getText().toString(), "Atributo 16", 1, 100 ) && valid;
-            valid = checkRegexp( atributo16.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+           // valid = checkRegexp( atributo16.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
         }
 
 
@@ -1201,6 +1249,42 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
         }
 
         return valid;
+    }
+
+    private void openGallery(){
+        Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+        startActivityForResult(gallery, PICK_IMAGE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(resultCode == RESULT_OK && requestCode == PICK_IMAGE){
+            imageUri = data.getData();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+                logo_added = 1;
+                base64String = getBase64String(bitmap); // foto en base64
+                logo_miniatura.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            logo_added = 1;
+            //logo_miniatura.setImageBitmap();
+        }
+    }
+
+    private String getBase64String(Bitmap bitmap)
+    {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, baos);
+
+        byte[] imageBytes = baos.toByteArray();
+
+        String base64String = Base64.encodeToString(imageBytes, Base64.NO_WRAP);
+
+        return base64String;
     }
 
 }

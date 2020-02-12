@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProyectoPrivado">
+    tools:context=".DescargarDatos">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,37 +29,65 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="15dp"
-                android:text="Este es un proyecto privado y requiere de contraseña para participar."
+                android:text="Escribe la dirección de correo electrónico en la que quieres recibir los datos de los marcadores de este proyecto. Los datos se enviarán en formato .CSV"
                 android:fontFamily="sans-serif-condensed"/>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/password_edit"
                 android:layout_marginTop="12dp"
                 android:layout_marginHorizontal="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
-                app:passwordToggleEnabled="true"
-                android:transitionName="password_tran"
+                android:hint="E-mail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/password_edittext_privado"
+                    android:id="@+id/edit_email_download"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"/>
+                    android:inputType="textEmailAddress"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btn_aceptarpassword"
+                android:id="@+id/btn_aceptar_download"
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:text="ACEPTAR"
                 android:background="#419FBB"
                 android:textColor="#ffffff"
+                android:text="ACEPTAR"
                 />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/cargando"
+        android:layout_width="match_parent"
+        android:layout_height="770dp"
+        android:background="#A4363030"
+        android:gravity="center"
+        android:visibility="gone"
+        >
+
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:background="@drawable/marcobotonsolido">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Por favor, espere..."
+                android:fontFamily="sans-serif-condensed"/>
+
+            <ProgressBar
+                android:layout_marginTop="8dp"
+                android:layout_width="30dp"
+                android:layout_height="30dp" />
 
         </LinearLayout>
 

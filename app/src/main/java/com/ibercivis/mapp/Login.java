@@ -39,8 +39,9 @@ public class Login extends AppCompatActivity {
     ImageView logo;
     TextView logotext, desc;
     TextInputLayout usertext, passtext;
-    Button btnentrar, btnsignup;
-    TextInputEditText login_username_textview, login_password_textview;
+    Button btnentrar, btnsignup, btnRecover, btnCancelRecover, passOlvidada;
+    TextInputEditText login_username_textview, login_password_textview, direccion_email;
+    LinearLayout display_recover;
 
     String error_check;
 
@@ -59,7 +60,12 @@ public class Login extends AppCompatActivity {
         desc = findViewById(R.id.accedetxt);
         usertext = findViewById(R.id.username_edit);
         passtext = findViewById(R.id.password_edit);
+        direccion_email = findViewById(R.id.edit_email_recover);
 
+        passOlvidada = findViewById(R.id.pass_forgotten);
+        btnRecover = findViewById(R.id.btn_recover);
+        btnCancelRecover = findViewById(R.id.btn_cancel_recover);
+        display_recover = findViewById(R.id.recover_layout);
 
         /*-----Button Functions-----*/
 
@@ -83,6 +89,27 @@ public class Login extends AppCompatActivity {
             }
         });
 
+
+        passOlvidada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                display_recover.setVisibility(View.VISIBLE);
+            }
+        });
+
+        btnCancelRecover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                display_recover.setVisibility(View.GONE);
+            }
+        });
+
+        btnRecover.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recoverRequest();
+            }
+        });
 
 
     }
@@ -229,6 +256,105 @@ public class Login extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void recoverRequest () {
+        final LinearLayout cargar = findViewById(R.id.cargando);
+
+        cargar.setVisibility(View.VISIBLE);
+
+        if(direccion_email.getText().toString().equals("")) {
+
+            // Do nothing, error has been shown in a toast and views clean
+            cargar.setVisibility(View.GONE);
+
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast;
+            CharSequence text;
+
+            text = "Debes introducir una dirección de email válida.";
+            toast = Toast.makeText(getApplicationContext(), text, duration);
+            toast.show();
+
+        }
+        else {
+
+
+            // Url for the webservice
+            String url = getString(R.string.base_url) + "/recuperar_pass.php";
+
+            RequestQueue queue = Volley.newRequestQueue(this);
+            StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        System.out.println(response.toString());
+
+                        JSONObject responseJSON = new JSONObject(response);
+
+                        if ((int) responseJSON.get("result") == 1) {
+
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast toast;
+                            CharSequence text;
+
+                            text = "Se ha enviado un email a: " + direccion_email.getText().toString();
+                            toast = Toast.makeText(getApplicationContext(), text, duration);
+                            toast.show();
+
+                            cargar.setVisibility(View.GONE);
+
+
+
+
+                        } else {
+                            int duration = Toast.LENGTH_SHORT;
+                            Toast toast;
+                            CharSequence text;
+
+                            text = "Error while login: " + responseJSON.get("message") + ".";
+                            toast = Toast.makeText(getApplicationContext(), text, duration);
+                            toast.show();
+
+                            // Clean the text fields for new entries
+
+                            cargar.setVisibility(View.GONE);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        cargar.setVisibility(View.GONE);
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast;
+                    CharSequence text;
+                    text = "Error while login: " + error.getLocalizedMessage() + ".";
+                    toast = Toast.makeText(getApplicationContext(), text, duration);
+                    toast.show();
+                    cargar.setVisibility(View.GONE);
+                }
+            }) {
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String, String> login_params = new HashMap<String, String>();
+                    login_params.put("email", direccion_email.getText().toString());
+
+                    return login_params;
+                }
+
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<>();
+                    params.put("Content-Type", "application/x-www-form-urlencoded");
+                    return params;
+                }
+            };
+            queue.add(sr);
+        }
     }
 
 }

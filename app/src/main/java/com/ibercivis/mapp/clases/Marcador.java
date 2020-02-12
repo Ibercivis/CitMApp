@@ -5,13 +5,15 @@ public class Marcador {
 
 
     int id;
+    int idUser;
     double latitud, longitud;
     int hasPhoto;
     String atributo1, atributo2, atributo3, atributo4, atributo5, atributo6, atributo7, atributo8, atributo9, atributo10, atributo11, atributo12, atributo13, atributo14, atributo15, atributo16;
 
-    public Marcador(int id, int hasPhoto, double latitud, double longitud, String atributo1, String atributo2, String atributo3, String atributo4, String atributo5, String atributo6, String atributo7, String atributo8, String atributo9, String atributo10, String atributo11, String atributo12, String atributo13, String atributo14, String atributo15, String atributo16) {
+    public Marcador(int id, int idUser, int hasPhoto, double latitud, double longitud, String atributo1, String atributo2, String atributo3, String atributo4, String atributo5, String atributo6, String atributo7, String atributo8, String atributo9, String atributo10, String atributo11, String atributo12, String atributo13, String atributo14, String atributo15, String atributo16) {
 
         this.id = id;
+        this.idUser = idUser;
         this.hasPhoto = hasPhoto;
         this.latitud = latitud;
         this.longitud = longitud;
@@ -31,6 +33,14 @@ public class Marcador {
         this.atributo14 = atributo14;
         this.atributo15 = atributo15;
         this.atributo16 = atributo16;
+    }
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public int getId() {

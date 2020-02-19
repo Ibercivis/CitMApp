@@ -17,14 +17,17 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.SyncStateContract;
 import android.text.InputType;
@@ -41,6 +44,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,29 +75,46 @@ import org.osmdroid.api.IMapController;
 
 import org.osmdroid.config.Configuration;
 // import org.osmdroid.tileprovider.constants.OpenStreetMapTileProviderConstants;
+import org.osmdroid.tileprovider.MapTileProviderBasic;
+import org.osmdroid.tileprovider.tilesource.ITileSource;
+import org.osmdroid.tileprovider.tilesource.OnlineTileSourceBase;
+import org.osmdroid.tileprovider.tilesource.TMSOnlineTileSourceBase;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.tileprovider.tilesource.XYTileSource;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.Projection;
+import org.osmdroid.views.overlay.CopyrightOverlay;
 import org.osmdroid.views.overlay.ItemizedIconOverlay;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.Overlay;
 import org.osmdroid.views.overlay.OverlayItem;
+import org.osmdroid.views.overlay.ScaleBarOverlay;
+import org.osmdroid.views.overlay.TilesOverlay;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
+import org.osmdroid.wms.WMSEndpoint;
+import org.osmdroid.wms.WMSLayer;
+import org.osmdroid.wms.WMSParser;
+import org.osmdroid.wms.WMSTileSource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static android.content.ContentValues.TAG;
+import static org.osmdroid.wms.WMSParser.parse;
 
 public class Mapa extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, LocationListener{
 
@@ -107,17 +128,21 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
     TextInputEditText edit_atri1, edit_atri2, edit_atri3, edit_atri4, edit_atri5, edit_atri6, edit_atri7, edit_atri8, edit_atri9, edit_atri10, edit_atri11, edit_atri12, edit_atri13, edit_atri14, edit_atri15, edit_atri16;
     ImageView marco_foto;
     LinearLayout marcador_mostrado, layout_info;
-    TextView enunciado_atri1, enunciado_atri2, enunciado_atri3, enunciado_atri4, enunciado_atri5, enunciado_atri6, enunciado_atri7, enunciado_atri8, enunciado_atri9, enunciado_atri10, enunciado_atri11, enunciado_atri12, enunciado_atri13, enunciado_atri14, enunciado_atri15, enunciado_atri16;
+    TextView titulo_addmarker, enunciado_atri1, enunciado_atri2, enunciado_atri3, enunciado_atri4, enunciado_atri5, enunciado_atri6, enunciado_atri7, enunciado_atri8, enunciado_atri9, enunciado_atri10, enunciado_atri11, enunciado_atri12, enunciado_atri13, enunciado_atri14, enunciado_atri15, enunciado_atri16;
     TextView respuesta_atri1, respuesta_atri2, respuesta_atri3, respuesta_atri4, respuesta_atri5, respuesta_atri6, respuesta_atri7, respuesta_atri8, respuesta_atri9, respuesta_atri10, respuesta_atri11, respuesta_atri12, respuesta_atri13, respuesta_atri14, respuesta_atri15, respuesta_atri16;
     Button back, back_info;
-    Button cancelar, aceptar, btnfoto, btndelete;
+    Button cancelar, aceptar, btnfoto, btndelete, btnedit;
     double mLatitude, mLongitude;
     Location currentLocation;
     LocationManager lm;
-    ImageView miniatura_camara;
+    ImageView miniatura_camara, layerBtn;
     ImageButton btCenterMap;
     private MyLocationNewOverlay mLocationOverlay;
+    private ScaleBarOverlay mScaleBarOverlay;
+    private CopyrightOverlay mCopyrightOverlay;
     int idProyecto;
+    String titleProyecto;
+    TextView display_titulo, copyrightTxt;
 
     HashMap<String, Marcador> mapaMarcadores = new HashMap<String, Marcador>();
     Marcador marcador_pulsado;
@@ -142,6 +167,8 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
     ByteArrayOutputStream arrayParaBlob = new ByteArrayOutputStream();
     byte[] foto_blob;
 
+    int select_layer = 1;
+
 
    // Marcador marcador_prueba = new Marcador(16,1, "Atributo1: ", "Índice pH: ", "Indice cloro: ", "Color: ", "Indice cloro: ", "Indice cloro: ", "Indice cloro: ", "Indice cloro: ", "Indice cloro: ", "Indice cloro: ", "Indice cloro: ", "Indice cloro: ", "Indice cloro: ", "Indice cloro: ", "Indice cloro: ", "Indice cloro: ");
     Marcador marcador_descargado;
@@ -158,13 +185,17 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         map = findViewById(R.id.map);
         drawerLayout = findViewById(R.id.drawer_layout4);
         navigationView = findViewById(R.id.nav_view4);
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar2);
 
         marcador_mostrado = findViewById(R.id.mostrarMarker);
         marco_foto = findViewById(R.id.foto_marcador);
 
         back = findViewById(R.id.cerrar_marcador);
         btndelete = findViewById(R.id.borrar_marcador);
+        btnedit = findViewById(R.id.editar_marcador);
+        layerBtn = findViewById(R.id.button_layers);
+        titulo_addmarker=findViewById(R.id.title_addmarker);
+        copyrightTxt = findViewById(R.id.txtCopyright);
         enunciado_atri1 = findViewById(R.id.enunciado_at1); enunciado_atri2 = findViewById(R.id.enunciado_at2); enunciado_atri3 = findViewById(R.id.enunciado_at3); enunciado_atri4 = findViewById(R.id.enunciado_at4);
         enunciado_atri5 = findViewById(R.id.enunciado_at5); enunciado_atri6 = findViewById(R.id.enunciado_at6); enunciado_atri7 = findViewById(R.id.enunciado_at7); enunciado_atri8 = findViewById(R.id.enunciado_at8);
         enunciado_atri9 = findViewById(R.id.enunciado_at9); enunciado_atri10 = findViewById(R.id.enunciado_at10); enunciado_atri11 = findViewById(R.id.enunciado_at11); enunciado_atri12 = findViewById(R.id.enunciado_at12);
@@ -211,10 +242,12 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         btninfo13 = findViewById(R.id.info13); btninfo14 = findViewById(R.id.info14); btninfo15 = findViewById(R.id.info15); btninfo16 = findViewById(R.id.info16);
 
         back_info = findViewById(R.id.volver_info);
+        display_titulo = findViewById(R.id.txtTitulo);
 
 
         /*-----Toolbar-----*/
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         /*-----Navigation Drawer Menu -----*/
 
@@ -238,6 +271,8 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         /*-----MAPA OSMDROID-----*/
 
         idProyecto = getIntent().getIntExtra("idProyecto", 1);
+        titleProyecto = getIntent().getStringExtra("tituloProyecto");
+        display_titulo.setText(titleProyecto);
 
         if ( Build.VERSION.SDK_INT >= 23){
             if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) !=
@@ -258,15 +293,89 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
 
         GpsMyLocationProvider provider = new GpsMyLocationProvider(this.getApplicationContext());
         mLocationOverlay = new MyLocationNewOverlay(provider, map);
+        mScaleBarOverlay = new ScaleBarOverlay(map);
+        mCopyrightOverlay = new CopyrightOverlay(this);
+
 
         map.getOverlays().add(mLocationOverlay);
+        map.getOverlays().add(mScaleBarOverlay);
+        map.getOverlays().add(this.mCopyrightOverlay);
+        map.setMinZoomLevel(8.0);
+        map.setMaxZoomLevel(20.0);
+
 
         mLocationOverlay.enableMyLocation();
         mLocationOverlay.setOptionsMenuEnabled(true);
 
-        //lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        //getLocation();
+        copyrightTxt.setText("");
+
+        map.setTileSource(TileSourceFactory.MAPNIK);
+
+        layerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(select_layer == 1){
+                   map.setTileSource(TileSourceFactory.OpenTopo);
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast;
+                    CharSequence text;
+
+                    text = "Capa topográfica";
+                    toast = Toast.makeText(getApplicationContext(), text, duration);
+                    toast.show();
+                    select_layer = 2;
+                } else if (select_layer ==2){
+                    map.setTileSource(new WMSTileSource("PNOAWMS", new String[]{"http://www.idee.es/wms/PNOA/PNOA?SERVICE=WMS"}, "PNOA", "1.3.0", "&crs=CRS:84", "", 256));
+                    select_layer = 3;
+                    map.setMinZoomLevel(8.0);
+                    map.setMaxZoomLevel(20.0);
+                    copyrightTxt.setText("PNOA cedido por © Instituto Geográfico Nacional de España");
+
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast;
+                    CharSequence text;
+
+                    text = "Capa de ortofotos del PNOA (Tarda en cargar)";
+                    toast = Toast.makeText(getApplicationContext(), text, duration);
+                    toast.show();
+
+
+                } else if (select_layer == 3){
+                    map.setTileSource(new WMSTileSource("PNOAWMS2", new String[]{"http://www.ign.es/wms-inspire/mapa-raster?SERVICE=WMS"}, "mtn_rasterizado", "1.3.0", "&crs=CRS:84", "", 256));
+                    select_layer =4;
+                    map.setMinZoomLevel(8.0);
+                    map.setMaxZoomLevel(20.0);
+                    copyrightTxt.setText("CC BY 4.0 ign.es");
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast;
+                    CharSequence text;
+
+                    text = "Capa de cartografía raster (Tarda en cargar)";
+                    toast = Toast.makeText(getApplicationContext(), text, duration);
+                    toast.show();
+                } else if (select_layer == 4){
+                    map.setTileSource(TileSourceFactory.MAPNIK);
+                    map.setMinZoomLevel(1.0);
+                    map.setMaxZoomLevel(20.0);
+                    select_layer = 1;
+                    copyrightTxt.setText("");
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast;
+                    CharSequence text;
+
+                    text = "Capa de Open Street Map";
+                    toast = Toast.makeText(getApplicationContext(), text, duration);
+                    toast.show();
+                }
+            }
+        });
+
+
+
+
+
 
 
 
@@ -281,7 +390,11 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         // Configuration.getInstance().load(getContext(), PreferenceManager.getDefaultSharedPreferences(getContext()));
 
 
-        map.setTileSource(TileSourceFactory.MAPNIK);
+        //map.setTileSource(TileSourceFactory.MAPNIK);
+        //map.setTileSource(TileSourceFactory.OpenTopo); // TOPOGRÁFICO
+        // map.setTileSource(TileSourceFactory.USGS_SAT); //ORTOFOTO
+
+
 
 
         map.setMultiTouchControls(true);
@@ -290,10 +403,12 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         mapController.setZoom(9);
         map.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.NEVER);
 
-        GeoPoint myPoint = new GeoPoint(currentLocation.getLatitude(), currentLocation.getLongitude());
+        // GeoPoint myPoint = new GeoPoint(currentLocation.getLatitude(), currentLocation.getLongitude());
+
+        GeoPoint myPoint = mLocationOverlay.getMyLocation();
         mapController.setCenter(myPoint);
 
-        mapController.setZoom(15.00);
+        mapController.setZoom(17.00);
         markpress = new Marker(map);
         /*-----MÉTODOS PROPIOS DE ESTA ACTIVITY-----*/
         //addMarcadores(map, marcador_prueba);
@@ -304,15 +419,12 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         btCenterMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (currentLocation!=null) {
-                    GeoPoint myPosition = new GeoPoint(currentLocation.getLatitude(), currentLocation.getLongitude());
+                if (mLocationOverlay.getMyLocation()!=null) {
+                    GeoPoint myPosition = mLocationOverlay.getMyLocation();
                     map.getController().animateTo(myPosition);
                     map.getController().setZoom(17.00);
                 } else {
-                    Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                    GeoPoint myPosition = new GeoPoint(lastLocation.getLatitude(), lastLocation.getLongitude());
-                    map.getController().animateTo(myPosition);
-                    map.getController().setZoom(17.00);
+
                 }
             }
         });
@@ -337,8 +449,10 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
 
                 ArrayList<OverlayItem> markers = new ArrayList<>();
                 OverlayItem item = new OverlayItem("", "", new GeoPoint(latitude, longitude));
+                Drawable newMarker = ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_location_on_invisible_24dp);
+                item.setMarker(newMarker);
                 // item.setMarker(ContextCompat.getDrawable(getBaseContext(), R.drawable.ic_clear_red_24dp));
-                markers.add(item);
+                 markers.add(item);
 
                 if (items == null) {
                     items = new ItemizedIconOverlay<>(getBaseContext(), markers, null);
@@ -372,7 +486,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                 layout_info.setVisibility(View.VISIBLE);
                 if(info_atributo1.equals("")){
-                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                    txt_info.setText(R.string.noInfo);
                 } else {
                     txt_info.setText(info_atributo1);
                 }
@@ -384,7 +498,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                 layout_info.setVisibility(View.VISIBLE);
                 if(info_atributo2.equals("")){
-                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                    txt_info.setText(R.string.noInfo);
                 } else {
                     txt_info.setText(info_atributo2);
                 }
@@ -396,7 +510,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                 layout_info.setVisibility(View.VISIBLE);
                 if(info_atributo3.equals("")){
-                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                    txt_info.setText(R.string.noInfo);
                 } else {
                     txt_info.setText(info_atributo3);
                 }
@@ -408,7 +522,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                 layout_info.setVisibility(View.VISIBLE);
                 if(info_atributo4.equals("")){
-                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                    txt_info.setText(R.string.noInfo);
                 } else {
                     txt_info.setText(info_atributo4);
                 }
@@ -420,7 +534,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                 layout_info.setVisibility(View.VISIBLE);
                 if(info_atributo5.equals("")){
-                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                    txt_info.setText(R.string.noInfo);
                 } else {
                     txt_info.setText(info_atributo5);
                 }
@@ -432,7 +546,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                 layout_info.setVisibility(View.VISIBLE);
                 if(info_atributo6.equals("")){
-                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                    txt_info.setText(R.string.noInfo);
                 } else {
                     txt_info.setText(info_atributo6);
                 }
@@ -444,7 +558,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                 layout_info.setVisibility(View.VISIBLE);
                 if(info_atributo7.equals("")){
-                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                    txt_info.setText(R.string.noInfo);
                 } else {
                     txt_info.setText(info_atributo7);
                 }
@@ -456,7 +570,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                 layout_info.setVisibility(View.VISIBLE);
                 if(info_atributo8.equals("")){
-                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                    txt_info.setText(R.string.noInfo);
                 } else {
                     txt_info.setText(info_atributo8);
                 }
@@ -468,7 +582,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                 layout_info.setVisibility(View.VISIBLE);
                 if(info_atributo9.equals("")){
-                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                    txt_info.setText(R.string.noInfo);
                 } else {
                     txt_info.setText(info_atributo9);
                 }
@@ -480,7 +594,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                 layout_info.setVisibility(View.VISIBLE);
                 if(info_atributo10.equals("")){
-                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                    txt_info.setText(R.string.noInfo);
                 } else {
                     txt_info.setText(info_atributo10);
                 }
@@ -492,7 +606,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                 layout_info.setVisibility(View.VISIBLE);
                 if(info_atributo11.equals("")){
-                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                    txt_info.setText(R.string.noInfo);
                 } else {
                     txt_info.setText(info_atributo11);
                 }
@@ -504,7 +618,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                 layout_info.setVisibility(View.VISIBLE);
                 if(info_atributo12.equals("")){
-                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                    txt_info.setText(R.string.noInfo);
                 } else {
                     txt_info.setText(info_atributo12);
                 }
@@ -516,7 +630,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                 layout_info.setVisibility(View.VISIBLE);
                 if(info_atributo13.equals("")){
-                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                    txt_info.setText(R.string.noInfo);
                 } else {
                     txt_info.setText(info_atributo13);
                 }
@@ -528,7 +642,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                 layout_info.setVisibility(View.VISIBLE);
                 if(info_atributo14.equals("")){
-                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                    txt_info.setText(R.string.noInfo);
                 } else {
                     txt_info.setText(info_atributo14);
                 }
@@ -540,7 +654,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                 layout_info.setVisibility(View.VISIBLE);
                 if(info_atributo15.equals("")){
-                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                    txt_info.setText(R.string.noInfo);
                 } else {
                     txt_info.setText(info_atributo15);
                 }
@@ -552,7 +666,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             public void onClick(View v) {
                 layout_info.setVisibility(View.VISIBLE);
                 if(info_atributo16.equals("")){
-                    txt_info.setText("El administrador del proyecto no ha añadido una descripción para este atributo.");
+                    txt_info.setText(R.string.noInfo);
                 } else {
                     txt_info.setText(info_atributo16);
                 }
@@ -578,9 +692,11 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         Toast toast;
         CharSequence text;
 
-        text = "Mantén pulsado sobre el mapa en la posición en la que quieras añadir un Marcador.";
+        text = getResources().getString(R.string.mapa);
         toast = Toast.makeText(getApplicationContext(), text, duration);
         toast.show();
+
+        esperarYCentrarMapa(mapController, 2000);
 
     }
 
@@ -666,15 +782,18 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         }
     }
 
-    //Get location
-    public  void getLocation(){
-        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        currentLocation=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-        if (currentLocation == null)
-        {
-           // currentLocation = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+    public void esperarYCentrarMapa(final IMapController mapController, int milisegundos) {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                // acciones que se ejecutan tras los milisegundos
+                GeoPoint myPoint = mLocationOverlay.getMyLocation();
+                mapController.animateTo(myPoint);
 
-        }
+                mapController.setZoom(17.00);
+
+            }
+        }, milisegundos);
     }
 
     @Override
@@ -698,33 +817,6 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
 
-    public void addMarcadores(MapView mapa, Marcador marc, marcadorTipo marcadortipo){
-
-        String snippet;
-
-        GeoPoint startPoint = new GeoPoint(marc.getLatitud(), marc.getLongitud());
-        Marker startMarker = new Marker(mapa);
-        startMarker.setPosition(startPoint);
-        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-        startMarker.setTitle("");
-
-       // startMarker.setSnippet(marcador_prueba.getAtributo1() + "Resultado 1" + "<br>" + " y <br>tal vez<br> saltos de<br> línea"); // Confirmado que los saltos de línea se hacen con <br>
-
-        snippet = generarSnippet(marc, marcadortipo);
-        startMarker.setSnippet(snippet);
-        mapa.getOverlays().add(startMarker);
-
-        startMarker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker, MapView mapView) {
-
-
-
-                return true;
-            }
-        });
-
-    }
 
     public String generarSnippet(Marcador marcador, marcadorTipo marcadortipo){
 
@@ -1517,6 +1609,25 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             btndelete.setVisibility(View.GONE);
         }
 
+        if(marcador.getIdUser() == session.getIdUser()) {
+
+            btnedit.setVisibility(View.VISIBLE);
+
+            btnedit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Metodo para editar
+                    marcador_mostrado.setVisibility(View.GONE);
+                    editmarker(marcador_tipo, marcador);
+                }
+            });
+
+        } else {
+            btnedit.setVisibility(View.GONE);
+        }
+
+
+
 
             if (marcador.getHasPhoto() == 0){
 
@@ -1909,6 +2020,298 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
 
     }
 
+    public void editmarker(marcadorTipo marcador, final Marcador marker){
+
+        layout_marcador.setVisibility(View.VISIBLE);
+        paraMapa.setVisibility(View.GONE);
+        aceptar.setText("Editar");
+        titulo_addmarker.setText("Editar Marcador");
+
+        edit_atri1.setText(marker.getAtributo1()); edit_atri2.setText(marker.getAtributo2()); edit_atri3.setText(marker.getAtributo3()); edit_atri4.setText(marker.getAtributo4());
+        edit_atri5.setText(marker.getAtributo5()); edit_atri6.setText(marker.getAtributo6()); edit_atri7.setText(marker.getAtributo7()); edit_atri8.setText(marker.getAtributo8());
+        edit_atri9.setText(marker.getAtributo9()); edit_atri10.setText(marker.getAtributo10()); edit_atri11.setText(marker.getAtributo11()); edit_atri12.setText(marker.getAtributo12());
+        edit_atri13.setText(marker.getAtributo13()); edit_atri14.setText(marker.getAtributo14()); edit_atri15.setText(marker.getAtributo15()); edit_atri16.setText(marker.getAtributo16());
+        if(marcador.getNum_atributos()==1){
+            atri2.setVisibility(View.GONE); atri3.setVisibility(View.GONE); atri4.setVisibility(View.GONE); atri5.setVisibility(View.GONE);
+            atri6.setVisibility(View.GONE); atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
+            atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1());
+        } else if (marcador.getNum_atributos()==2){
+            atri3.setVisibility(View.GONE); atri4.setVisibility(View.GONE); atri5.setVisibility(View.GONE);
+            atri6.setVisibility(View.GONE); atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
+            atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2());
+        } else if (marcador.getNum_atributos()==3){
+            atri4.setVisibility(View.GONE); atri5.setVisibility(View.GONE);
+            atri6.setVisibility(View.GONE); atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
+            atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3());
+        } else if (marcador.getNum_atributos()==4){
+            atri5.setVisibility(View.GONE);
+            atri6.setVisibility(View.GONE); atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
+            atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+        } else if (marcador.getNum_atributos()==5){
+            atri6.setVisibility(View.GONE); atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
+            atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5());
+        } else if (marcador.getNum_atributos()==6){
+            atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
+            atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6());
+        } else if (marcador.getNum_atributos()==7){
+            atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
+            atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7());
+        } else if (marcador.getNum_atributos()==8){
+            atri9.setVisibility(View.GONE);
+            atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+        } else if (marcador.getNum_atributos()==9){
+
+            atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9());
+        } else if (marcador.getNum_atributos()==10){
+            atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10());
+        } else if (marcador.getNum_atributos()==11){
+            atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11());
+        } else if (marcador.getNum_atributos()==12){
+            atri13.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+        } else if (marcador.getNum_atributos()==13){
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13());
+        } else if (marcador.getNum_atributos()==14){
+            atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14());
+        } else if (marcador.getNum_atributos()==15){
+            atri16.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15());
+        } else if (marcador.getNum_atributos()==16){
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+        }
+
+        if(marcador_tipo.getIsText1() == 0) {
+            edit_atri1.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText2() == 0) {
+            edit_atri2.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText3() == 0) {
+            edit_atri3.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText4() == 0) {
+            edit_atri4.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText5() == 0) {
+            edit_atri5.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText6() == 0) {
+            edit_atri6.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText7() == 0) {
+            edit_atri7.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText8() == 0) {
+            edit_atri8.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText9() == 0) {
+            edit_atri9.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText10() == 0) {
+            edit_atri10.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText11() == 0) {
+            edit_atri11.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText12() == 0) {
+            edit_atri12.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText13() == 0) {
+            edit_atri13.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText14() == 0) {
+            edit_atri14.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText15() == 0) {
+            edit_atri15.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText16() == 0) {
+            edit_atri16.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+
+        cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_marcador.setVisibility(View.GONE);
+                paraMapa.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        aceptar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editMarkerRequest(marker);
+            }
+        });
+
+    }
+
+    public void editMarkerRequest (final Marcador marker) {
+
+        final LinearLayout cargar = findViewById(R.id.cargando);
+
+        cargar.setVisibility(View.VISIBLE);
+
+
+
+        // Url for the webservice
+        String url = getString(R.string.base_url) + "/editarMarcador.php";
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    System.out.println(response.toString());
+
+                    JSONObject responseJSON = new JSONObject(response);
+
+                    if ((int) responseJSON.get("result") == 1) {
+
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast toast;
+                        CharSequence text;
+                        edit_atri1.setText(""); edit_atri2.setText("");
+                        edit_atri3.setText(""); edit_atri4.setText("");
+                        edit_atri5.setText(""); edit_atri6.setText("");
+                        edit_atri7.setText(""); edit_atri8.setText("");
+                        edit_atri9.setText(""); edit_atri10.setText("");
+                        edit_atri11.setText(""); edit_atri12.setText("");
+                        edit_atri13.setText(""); edit_atri14.setText("");
+                        edit_atri15.setText(""); edit_atri16.setText("");
+                        miniatura_camara.setImageDrawable(getResources().getDrawable(R.drawable.ic_photo_camera_black_24dp));
+
+                        text = "Marcador editado correctamente";
+                        toast = Toast.makeText(getApplicationContext(), text, duration);
+                        toast.show();
+                        titulo_addmarker.setText("Nuevo Marcador");
+                        aceptar.setText("Añadir Marcador");
+                        recreate();
+
+
+                    } else {
+                        int duration = Toast.LENGTH_SHORT;
+                        Toast toast;
+                        CharSequence text;
+
+                        text = "Algo ha ocurrido. Inténtalo más tarde.";
+                        toast = Toast.makeText(getApplicationContext(), text, duration);
+                        toast.show();
+
+                        // Clean the text fields for new entries
+
+                        cargar.setVisibility(View.GONE);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    cargar.setVisibility(View.GONE);
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast;
+                CharSequence text;
+                text = "Error while login: " + error.getLocalizedMessage() + ".";
+                toast = Toast.makeText(getApplicationContext(), text, duration);
+                toast.show();
+                cargar.setVisibility(View.GONE);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> login_params = new HashMap<String, String>();
+
+                SessionManager session = new SessionManager(getApplicationContext());
+                login_params.put("idUser", String.valueOf(session.getIdUser()));
+                login_params.put("token", String.valueOf(session.getToken()));
+                login_params.put("idMarcador", String.valueOf(marker.getId()));
+                login_params.put("idProyecto", String.valueOf(idProyecto));
+                login_params.put("latitud", String.valueOf(marker.getLatitud()));
+                login_params.put("longitud", String.valueOf(marker.getLongitud()));
+                login_params.put("atributo1", edit_atri1.getText().toString());
+                login_params.put("atributo2", edit_atri2.getText().toString());
+                login_params.put("atributo3", edit_atri3.getText().toString());
+                login_params.put("atributo4", edit_atri4.getText().toString());
+                login_params.put("atributo5", edit_atri5.getText().toString());
+                login_params.put("atributo6", edit_atri6.getText().toString());
+                login_params.put("atributo7", edit_atri7.getText().toString());
+                login_params.put("atributo8", edit_atri8.getText().toString());
+                login_params.put("atributo9", edit_atri9.getText().toString());
+                login_params.put("atributo10", edit_atri10.getText().toString());
+                login_params.put("atributo11", edit_atri11.getText().toString());
+                login_params.put("atributo12", edit_atri12.getText().toString());
+                login_params.put("atributo13", edit_atri13.getText().toString());
+                login_params.put("atributo14", edit_atri14.getText().toString());
+                login_params.put("atributo15", edit_atri15.getText().toString());
+                login_params.put("atributo16", edit_atri16.getText().toString());
+
+
+                return login_params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        queue.add(sr);
+    }
+
     public void deleteMarkerRequest (final Marcador marcador_delete) {
 
         final LinearLayout cargar = findViewById(R.id.cargando);
@@ -1998,6 +2401,119 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             }
         };
         queue.add(sr);
+    }
+
+    public void WMS_Ortofoto(){
+        HttpURLConnection c = null;
+        InputStream is = null;
+        WMSEndpoint wmsEndpoint = new WMSEndpoint();
+        List<WMSLayer> ArrayCapas;
+        String url = "http://localhost:8080/geoserver/ows?service=wms&version=1.1.1&request=GetCapabilities";
+
+        try {
+            c = (HttpURLConnection) new URL(url).openConnection();
+            is = c.getInputStream();
+            wmsEndpoint = parse(is);
+
+            is.close();
+            c.disconnect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if(wmsEndpoint.getLayers() != null){
+
+            ArrayCapas = wmsEndpoint.getLayers();
+
+            System.out.println("Tamaño del array " + String.valueOf(ArrayCapas.size()));
+
+            WMSTileSource source = WMSTileSource.createFrom(wmsEndpoint, wmsEndpoint.getLayers().get(0));
+            WMSLayer layer = wmsEndpoint.getLayers().get(0);
+
+            if (layer.getBbox() != null) {
+                //center map on this location
+                map.zoomToBoundingBox(layer.getBbox(),true);
+            }
+
+            map.setTileSource(source);
+
+        }
+
+
+    }
+
+
+    static class descargarWMS extends AsyncTask<String, Integer, WMSEndpoint> {
+
+        HttpURLConnection c = null;
+        InputStream is = null;
+        WMSEndpoint wmsEndpoint = new WMSEndpoint();
+        List<WMSLayer> ArrayCapas;
+        String url;
+        MapView mapView;
+        // String url = "http://localhost:8080/geoserver/ows?service=wms&version=1.1.1&request=GetCapabilities";
+
+        descargarWMS(String url, MapView mapView, WMSEndpoint wmsEndpoint) {
+            this.url = url;
+            this.mapView = mapView;
+            this.wmsEndpoint = wmsEndpoint;
+        }
+
+
+        @Override
+        protected WMSEndpoint doInBackground(String... params) {
+
+
+            try {
+
+                c = (HttpURLConnection) new URL(url).openConnection();
+                c.connect();
+                is = c.getInputStream();
+                wmsEndpoint = parse(is);
+
+
+                is.close();
+                c.disconnect();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+            WMSEndpoint result = wmsEndpoint;
+
+            return result;
+        }
+
+        @Override
+        protected void onPostExecute(WMSEndpoint result) {
+            super.onPostExecute(result);
+
+
+
+            if(result.getLayers() != null){
+
+                ArrayCapas = result.getLayers();
+
+                System.out.println("Tamaño del array " + String.valueOf(ArrayCapas.size()));
+
+                WMSTileSource source = WMSTileSource.createFrom(result, result.getLayers().get(0));
+                WMSLayer layer = result.getLayers().get(0);
+
+                if (layer.getBbox() != null) {
+                    //center map on this location
+                    mapView.zoomToBoundingBox(layer.getBbox(),true);
+                }
+
+                mapView.setTileSource(source);
+
+            }
+
+
+        }
     }
 
     }

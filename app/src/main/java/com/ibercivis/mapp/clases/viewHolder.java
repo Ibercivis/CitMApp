@@ -24,6 +24,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.ibercivis.mapp.BorrarProyecto;
 import com.ibercivis.mapp.DescargarDatos;
+import com.ibercivis.mapp.EditarProyecto;
 import com.ibercivis.mapp.ListadoProyectos;
 import com.ibercivis.mapp.Mapa;
 import com.ibercivis.mapp.ProyectoPrivado;
@@ -116,6 +117,30 @@ public class viewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
                             break;
 
+                        case R.id.menu3:
+                            //handle menu1 click
+
+                            int id3 = proyecto.getIdProyecto();
+                            String tituloProyecto = proyecto.getTitulo();
+                            String descripcionProyecto = proyecto.getDescripcion();
+                            String webProyecto = proyecto.getWeb();
+                            int esPrivado = proyecto.getPrivado();
+                            String passProyecto = proyecto.getPassword();
+                            int tieneLogo = proyecto.hasLogo;
+                            String urlLogo = proyecto.logo;
+                            Intent intent3 = new Intent(buttonViewOptions.getContext(), EditarProyecto.class);
+                            intent3.putExtra("idProyecto", id3);
+                            intent3.putExtra("tituloProyecto", tituloProyecto);
+                            intent3.putExtra("descripcionProyecto", descripcionProyecto);
+                            intent3.putExtra("webProyecto", webProyecto);
+                            intent3.putExtra("esPrivado", esPrivado);
+                            intent3.putExtra("passProyecto", passProyecto);
+                            intent3.putExtra("tieneLogo", tieneLogo);
+                            intent3.putExtra("urlLogo", urlLogo);
+                            startActivity(btn.getContext(), intent3, null);
+
+                            break;
+
                     }
                     return false;
                 }
@@ -126,6 +151,8 @@ public class viewHolder extends RecyclerView.ViewHolder implements View.OnClickL
             if(proyecto.getIdUser() != session.getIdUser()){
 
                 MenuItem item_delete = popup.getMenu().findItem(R.id.menu2);
+                MenuItem item_edit = popup.getMenu().findItem(R.id.menu3);
+                item_edit.setVisible(false);
                 item_delete.setVisible(false);
 
             }
@@ -139,19 +166,37 @@ public class viewHolder extends RecyclerView.ViewHolder implements View.OnClickL
 
 
             int id = proyecto.getIdProyecto();
+            String title = proyecto.getTitulo();
             Intent intent = new Intent(btn.getContext(), Mapa.class);
             intent.putExtra("idProyecto", id);
+            intent.putExtra("tituloProyecto", title);
             startActivity(btn.getContext(), intent, null);
 
             }
             if(proyecto.privado == 1){
+            SessionManager session = new SessionManager(itemView.getContext());
 
             int id = proyecto.getIdProyecto();
+            String title = proyecto.getTitulo();
             String pass = proyecto.getPassword();
-            Intent intent = new Intent(btn.getContext(), ProyectoPrivado.class);
-            intent.putExtra("password_proyecto", pass);
-            intent.putExtra("idProyecto", id);
-            startActivity(btn.getContext(), intent, null);
+
+            if(session.getPass(title) != null){
+
+                Intent intent = new Intent(btn.getContext(), Mapa.class);
+                intent.putExtra("idProyecto", id);
+                intent.putExtra("tituloProyecto", title);
+                startActivity(btn.getContext(), intent, null);
+
+            } else {
+
+                Intent intent = new Intent(btn.getContext(), ProyectoPrivado.class);
+                intent.putExtra("password_proyecto", pass);
+                intent.putExtra("idProyecto", id);
+                intent.putExtra("tituloProyecto", title);
+                startActivity(btn.getContext(), intent, null);
+
+            }
+
 
             }
         }

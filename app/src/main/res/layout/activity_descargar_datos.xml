@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="15dp"
-                android:text="Escribe la dirección de correo electrónico en la que quieres recibir los datos de los marcadores de este proyecto. Los datos se enviarán en formato .CSV"
+                android:text="@string/descargar1"
                 android:fontFamily="sans-serif-condensed"/>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -37,7 +37,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="E-mail"
+                android:hint="@string/sign4"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -55,7 +55,7 @@
                 android:layout_height="30dp"
                 android:background="#419FBB"
                 android:textColor="#ffffff"
-                android:text="ACEPTAR"
+                android:text="@string/descargar2"
                 />
 
         </LinearLayout>
@@ -81,7 +81,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Por favor, espere..."
+                android:text="@string/popup_wait"
                 android:fontFamily="sans-serif-condensed"/>
 
             <ProgressBar

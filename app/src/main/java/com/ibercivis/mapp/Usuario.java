@@ -81,6 +81,7 @@ public class Usuario extends AppCompatActivity implements NavigationView.OnNavig
         /*-----Toolbar-----*/
         setSupportActionBar(toolbar);
 
+
         /*-----Navigation Drawer Menu -----*/
 
         //Hide or show items

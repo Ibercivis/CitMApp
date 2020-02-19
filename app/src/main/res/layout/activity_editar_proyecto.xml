@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CrearProyecto"
+    tools:context=".EditarProyecto"
     android:id="@+id/drawer_layout3"
     android:fitsSystemWindows="true"
-    tools:openDrawer="star">
+    tools:openDrawer="start">
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
@@ -77,7 +77,8 @@
                                 android:layout_width="match_parent"
                                 android:inputType="textCapWords|textAutoCorrect"
                                 android:layout_height="wrap_content"
-                                android:maxLines="1"/>
+                                android:maxLines="1"
+                                />
 
                         </com.google.android.material.textfield.TextInputLayout>
 
@@ -184,7 +185,6 @@
                         android:layout_gravity="center_horizontal"
                         android:fontFamily="@font/antic"
                         android:text="@string/crear10"
-
                         android:textColor="@color/colorPrimary"/>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -1313,14 +1313,14 @@
                     android:id="@+id/btn_crearproyecto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/crear45"
+                    android:text="@string/editar1"
                     android:layout_marginHorizontal="20dp"
                     android:layout_gravity="center_horizontal"
                     android:background="#419FBB"
                     android:textColor="#fff"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"
-                    android:onClick="addprojectRequest"/>
+                    android:onClick="addEditProjectRequest"/>
 
             </LinearLayout>
 
@@ -1346,7 +1346,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Por favor, espere..."
+                    android:text="@string/popup_wait"
                     android:fontFamily="sans-serif-condensed"/>
 
                 <ProgressBar

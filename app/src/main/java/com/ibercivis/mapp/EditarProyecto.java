@@ -1,12 +1,6 @@
 package com.ibercivis.mapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -14,6 +8,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputType;
 import android.util.Base64;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +20,13 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,19 +37,22 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.ibercivis.mapp.clases.Marcador;
 import com.ibercivis.mapp.clases.SessionManager;
+import com.ibercivis.mapp.clases.marcadorTipo;
+import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-public class CrearProyecto extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class EditarProyecto extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
@@ -69,12 +74,15 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
     Uri imageUri;
     String base64String="";
 
+    int idProyecto, isPrivated, tieneLogo;
+    String tituloProyecto, descripcionProyecto, webProyecto, passProyecto, urlLogo;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_crear_proyecto);
+        setContentView(R.layout.activity_editar_proyecto);
 
         /*-----Hooks-----*/
 
@@ -96,6 +104,11 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
         addLogo = findViewById(R.id.upload_logo);
 
         //EditText
+        titulo_proyecto = findViewById(R.id.project_titulo);
+        descripcion_proyecto = findViewById(R.id.project_description);
+        web_proyecto = findViewById(R.id.project_web);
+        pass_proyecto = findViewById(R.id.project_password);
+
         atributo1 = findViewById(R.id.edit_atributo1); atributo9 = findViewById(R.id.edit_atributo9);
         atributo2 = findViewById(R.id.edit_atributo2); atributo10 = findViewById(R.id.edit_atributo10);
         atributo3 = findViewById(R.id.edit_atributo3); atributo11 = findViewById(R.id.edit_atributo11);
@@ -178,6 +191,30 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
 
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_crear);
+
+
+        /*----- Recojo los parámetros Extra que vienen con el Intent -----*/
+
+        idProyecto = getIntent().getIntExtra("idProyecto", 1);
+        tituloProyecto = getIntent().getStringExtra("tituloProyecto");
+        descripcionProyecto = getIntent().getStringExtra("descripcionProyecto");
+        webProyecto = getIntent().getStringExtra("webProyecto");
+        passProyecto = getIntent().getStringExtra("passProyecto");
+        isPrivated = getIntent().getIntExtra("esPrivado", 0);
+        tieneLogo = getIntent().getIntExtra("tieneLogo", 0);
+        urlLogo = getIntent().getStringExtra("urlLogo");
+
+        getCustomMarkerRequest();
+
+        titulo_proyecto.setText(tituloProyecto);
+        descripcion_proyecto.setText(descripcionProyecto);
+        web_proyecto.setText(webProyecto);
+
+        if (isPrivated == 1){
+            switch_privado.setChecked(true);
+            pass_proyecto.setText(passProyecto);
+        }
+
 
         /*----- Para los botones -----*/
 
@@ -455,7 +492,7 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
                             cancelatri11.setVisibility(View.GONE);
                             isText12 = 0;
                             //atributo12.setInputType(InputType.TYPE_CLASS_NUMBER);
-                            hintatributo12.setHint(getResources().getString(R.string.crear56));
+                            hintatributo12.setHint(getResources().getString(R.string.crear57));
                             break;
                         case 13:
                             atri13.setVisibility(View.VISIBLE);
@@ -724,7 +761,7 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
 
     }
 
-    public void addprojectRequest (View view) {
+    public void addEditProjectRequest (View view) {
         final LinearLayout cargar = findViewById(R.id.cargando);
 
         atributo1 = findViewById(R.id.edit_atributo1); atributo9 = findViewById(R.id.edit_atributo9);
@@ -735,6 +772,11 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
         atributo6 = findViewById(R.id.edit_atributo6); atributo14 = findViewById(R.id.edit_atributo14);
         atributo7 = findViewById(R.id.edit_atributo7); atributo15 = findViewById(R.id.edit_atributo15);
         atributo8 = findViewById(R.id.edit_atributo8); atributo16 = findViewById(R.id.edit_atributo16);
+        textomarcadores.setVisibility(View.GONE);
+        cancelatri1.setVisibility(View.GONE); cancelatri2.setVisibility(View.GONE); cancelatri3.setVisibility(View.GONE); cancelatri4.setVisibility(View.GONE);
+        cancelatri5.setVisibility(View.GONE); cancelatri6.setVisibility(View.GONE); cancelatri7.setVisibility(View.GONE); cancelatri8.setVisibility(View.GONE);
+        cancelatri9.setVisibility(View.GONE); cancelatri10.setVisibility(View.GONE); cancelatri11.setVisibility(View.GONE); cancelatri12.setVisibility(View.GONE);
+        cancelatri13.setVisibility(View.GONE); cancelatri14.setVisibility(View.GONE); cancelatri15.setVisibility(View.GONE); cancelatri16.setVisibility(View.GONE);
 
         titulo_proyecto = findViewById(R.id.project_titulo);
         descripcion_proyecto = findViewById(R.id.project_description);
@@ -744,7 +786,7 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
 
         if(atributo_added != 0) {
             if (checkInputLogin()) {
-                String url = getString(R.string.base_url) + "/crearProyecto.php";
+                String url = getString(R.string.base_url) + "/editarProyecto.php";
 
                 RequestQueue queue = Volley.newRequestQueue(this);
                 StringRequest sr = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -758,9 +800,9 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
                             if ((int) responseJSON.get("result") == 1) {
 
                                 cargar.setVisibility(View.GONE);
-                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.crear63), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), getResources().getString(R.string.editar2), Toast.LENGTH_SHORT).show();
+                                deleteCache(EditarProyecto.this);
                                 openMain();
-
 
                             } else {
                                 int duration = Toast.LENGTH_SHORT;
@@ -799,6 +841,7 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
                         Map<String, String> login_params = new HashMap<String, String>();
                         SessionManager session = new SessionManager(getApplicationContext());
                         login_params.put("idUser", String.valueOf(session.getIdUser()));
+                        login_params.put("idProyecto", String.valueOf(idProyecto));
                         login_params.put("token", String.valueOf(session.getToken()));
                         login_params.put("titulo", titulo_proyecto.getText().toString());
                         login_params.put("descripcion", descripcion_proyecto.getText().toString());
@@ -877,7 +920,7 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
             int duration = Toast.LENGTH_SHORT;
             Toast toast;
             CharSequence text;
-            text = getResources().getString(R.string.crear64);
+            text = "Se debe añadir al menos un atributo al marcador del proyecto.";
             toast = Toast.makeText(getApplicationContext(), text, duration);
             toast.show();
 
@@ -1287,6 +1330,277 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
         String base64String = Base64.encodeToString(imageBytes, Base64.NO_WRAP);
 
         return base64String;
+    }
+
+    public void getCustomMarkerRequest () {
+        final LinearLayout cargar = findViewById(R.id.cargando);
+        String idUser, toktok;
+        int item;
+        SessionManager session = new SessionManager(EditarProyecto.this);
+        cargar.setVisibility(View.VISIBLE);
+
+        // Input data ok, so go with the request
+
+        // Url for the webservice
+        idUser = String.valueOf(session.getIdUser());
+        toktok = session.getToken();
+
+        String url = getString(R.string.base_url) + "/proyecto.php?idUser=" + idUser +"&token=" + toktok + "&idProyecto=" + idProyecto;
+
+        RequestQueue queue = Volley.newRequestQueue(EditarProyecto.this);
+        queue.getCache().clear();
+        StringRequest sr = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    System.out.println(response.toString());
+
+                    JSONObject responseJSON = new JSONObject(response);
+
+                    if ((int) responseJSON.get("result") == 1){
+
+                        int value;
+                        int i = 0;
+                        int j=0;
+                        JSONArray jsonArray = responseJSON.getJSONArray("data");
+
+                        for (i=0; i < jsonArray.length(); i++){
+
+                            // JSONArray jsonArray1 = jsonArray.getJSONArray(i); //Diferentes proyectos
+
+
+                            int numeroatributos = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("numAtributos")));
+                            atributo_added = numeroatributos;
+                            int tieneFoto = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("foto")));
+                            photo_added = tieneFoto;
+                            if (photo_added == 1){
+                                phot.setVisibility(View.VISIBLE);
+                            } else {
+                                phot.setVisibility(View.GONE);
+                            }
+
+
+
+                            String atribu1 = String.valueOf(jsonArray.getJSONObject(i).get("atributo1"));
+                            String atribu2 = String.valueOf(jsonArray.getJSONObject(i).get("atributo2"));
+                            String atribu3 = String.valueOf(jsonArray.getJSONObject(i).get("atributo3"));
+                            String atribu4 = String.valueOf(jsonArray.getJSONObject(i).get("atributo4"));
+                            String atribu5 = String.valueOf(jsonArray.getJSONObject(i).get("atributo5"));
+                            String atribu6 = String.valueOf(jsonArray.getJSONObject(i).get("atributo6"));
+                            String atribu7 = String.valueOf(jsonArray.getJSONObject(i).get("atributo7"));
+                            String atribu8 = String.valueOf(jsonArray.getJSONObject(i).get("atributo8"));
+                            String atribu9 = String.valueOf(jsonArray.getJSONObject(i).get("atributo9"));
+                            String atribu10 = String.valueOf(jsonArray.getJSONObject(i).get("atributo10"));
+                            String atribu11 = String.valueOf(jsonArray.getJSONObject(i).get("atributo11"));
+                            String atribu12 = String.valueOf(jsonArray.getJSONObject(i).get("atributo12"));
+                            String atribu13 = String.valueOf(jsonArray.getJSONObject(i).get("atributo13"));
+                            String atribu14 = String.valueOf(jsonArray.getJSONObject(i).get("atributo14"));
+                            String atribu15 = String.valueOf(jsonArray.getJSONObject(i).get("atributo15"));
+                            String atribu16 = String.valueOf(jsonArray.getJSONObject(i).get("atributo16"));
+                            atributo1.setText(atribu1); atributo2.setText(atribu2); atributo3.setText(atribu3); atributo4.setText(atribu4);
+                            atributo5.setText(atribu5); atributo6.setText(atribu6); atributo7.setText(atribu7); atributo8.setText(atribu8);
+                            atributo9.setText(atribu9); atributo10.setText(atribu10); atributo11.setText(atribu11); atributo12.setText(atribu12);
+                            atributo13.setText(atribu13); atributo14.setText(atribu14); atributo15.setText(atribu15); atributo16.setText(atribu16);
+                            int esTexto1 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText1")));
+                            int esTexto2 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText2")));
+                            int esTexto3 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText3")));
+                            int esTexto4 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText4")));
+                            int esTexto5 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText5")));
+                            int esTexto6 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText6")));
+                            int esTexto7 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText7")));
+                            int esTexto8 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText8")));
+                            int esTexto9 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText9")));
+                            int esTexto10 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText10")));
+                            int esTexto11 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText11")));
+                            int esTexto12 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText12")));
+                            int esTexto13 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText13")));
+                            int esTexto14 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText14")));
+                            int esTexto15 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText15")));
+                            int esTexto16 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText16")));
+                            isText1 = esTexto1; isText2 = esTexto2; isText3 = esTexto3; isText4=esTexto4;
+                            isText5 = esTexto5; isText6 = esTexto6; isText7 = esTexto7; isText8=esTexto8;
+                            isText9 = esTexto9; isText10 = esTexto10; isText11 = esTexto11; isText12=esTexto12;
+                            isText13 = esTexto13; isText14 = esTexto14; isText15 = esTexto15; isText16=esTexto16;
+                            String info_atributo1 = String.valueOf(jsonArray.getJSONObject(i).get("desc1"));
+                            String info_atributo2 = String.valueOf(jsonArray.getJSONObject(i).get("desc2"));
+                            String info_atributo3 = String.valueOf(jsonArray.getJSONObject(i).get("desc3"));
+                            String info_atributo4 = String.valueOf(jsonArray.getJSONObject(i).get("desc4"));
+                            String info_atributo5 = String.valueOf(jsonArray.getJSONObject(i).get("desc5"));
+                            String info_atributo6 = String.valueOf(jsonArray.getJSONObject(i).get("desc6"));
+                            String info_atributo7 = String.valueOf(jsonArray.getJSONObject(i).get("desc7"));
+                            String info_atributo8 = String.valueOf(jsonArray.getJSONObject(i).get("desc8"));
+                            String info_atributo9 = String.valueOf(jsonArray.getJSONObject(i).get("desc9"));
+                            String info_atributo10 = String.valueOf(jsonArray.getJSONObject(i).get("desc10"));
+                            String info_atributo11 = String.valueOf(jsonArray.getJSONObject(i).get("desc11"));
+                            String info_atributo12 = String.valueOf(jsonArray.getJSONObject(i).get("desc12"));
+                            String info_atributo13 = String.valueOf(jsonArray.getJSONObject(i).get("desc13"));
+                            String info_atributo14 = String.valueOf(jsonArray.getJSONObject(i).get("desc14"));
+                            String info_atributo15 = String.valueOf(jsonArray.getJSONObject(i).get("desc15"));
+                            String info_atributo16 = String.valueOf(jsonArray.getJSONObject(i).get("desc16"));
+
+                            desc1.setText(info_atributo1); desc2.setText(info_atributo2); desc3.setText(info_atributo3); desc4.setText(info_atributo4);
+                            desc5.setText(info_atributo5); desc6.setText(info_atributo6); desc7.setText(info_atributo7); desc8.setText(info_atributo8);
+                            desc9.setText(info_atributo9); desc10.setText(info_atributo10); desc11.setText(info_atributo11); desc12.setText(info_atributo12);
+                            desc13.setText(info_atributo13); desc14.setText(info_atributo14); desc15.setText(info_atributo15); desc16.setText(info_atributo16);
+
+                            if(atributo_added == 16){
+                                atri1.setVisibility(View.VISIBLE); atri2.setVisibility(View.VISIBLE); atri3.setVisibility(View.VISIBLE); atri4.setVisibility(View.VISIBLE);
+                                atri5.setVisibility(View.VISIBLE); atri6.setVisibility(View.VISIBLE); atri7.setVisibility(View.VISIBLE); atri8.setVisibility(View.VISIBLE);
+                                atri9.setVisibility(View.VISIBLE); atri10.setVisibility(View.VISIBLE); atri11.setVisibility(View.VISIBLE); atri12.setVisibility(View.VISIBLE);
+                                atri13.setVisibility(View.VISIBLE); atri14.setVisibility(View.VISIBLE); atri15.setVisibility(View.VISIBLE); atri16.setVisibility(View.VISIBLE);
+                                cancelatri16.setVisibility(View.VISIBLE);
+                            } else if (atributo_added == 15){
+                                atri1.setVisibility(View.VISIBLE); atri2.setVisibility(View.VISIBLE); atri3.setVisibility(View.VISIBLE); atri4.setVisibility(View.VISIBLE);
+                                atri5.setVisibility(View.VISIBLE); atri6.setVisibility(View.VISIBLE); atri7.setVisibility(View.VISIBLE); atri8.setVisibility(View.VISIBLE);
+                                atri9.setVisibility(View.VISIBLE); atri10.setVisibility(View.VISIBLE); atri11.setVisibility(View.VISIBLE); atri12.setVisibility(View.VISIBLE);
+                                atri13.setVisibility(View.VISIBLE); atri14.setVisibility(View.VISIBLE); atri15.setVisibility(View.VISIBLE);
+                                cancelatri15.setVisibility(View.VISIBLE);
+
+                            } else if (atributo_added == 14) {
+                                atri1.setVisibility(View.VISIBLE); atri2.setVisibility(View.VISIBLE); atri3.setVisibility(View.VISIBLE); atri4.setVisibility(View.VISIBLE);
+                                atri5.setVisibility(View.VISIBLE); atri6.setVisibility(View.VISIBLE); atri7.setVisibility(View.VISIBLE); atri8.setVisibility(View.VISIBLE);
+                                atri9.setVisibility(View.VISIBLE); atri10.setVisibility(View.VISIBLE); atri11.setVisibility(View.VISIBLE); atri12.setVisibility(View.VISIBLE);
+                                atri13.setVisibility(View.VISIBLE); atri14.setVisibility(View.VISIBLE);
+                                cancelatri14.setVisibility(View.VISIBLE);
+
+                            } else if (atributo_added == 13){
+                                atri1.setVisibility(View.VISIBLE); atri2.setVisibility(View.VISIBLE); atri3.setVisibility(View.VISIBLE); atri4.setVisibility(View.VISIBLE);
+                                atri5.setVisibility(View.VISIBLE); atri6.setVisibility(View.VISIBLE); atri7.setVisibility(View.VISIBLE); atri8.setVisibility(View.VISIBLE);
+                                atri9.setVisibility(View.VISIBLE); atri10.setVisibility(View.VISIBLE); atri11.setVisibility(View.VISIBLE); atri12.setVisibility(View.VISIBLE);
+                                atri13.setVisibility(View.VISIBLE);
+                                cancelatri13.setVisibility(View.VISIBLE);
+
+                            } else if (atributo_added == 12){
+                                atri1.setVisibility(View.VISIBLE); atri2.setVisibility(View.VISIBLE); atri3.setVisibility(View.VISIBLE); atri4.setVisibility(View.VISIBLE);
+                                atri5.setVisibility(View.VISIBLE); atri6.setVisibility(View.VISIBLE); atri7.setVisibility(View.VISIBLE); atri8.setVisibility(View.VISIBLE);
+                                atri9.setVisibility(View.VISIBLE); atri10.setVisibility(View.VISIBLE); atri11.setVisibility(View.VISIBLE); atri12.setVisibility(View.VISIBLE);
+                                cancelatri12.setVisibility(View.VISIBLE);
+
+                            } else if (atributo_added == 11){
+                                atri1.setVisibility(View.VISIBLE); atri2.setVisibility(View.VISIBLE); atri3.setVisibility(View.VISIBLE); atri4.setVisibility(View.VISIBLE);
+                                atri5.setVisibility(View.VISIBLE); atri6.setVisibility(View.VISIBLE); atri7.setVisibility(View.VISIBLE); atri8.setVisibility(View.VISIBLE);
+                                atri9.setVisibility(View.VISIBLE); atri10.setVisibility(View.VISIBLE); atri11.setVisibility(View.VISIBLE);
+                                cancelatri11.setVisibility(View.VISIBLE);
+
+                            } else if (atributo_added == 10){
+                                atri1.setVisibility(View.VISIBLE); atri2.setVisibility(View.VISIBLE); atri3.setVisibility(View.VISIBLE); atri4.setVisibility(View.VISIBLE);
+                                atri5.setVisibility(View.VISIBLE); atri6.setVisibility(View.VISIBLE); atri7.setVisibility(View.VISIBLE); atri8.setVisibility(View.VISIBLE);
+                                atri9.setVisibility(View.VISIBLE); atri10.setVisibility(View.VISIBLE);
+                                cancelatri10.setVisibility(View.VISIBLE);
+
+                            } else if (atributo_added == 9){
+                                atri1.setVisibility(View.VISIBLE); atri2.setVisibility(View.VISIBLE); atri3.setVisibility(View.VISIBLE); atri4.setVisibility(View.VISIBLE);
+                                atri5.setVisibility(View.VISIBLE); atri6.setVisibility(View.VISIBLE); atri7.setVisibility(View.VISIBLE); atri8.setVisibility(View.VISIBLE);
+                                atri9.setVisibility(View.VISIBLE);
+                                cancelatri9.setVisibility(View.VISIBLE);
+
+                            } else if (atributo_added == 8){
+                                atri1.setVisibility(View.VISIBLE); atri2.setVisibility(View.VISIBLE); atri3.setVisibility(View.VISIBLE); atri4.setVisibility(View.VISIBLE);
+                                atri5.setVisibility(View.VISIBLE); atri6.setVisibility(View.VISIBLE); atri7.setVisibility(View.VISIBLE); atri8.setVisibility(View.VISIBLE);
+                                cancelatri8.setVisibility(View.VISIBLE);
+
+                            } else if (atributo_added == 7){
+                                atri1.setVisibility(View.VISIBLE); atri2.setVisibility(View.VISIBLE); atri3.setVisibility(View.VISIBLE); atri4.setVisibility(View.VISIBLE);
+                                atri5.setVisibility(View.VISIBLE); atri6.setVisibility(View.VISIBLE); atri7.setVisibility(View.VISIBLE);
+                                cancelatri7.setVisibility(View.VISIBLE);
+
+                            } else if (atributo_added == 6){
+                                atri1.setVisibility(View.VISIBLE); atri2.setVisibility(View.VISIBLE); atri3.setVisibility(View.VISIBLE); atri4.setVisibility(View.VISIBLE);
+                                atri5.setVisibility(View.VISIBLE); atri6.setVisibility(View.VISIBLE);
+                                cancelatri6.setVisibility(View.VISIBLE);
+
+                            } else if (atributo_added == 5){
+                                atri1.setVisibility(View.VISIBLE); atri2.setVisibility(View.VISIBLE); atri3.setVisibility(View.VISIBLE); atri4.setVisibility(View.VISIBLE);
+                                atri5.setVisibility(View.VISIBLE);
+                                cancelatri5.setVisibility(View.VISIBLE);
+
+                            } else if (atributo_added == 4){
+                                atri1.setVisibility(View.VISIBLE); atri2.setVisibility(View.VISIBLE); atri3.setVisibility(View.VISIBLE); atri4.setVisibility(View.VISIBLE);
+                                cancelatri4.setVisibility(View.VISIBLE);
+
+                            } else if (atributo_added == 3){
+                                atri1.setVisibility(View.VISIBLE); atri2.setVisibility(View.VISIBLE); atri3.setVisibility(View.VISIBLE);
+                                cancelatri3.setVisibility(View.VISIBLE);
+
+                            } else if (atributo_added == 2){
+                                atri1.setVisibility(View.VISIBLE); atri2.setVisibility(View.VISIBLE);
+                                cancelatri2.setVisibility(View.VISIBLE);
+
+                            } else if (atributo_added == 1){
+                                atri1.setVisibility(View.VISIBLE);
+                                cancelatri1.setVisibility(View.VISIBLE);
+
+                            }
+
+                            if(tieneLogo == 1){
+                                Picasso.with(EditarProyecto.this).load(urlLogo).into(logo_miniatura);
+                            }
+                            // marcador_tipo = new marcadorTipo(numeroatributos, tieneFoto, atribu1, atribu2, atribu3, atribu4, atribu5, atribu6, atribu7, atribu8, atribu9, atribu10, atribu11, atribu12, atribu13, atribu14, atribu15, atribu16, esTexto1, esTexto2, esTexto3, esTexto4, esTexto5, esTexto6, esTexto7, esTexto8, esTexto9, esTexto10, esTexto11, esTexto12, esTexto13, esTexto14, esTexto15, esTexto16);
+
+
+                        }
+
+                        cargar.setVisibility(View.GONE);
+                       // getMarkersRequest();
+
+                        // usernametxt.setText(user);
+
+
+                    }
+                    else {
+                        Log.println(Log.ASSERT, "Error", "Algo ha fallado que la respuesta es 0");
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> signup_params = new HashMap<String, String>();
+
+
+                return signup_params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        sr.setShouldCache(false);
+        queue.add(sr);
+    }
+
+    public static void deleteCache(Context context) {
+        try {
+            File dir = context.getCacheDir();
+            deleteDir(dir);
+        } catch (Exception e) { e.printStackTrace();}
+    }
+
+    public static boolean deleteDir(File dir) {
+        if (dir != null && dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+            return dir.delete();
+        } else if(dir!= null && dir.isFile()) {
+            return dir.delete();
+        } else {
+            return false;
+        }
     }
 
 }

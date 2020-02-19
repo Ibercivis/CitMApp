@@ -53,7 +53,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginTop="64dp"
                     android:fontFamily="@font/baloo"
-                    android:text="CitMApp"
+                    android:text="@string/app_name"
                     android:textSize="36sp"
                      />
 
@@ -65,7 +65,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="26dp"
                     android:fontFamily="casual"
-                    android:text="Mapea tu ciudad"
+                    android:text="@string/app_claim"
                     android:textSize="18sp"
                      />
 
@@ -93,7 +93,35 @@
             android:layout_margin="24dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="CitMapp es una plataforma de proyectos de mapeado colaborativo que tiene como objetivo visibilizar el día a día de la ciencia ciudadana en nuestros pueblos y ciudades. \n\nLa aplicación permite la recogida de datos en tiempo real y favorece la puesta en marcha de análisis científicos sobre biodiversidad, urbanismo, conservación del patrimonio, contaminación ambiental, lumínica...  Los usuarios recogen la posición y  actividad, realizan mediciones o captan imágenes relevantes de fenómenos de su interés que podrán ser ampliados por la comunidad. \n\nEl usuario de CitMapp puede convertirse en gestor de su propio proyecto de ciencia ciudadana, colaborar en proyectos existentes o valorarlos para que otros ciudadanos puedan encontrarlos con facilidad. Como gestor de proyecto, el usuario define los parámetros que considera útiles para el estudio, y que usarán  el resto de científicos ciudadanos para añadir más información al proyecto. \n\nCrea tu proyecto, observa, mide, toma imágenes y comparte con la comunidad tus hallazgos científicos, o apoya con tus datos a los proyectos que te resulten más útiles o interesantes.\n\n"/>
+            android:text="@string/quienes"/>
+
+            <ImageView
+                android:layout_marginTop="-24dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="50dp"
+                android:src="@drawable/servzgzactiva"
+                />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="50dp"
+                android:src="@drawable/logo_ibercivis"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="50dp"
+                android:src="@drawable/mapeado_colaborativo_logo4_color"
+                android:layout_marginBottom="12dp"
+                />
 
         </LinearLayout>
 

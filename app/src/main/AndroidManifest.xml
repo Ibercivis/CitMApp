@@ -57,6 +57,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"/>
+        <activity android:name=".EditarProyecto"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="preloaded_fonts"

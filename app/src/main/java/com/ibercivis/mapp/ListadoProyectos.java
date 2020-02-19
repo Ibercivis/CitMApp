@@ -3,8 +3,10 @@ package com.ibercivis.mapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
+import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,6 +25,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+
+
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +42,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.ibercivis.mapp.clases.Adaptador;
 import com.ibercivis.mapp.clases.SessionManager;
 import com.ibercivis.mapp.clases.proyectos;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,7 +55,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-public class ListadoProyectos extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ListadoProyectos extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SearchView.OnQueryTextListener {
 
     //Comunes: Navigation y Toolbar
     DrawerLayout drawerLayout;
@@ -60,6 +65,7 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
 
     //Propios de esta Activity
     RecyclerView recyclerLista;
+    Adaptador recyclerAdapter;
     ArrayList<proyectos> ListaProyectos = new ArrayList<>();
 
     @Override
@@ -77,6 +83,7 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
 
         /*-----Toolbar-----*/
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         /*-----Navigation Drawer Menu -----*/
 
@@ -230,6 +237,7 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
 
                                 String URL_logo = "https://citmapp.ibercivis.es/uploads/proyectos/"+String.valueOf(id)+".jpg";
 
+
                                 ListaProyectos.add(new proyectos(id, idUser, title, description, web, getRandomColor(), aportaciones, likes, voted, privado, password, hasLogo, URL_logo));
 
                             } else {
@@ -242,7 +250,9 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
                         recyclerLista.setHasFixedSize(true);
                         LinearLayoutManager layout = new LinearLayoutManager(ListadoProyectos.this);
                         layout.setOrientation(LinearLayoutManager.VERTICAL);
-                        recyclerLista.setAdapter(new Adaptador(ListaProyectos));
+                        recyclerAdapter = new Adaptador(ListaProyectos);
+                        //recyclerLista.setAdapter(new Adaptador(ListaProyectos));
+                        recyclerLista.setAdapter(recyclerAdapter);
                         recyclerLista.setLayoutManager(layout);
                         cargar.setVisibility(View.GONE);
 
@@ -319,14 +329,75 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
         }
     } */
 
-    public Bitmap devolver_bitmap(Bitmap bm){
+    public boolean onCreateOptionsMenu(Menu menu){
 
+        getMenuInflater().inflate(R.menu.menu_buscador, menu);
+        MenuItem item = menu.findItem(R.id.buscador);
+        SearchView searchView = (SearchView) item.getActionView();
 
+        searchView.setOnQueryTextListener(this);
 
+        item.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
 
-        return bm;
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+
+                recyclerAdapter.setFilter(ListaProyectos);
+
+                return true;
+            }
+        });
+
+    return true;
     }
 
 
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+        try{
+
+            ArrayList<proyectos> listaFiltrada = filter(ListaProyectos,newText);
+            recyclerAdapter.setFilter(listaFiltrada);
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    private ArrayList<proyectos> filter(ArrayList<proyectos> proyecto, String texto) {
+
+        ArrayList<proyectos> listaFiltrada = new ArrayList<>();
+
+        try{
+            texto=texto.toLowerCase();
+
+            for(proyectos project: proyecto){
+
+                String project2 = project.getTitulo().toLowerCase();
+
+                if(project2.contains(texto)){
+                    listaFiltrada.add(project);
+                }
+
+            }
+
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return listaFiltrada;
+    }
 }
 

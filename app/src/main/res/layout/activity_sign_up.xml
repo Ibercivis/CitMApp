@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/baloo"
-        android:text="Bienvenido"
+        android:text="@string/sign1"
         android:textSize="40sp"
         android:textColor="#3854DF"
         android:transitionName="logo_text"/>
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/baloo"
-        android:text="Regístrate para comenzar a mapear"
+        android:text="@string/sign2"
         android:textSize="18sp"
         android:layout_marginTop="-20dp"
         android:transitionName="logo_desc"/>
@@ -47,7 +47,7 @@
         <com.google.android.material.textfield.TextInputLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:hint="Username"
+    android:hint="@string/sign3"
     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
     android:transitionName="username_tran">
 
@@ -62,7 +62,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="E-mail"
+            android:hint="@string/sign4"
 
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -77,7 +77,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Contraseña"
+            android:hint="@string/sign5"
             app:passwordToggleEnabled="true"
             android:transitionName="password_tran"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -93,7 +93,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Repetir contraseña"
+            android:hint="@string/sign6"
             app:passwordToggleEnabled="true"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -112,7 +112,7 @@
         android:id="@+id/entrar_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Crear usuario"
+        android:text="@string/sign7"
         android:background="#3854DF"
         android:textColor="#fff"
         android:layout_marginTop="5dp"
@@ -129,7 +129,7 @@
         android:background="#00000000"
         android:elevation="0dp"
         android:fontFamily="@font/antic"
-        android:text="¿Ya estás registrado? Accede"
+        android:text="@string/sign8"
         android:transitionName="btn2_tran"/>
 
     </LinearLayout>
@@ -152,7 +152,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Por favor, espere..."
+                android:text="@string/popup_wait"
                 android:fontFamily="sans-serif-condensed"/>
 
             <ProgressBar

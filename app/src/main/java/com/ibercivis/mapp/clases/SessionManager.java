@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import java.util.HashMap;
+
 public class SessionManager {
 
     /* http://www.androidhive.info/2012/01/android-login-and-registration-with-php-mysql-and-sqlite/ */
@@ -26,6 +28,7 @@ public class SessionManager {
     private static final String KEY_ID = "userID";
     private static final String KEY_IS_LOGGEDIN = "isLoggedIn";
     private static final String KEY_NAME = "username";
+    private static final HashMap<String,String> mapaPass = new HashMap<String, String>();
 
     public SessionManager(Context context) {
         this._context = context;
@@ -80,6 +83,19 @@ public class SessionManager {
 
     public int getIdUser(){
         return pref.getInt(KEY_ID, 0);
+    }
+
+    public void putPass(String titulo, String pass){
+
+        mapaPass.put(titulo, pass);
+
+    }
+
+    public String getPass(String titulo){
+
+        String pass_proyecto = mapaPass.get(titulo);
+
+        return  pass_proyecto;
     }
 
 }

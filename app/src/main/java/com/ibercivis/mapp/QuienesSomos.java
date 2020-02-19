@@ -34,6 +34,8 @@ public class QuienesSomos extends AppCompatActivity implements NavigationView.On
 
         /*-----Toolbar-----*/
         setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         /*-----Navigation Drawer Menu -----*/
 

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ibercivis.mapp.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Adaptador extends RecyclerView.Adapter<viewHolder> {
@@ -69,5 +70,12 @@ public class Adaptador extends RecyclerView.Adapter<viewHolder> {
         return ListaObjeto.size();
     }
 
+    public void setFilter(ArrayList<proyectos> listaFiltrada){
+
+        this.ListaObjeto = new ArrayList<>();
+        this.ListaObjeto.addAll(listaFiltrada);
+        notifyDataSetChanged();
+
+    }
 
 }

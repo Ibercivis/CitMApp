@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="15dp"
-                android:text="Este es un proyecto privado y requiere de contraseña para participar."
+                android:text="@string/privado"
                 android:fontFamily="sans-serif-condensed"/>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -38,7 +38,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
+                android:hint="@string/login4"
                 app:passwordToggleEnabled="true"
                 android:transitionName="password_tran"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -56,7 +56,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
-                android:text="ACEPTAR"
+                android:text="@string/descargar2"
                 android:background="#419FBB"
                 android:textColor="#ffffff"
                 />

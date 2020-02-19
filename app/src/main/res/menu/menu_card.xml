@@ -3,11 +3,14 @@
 
     <item
         android:id="@+id/menu1"
-        android:title="Descargar todos los marcadores" />
+        android:title="@string/cardmenu1" />
+
+    <item
+        android:id="@+id/menu3"
+        android:title="@string/cardmenu2" />
 
     <item
         android:id="@+id/menu2"
-        android:title="Borrar proyecto" />
-
+        android:title="@string/cardmenu3" />
 
 </menu>

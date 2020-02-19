@@ -52,13 +52,14 @@
             android:visibility="gone">
 
             <TextView
+                android:id="@+id/title_addmarker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginLeft="23dp"
                 android:layout_marginTop="16dp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="NUEVO MARCADOR"
+                android:text="@string/marker1"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -84,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="48dp"
-                    android:text="añadir foto" />
+                    android:text="@string/marker2" />
 
 
             </LinearLayout>
@@ -98,31 +99,45 @@
                 android:gravity="center"
                 >
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:paddingHorizontal="18dp">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_atributo1"
                     android:hint="Atributo 1"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_atributo1"
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:maxLines="1"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/info1"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
+                    android:layout_marginLeft="0dp"
                     android:clickable="true"
                     android:src="@drawable/ic_info_black_24dp"
                     />
+
+                </LinearLayout>
 
 
             </LinearLayout>
@@ -135,10 +150,16 @@
                 android:gravity="center"
                 >
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:paddingHorizontal="18dp">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_atributo2"
                     android:hint="Atributo 2"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -150,15 +171,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/info2"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
                     android:clickable="true"
                     android:src="@drawable/ic_info_black_24dp"
                     />
+
+                </LinearLayout>
 
 
             </LinearLayout>
@@ -171,10 +200,16 @@
                 android:gravity="center"
                 >
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:paddingHorizontal="18dp">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_atributo3"
                     android:hint="Atributo 3"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -186,15 +221,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/info3"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
                     android:clickable="true"
                     android:src="@drawable/ic_info_black_24dp"
                     />
+
+                </LinearLayout>
 
 
             </LinearLayout>
@@ -207,10 +250,16 @@
                 android:gravity="center"
                 >
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:paddingHorizontal="18dp">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_atributo4"
                     android:hint="Atributo 4"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -223,15 +272,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/info4"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
                     android:clickable="true"
                     android:src="@drawable/ic_info_black_24dp"
                     />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -243,10 +300,16 @@
                 android:gravity="center"
                 >
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:paddingHorizontal="18dp">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_atributo5"
                     android:hint="Atributo 5"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -259,15 +322,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/info5"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
                     android:clickable="true"
                     android:src="@drawable/ic_info_black_24dp"
                     />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -279,10 +350,16 @@
                 android:gravity="center"
                 >
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:paddingHorizontal="18dp">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_atributo6"
                     android:hint="Atributo 6"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -295,15 +372,24 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+
                 <ImageView
                     android:id="@+id/info6"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
                     android:clickable="true"
                     android:src="@drawable/ic_info_black_24dp"
                     />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -315,10 +401,16 @@
                 android:gravity="center"
                 >
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:paddingHorizontal="18dp">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_atributo7"
                     android:hint="Atributo 7"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -331,15 +423,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/info7"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
                     android:clickable="true"
                     android:src="@drawable/ic_info_black_24dp"
                     />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -351,12 +451,20 @@
                 android:gravity="center"
                 >
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:paddingHorizontal="18dp">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_atributo8"
                     android:hint="Atributo 8"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_atributo8"
@@ -367,15 +475,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/info8"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
                     android:clickable="true"
                     android:src="@drawable/ic_info_black_24dp"
                     />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -387,10 +503,16 @@
                 android:gravity="center"
                 >
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:paddingHorizontal="18dp">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_atributo9"
                     android:hint="Atributo 9"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -403,15 +525,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/info9"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
                     android:clickable="true"
                     android:src="@drawable/ic_info_black_24dp"
                     />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -423,10 +553,16 @@
                 android:gravity="center"
                 >
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:paddingHorizontal="18dp">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_atributo10"
                     android:hint="Atributo 10"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -439,15 +575,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/info10"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
                     android:clickable="true"
                     android:src="@drawable/ic_info_black_24dp"
                     />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -459,10 +603,16 @@
                 android:gravity="center"
                 >
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:paddingHorizontal="18dp">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_atributo11"
                     android:hint="Atributo 11"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -475,15 +625,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/info11"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
                     android:clickable="true"
                     android:src="@drawable/ic_info_black_24dp"
                     />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -495,10 +653,16 @@
                 android:gravity="center"
                 >
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:paddingHorizontal="18dp">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_atributo12"
                     android:hint="Atributo 12"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -511,15 +675,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/info12"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
                     android:clickable="true"
                     android:src="@drawable/ic_info_black_24dp"
                     />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -531,10 +703,16 @@
                 android:gravity="center"
                 >
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:paddingHorizontal="18dp">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_atributo13"
                     android:hint="Atributo 13"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -547,15 +725,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/info13"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
                     android:clickable="true"
                     android:src="@drawable/ic_info_black_24dp"
                     />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -567,10 +753,16 @@
                 android:gravity="center"
                 >
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:paddingHorizontal="18dp">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_atributo14"
                     android:hint="Atributo 14"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -583,15 +775,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/info14"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
                     android:clickable="true"
                     android:src="@drawable/ic_info_black_24dp"
                     />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -603,10 +803,16 @@
                 android:gravity="center"
                 >
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:paddingHorizontal="18dp">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_atributo15"
                     android:hint="Atributo 15"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -619,15 +825,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/info15"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
                     android:clickable="true"
                     android:src="@drawable/ic_info_black_24dp"
                     />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -639,10 +853,16 @@
                 android:gravity="center"
                 >
 
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:paddingHorizontal="18dp">
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/txt_atributo16"
                     android:hint="Atributo 16"
-                    android:layout_width="320dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -655,15 +875,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
                 <ImageView
                     android:id="@+id/info16"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="16dp"
                     android:clickable="true"
                     android:src="@drawable/ic_info_black_24dp"
                     />
+
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -679,7 +907,7 @@
                     android:id="@+id/cancel_but"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Cancelar"
+                    android:text="@string/btncancel"
                     android:layout_marginTop="8dp"
                     android:layout_margin="8dp"
                     android:paddingHorizontal="20dp"
@@ -690,7 +918,7 @@
                     android:id="@+id/acept_but"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Añadir marcador"
+                    android:text="@string/btnaccept"
                     android:layout_marginTop="8dp"
                     android:layout_margin="8dp"
                     android:paddingHorizontal="20dp"
@@ -739,6 +967,49 @@
 
              />
 
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:id="@+id/button_layers"
+            android:scaleType="centerCrop"
+            android:src="@drawable/capas"
+            android:layout_below="@id/ic_center_map"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"/>
+
+        <TextView
+            android:id="@+id/txtTitulo"
+            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Titulo del proyecto"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/montserrat_bold"
+            android:textAllCaps="true"
+            android:textSize="16sp"
+            android:textColor="#000000"
+            android:background="@drawable/marcobotonsolido"
+
+            />
+
+        <TextView
+            android:id="@+id/txtCopyright"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PNOA cedido por © Instituto Geográfico Nacional de España"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="6dp"
+            android:fontFamily="@font/noto_sans"
+            android:textSize="11sp"
+            android:textColor="#FFFFFF"
+
+            />
+
     </RelativeLayout>
 
         <LinearLayout
@@ -759,7 +1030,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Obteniendo marcadores..."
+                    android:text="@string/popup_wait"
                     android:fontFamily="sans-serif-condensed"/>
 
                 <ProgressBar
@@ -1505,6 +1776,20 @@
                 </LinearLayout>
 
                     <Button
+                        android:id="@+id/editar_marcador"
+                        android:background="#FF9800"
+                        android:layout_width="200dp"
+                        android:layout_height="35dp"
+                        android:layout_marginTop="12dp"
+                        android:paddingHorizontal="48dp"
+                        android:text="EDITAR"
+                        android:textColor="#E9EBF1"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        android:visibility="gone"
+                        />
+
+                    <Button
                         android:id="@+id/borrar_marcador"
                         android:background="#F44336"
                         android:layout_width="200dp"
@@ -1525,7 +1810,7 @@
                         android:layout_height="35dp"
                         android:layout_marginTop="12dp"
                         android:paddingHorizontal="48dp"
-                        android:text="VOLVER"
+                        android:text="@string/volver"
                         android:textColor="#E9EBF1"
                         android:textSize="14dp"
                         android:textStyle="bold"
@@ -1564,7 +1849,7 @@
                     android:layout_marginTop="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="El administrador del proyecto no ha añadido una descripción para este atributo."
+                    android:text="@string/noInfo"
                     android:fontFamily="sans-serif-condensed"/>
 
                 <Button
@@ -1572,7 +1857,7 @@
                     android:id="@+id/volver_info"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Volver"
+                    android:text="@string/volver"
                     android:paddingVertical="-5dp"
                     android:paddingHorizontal="20dp"
                     android:background="#419FBB"

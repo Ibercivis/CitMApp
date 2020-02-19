@@ -1,9 +1,160 @@
 <resources>
     <string name="app_name">CitMApp</string>
+    <string name="app_claim">Citizen Science Mapping Application</string>
 
     <string name="navigation_open_drawer">Open Navigation Drawer</string>
     <string name="navigation_close_drawer">Close Navigation Drawer</string>
 
     <string name="base_url">https://citmapp.ibercivis.es</string>
+
+    <string name="popup_wait">Por favor, espere...</string>
+
+    <string name="card1">Este proyecto tiene </string>
+    <string name="card2"> aportaciones.</string>
+    <string name="card3">Me Gusta</string>
+    <string name="card4">Participar</string>
+
+    <string name="login1">Bienvenido</string>
+    <string name="login2">Accede con tu usuario</string>
+    <string name="login3">Username</string>
+    <string name="login4">Password</string>
+    <string name="login5">¿Olvidaste tu contraseña?</string>
+    <string name="login6">Entrar</string>
+    <string name="login7">¿Nuevo usuario? Regístrate</string>
+
+    <string name="sign1">Bienvenido</string>
+    <string name="sign2">Regístrate para comenzar a mapear</string>
+    <string name="sign3">Username</string>
+    <string name="sign4">E-mail</string>
+    <string name="sign5">Contraseña</string>
+    <string name="sign6">Repetir contraseña</string>
+    <string name="sign7">Crear usuario</string>
+    <string name="sign8">¿Ya estás registrado? Accede</string>
+
+    <string name="main1">Proyectos</string>
+    <string name="main2">Crear proyecto</string>
+    <string name="main3">Mi perfil</string>
+    <string name="main4">¿Qué es CitMApp?</string>
+
+    <string name="mainmenu1">Home</string>
+    <string name="mainmenu2">Proyectos</string>
+    <string name="mainmenu3">Crear proyecto</string>
+    <string name="mainmenu4">Usuario</string>
+    <string name="mainmenu5">Mis proyectos</string>
+    <string name="mainmenu6">Log out</string>
+
+    <string name="cardmenu1">Descargar todos los marcadores</string>
+    <string name="cardmenu2">Editar proyecto</string>
+    <string name="cardmenu3">Borrar proyecto</string>
+
+    <string name="searcher">Buscador</string>
+
+    <string name="marker1">NUEVO MARCADOR</string>
+    <string name="marker2">Añadir foto</string>
+    <string name="btncancel">Cancelar</string>
+    <string name="btnaccept">Añadir marcador</string>
+    <string name="volver">Volver</string>
+    <string name="noInfo">El administrador del proyecto no ha añadido una descripción para este atributo.</string>
+
+    <string name="delete1">¿Estás seguro de que deseas eliminar este proyecto?</string>
+    <string name="delete2">Está acción borrará todos los marcadores asociados de manera irreversible. Te recomendamos que descargues los marcadores de este proyecto antes de eliminarlo definitivamente.</string>
+    <string name="delete3">Eliminar proyecto</string>
+
+    <string name="crear1">Datos del proyecto</string>
+    <string name="crear2">Titulo del proyecto</string>
+    <string name="crear3">Descripción</string>
+    <string name="crear4">Sitio web</string>
+    <string name="crear5">Subir logo</string>
+    <string name="crear6">Resolución recomendada 200x200</string>
+    <string name="crear7">Marcadores</string>
+    <string name="crear8">Incluye foto"    "</string>
+    <string name="crear9">Añade los atributos que necesites (max. 16)</string>
+    <string name="crear10">Privado"    "</string>
+    <string name="crear11">Añadir atributo texto</string>
+    <string name="crear12">Añadir atributo número</string>
+    <string name="crear13">Atributo 1 (Respuesta texto)</string>
+    <string name="crear14">Descripción del atributo 1 (Opcional)</string>
+    <string name="crear15">Atributo 2 (Respuesta texto)</string>
+    <string name="crear16">Descripción del atributo 2 (Opcional)</string>
+    <string name="crear17">Atributo 3 (Respuesta texto)</string>
+    <string name="crear18">Descripción del atributo 3 (Opcional)</string>
+    <string name="crear19">Atributo 4 (Respuesta texto)</string>
+    <string name="crear20">Descripción del atributo 4 (Opcional)</string>
+    <string name="crear21">Atributo 5 (Respuesta texto)</string>
+    <string name="crear22">Descripción del atributo 5 (Opcional)</string>
+    <string name="crear23">Atributo 6 (Respuesta texto)</string>
+    <string name="crear24">Descripción del atributo 6 (Opcional)</string>
+    <string name="crear25">Atributo 7 (Respuesta texto)</string>
+    <string name="crear26">Descripción del atributo 7 (Opcional)</string>
+    <string name="crear27">Atributo 8 (Respuesta texto)</string>
+    <string name="crear28">Descripción del atributo 8 (Opcional)</string>
+    <string name="crear29">Atributo 9 (Respuesta texto)</string>
+    <string name="crear30">Descripción del atributo 9 (Opcional)</string>
+    <string name="crear31">Atributo 10 (Respuesta texto)</string>
+    <string name="crear32">Descripción del atributo 10 (Opcional)</string>
+    <string name="crear33">Atributo 11 (Respuesta texto)</string>
+    <string name="crear34">Descripción del atributo 11 (Opcional)</string>
+    <string name="crear35">Atributo 12 (Respuesta texto)</string>
+    <string name="crear36">Descripción del atributo 12 (Opcional)</string>
+    <string name="crear37">Atributo 13 (Respuesta texto)</string>
+    <string name="crear38">Descripción del atributo 13 (Opcional)</string>
+    <string name="crear39">Atributo 14 (Respuesta texto)</string>
+    <string name="crear40">Descripción del atributo 14 (Opcional)</string>
+    <string name="crear41">Atributo 15 (Respuesta texto)</string>
+    <string name="crear42">Descripción del atributo 15 (Opcional)</string>
+    <string name="crear43">Atributo 16 (Respuesta texto)</string>
+    <string name="crear44">Descripción del atributo 16 (Opcional)</string>
+    <string name="crear45">Crear proyecto</string>
+    <string name="crear46">Atributo 1 (Respuesta número)</string>
+    <string name="crear47">Atributo 2 (Respuesta número)</string>
+    <string name="crear48">Atributo 3 (Respuesta número)</string>
+    <string name="crear49">Atributo 4 (Respuesta número)</string>
+    <string name="crear50">Atributo 5 (Respuesta número)</string>
+    <string name="crear51">Atributo 6 (Respuesta número)</string>
+    <string name="crear52">Atributo 7 (Respuesta número)</string>
+    <string name="crear53">Atributo 8 (Respuesta número)</string>
+    <string name="crear54">Atributo 9 (Respuesta número)</string>
+    <string name="crear55">Atributo 10 (Respuesta número)</string>
+    <string name="crear56">Atributo 11 (Respuesta número)</string>
+    <string name="crear57">Atributo 12 (Respuesta número)</string>
+    <string name="crear58">Atributo 13 (Respuesta número)</string>
+    <string name="crear59">Atributo 14 (Respuesta número)</string>
+    <string name="crear60">Atributo 15 (Respuesta número)</string>
+    <string name="crear61">Atributo 16 (Respuesta número)</string>
+    <string name="crear62">Has alcanzado el límite de atributos</string>
+    <string name="crear63">Proyecto añadido correctamente</string>
+    <string name="crear64">Se debe añadir al menos un atributo al marcador del proyecto.</string>
+
+    <string name="descargar1">Escribe la dirección de correo electrónico en la que quieres recibir los datos de los marcadores de este proyecto. Los datos se enviarán en formato .CSV</string>
+    <string name="descargar2">Aceptar</string>
+
+    <string name="editar1">Editar proyecto</string>
+    <string name="editar2">Proyecto editado correctamente</string>
+
+    <string name="privado">Este es un proyecto privado y requiere de contraseña para participar.</string>
+
+    <string name="user1">Mis proyectos:</string>
+    <string name="user2">Todavía no has creado ningún proyecto.</string>
+    <string name="user3">Proyectos que me gustan:</string>
+    <string name="user4">Todavía no has dado Me Gusta a ningún proyecto. Recuerda dar Me Gusta a los proyectos en los que participas para que aparezcan aquí.</string>
+
+    <string name="mapa">Mantén pulsado sobre el mapa en la posición en la que quieras añadir un Marcador</string>
+
+    <string name="quienes">CitMApp, es una plataforma de proyectos de mapeado colaborativo que tiene como objetivo visibilizar el día a día de la ciencia ciudadana en nuestros pueblos, ciudades y nuestro entorno más cercano.\n\n
+
+La aplicación permite la recogida de datos en tiempo real y favorece la puesta en marcha de análisis científicos sobre biodiversidad, urbanismo, conservación del patrimonio, contaminación ambiental, lumínica…
+
+Los usuarios recogen la posición y actividad, realizan mediciones o captan imágenes relevantes de fenómenos de su interés que podrán ser ampliados por la comunidad.
+
+El usuario de CitMApp puede convertirse en gestor de su propio proyecto de ciencia ciudadana, colaborar en proyectos existentes o valorarlos para que otros ciudadanos puedan encontrarlos con facilidad.
+
+Como gestor de proyecto, el usuario define los parámetros que considera útiles para el estudio, y que usarán el resto de científicos ciudadanos para añadir más información al proyecto.\n\n
+
+Crea tu proyecto, observa, mide, toma imágenes y comparte con la comunidad tus hallazgos científicos, o apoya con tus datos a los proyectos que te resulten más útiles o interesantes.
+
+La aplicación está desarrollada por Ibercivis, promovida por el Grupo Residente Mapeado Colaborativo de Zaragoza Activa / Geoinquietos Zaragoza y financiada por el ayuntamiento de Zaragoza a través de Zaragoza Activa.\n\n</string>
+
+
+
 
 </resources>

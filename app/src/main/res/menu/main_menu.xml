@@ -5,17 +5,17 @@
 
         <item
             android:id="@+id/nav_home"
-            android:title="Home"
+            android:title="@string/mainmenu1"
             android:icon="@drawable/home_icon"/>
 
         <item
             android:id="@+id/nav_projects"
-            android:title="Proyectos"
+            android:title="@string/mainmenu2"
             android:icon="@drawable/projects_icon"/>
 
         <item
             android:id="@+id/nav_crear"
-            android:title="Crear proyecto"
+            android:title="@string/mainmenu3"
             android:icon="@drawable/add_icon"/>
 
     </group>
@@ -23,7 +23,7 @@
 
 
         <item
-            android:title="Usuario" >
+            android:title="@string/mainmenu4" >
 
         <menu>
 
@@ -32,12 +32,12 @@
 
             <item
                 android:id="@+id/nav_misproyectos"
-                android:title="Mis proyectos"
+                android:title="@string/mainmenu5"
                 android:icon="@drawable/misproyectos_icon"/>
 
             <item
                 android:id="@+id/nav_logout"
-                android:title="Logout"
+                android:title="@string/mainmenu6"
                 android:icon="@drawable/logout_icon"/>
 
             </group>

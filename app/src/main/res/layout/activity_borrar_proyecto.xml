@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="15dp"
-                android:text="¿Estás seguro de que deseas eliminar este proyecto?"
+                android:text="@string/delete1"
                 android:textStyle="bold"
                 android:fontFamily="sans-serif-condensed"/>
 
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:textSize="15dp"
-                android:text="Está acción borrará todos los marcadores asociados de manera irreversible. Te recomendamos que descargues los marcadores de este proyecto antes de eliminarlo definitivamente."
+                android:text="@string/delete2"
                 android:fontFamily="sans-serif-condensed"/>
 
 
@@ -51,7 +51,7 @@
                 android:layout_height="30dp"
                 android:background="#F44336"
                 android:textColor="#ffffff"
-                android:text="Eliminar proyecto"
+                android:text="@string/delete3"
                 />
 
             <Button
@@ -61,7 +61,7 @@
                 android:layout_height="30dp"
                 android:background="#419FBB"
                 android:textColor="#ffffff"
-                android:text="Volver"
+                android:text="@string/volver"
                 />
 
         </LinearLayout>
@@ -87,7 +87,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Por favor, espere..."
+                android:text="@string/popup_wait"
                 android:fontFamily="sans-serif-condensed"/>
 
             <ProgressBar

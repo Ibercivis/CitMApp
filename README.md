@@ -13,5 +13,5 @@ La aplicación está desarrollada por la Fundación Ibercivis, promovida por el 
 La aplicación CitMApp utiliza como mapa base de los mapas planteados la librería OSMdroid (https://github.com/osmdroid/osmdroid) y también hace uso del OSMBonusPack (https://github.com/MKergall/osmbonuspack). Además, para la visualización de imágenes on-line utiliza la librería Picasso (https://github.com/square/picasso) y para los HTTP Request emplea la librería Volley (https://github.com/google/volley).
 Algunos de los iconos utilizados en las pantallas de CitMApp provienen de FlatIcon (https://www.flaticon.es/)
 
-Para solicitar información o 
+Para cualquier duda o sugerencia, contactar con: info@ibercivis.es
 

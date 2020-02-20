@@ -15,3 +15,17 @@ Algunos de los iconos utilizados en las pantallas de CitMApp provienen de FlatIc
 
 Para cualquier duda o sugerencia, contactar con: info@ibercivis.es
 
+----------------------------------------------------------------------------------------------------------------------------
+
+CitMApp, is a collaborative mapping project platform that aims to make visible the daily life of citizen science in our towns, cities and our closest environment.
+
+The application allows the collection of data in real time and favors the implementation of scientific analyzes on biodiversity, urban planning, heritage conservation, environmental pollution, light ... Users collect the position and activity, make measurements or capture relevant images of phenomena of Your interest may be extended by the community.
+
+The CitMApp user can become a manager of their own citizen science project, collaborate on existing projects or value them so that other citizens can find them easily. As a project manager, the user defines the parameters that he considers useful for the study, and that the rest of citizen scientists will use to add more information to the project.
+
+The application is developed by the Ibercivis Foundation, promoted by the Zaragoza Activa / Geoinquietos Zaragoza Collaborative Mapped Resident Group and financed by the Zaragoza City Council through Zaragoza Activa.
+
+The CitMApp application uses the OSMdroid library as a base map (https://github.com/osmdroid/osmdroid) and also uses the OSMBonusPack (https://github.com/MKergall/osmbonuspack). In addition, for the visualization of images online, it uses the Picasso library (https://github.com/square/picasso) and for the HTTP Request it uses the Volley library (https://github.com/google/volley). Some of the icons used on CitMApp screens come from FlatIcon (https://www.flaticon.es/)
+
+For any questions or suggestions, contact: info@ibercivis.es
+

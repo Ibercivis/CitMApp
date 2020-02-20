@@ -39,6 +39,8 @@ public class SplashActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash);
 
+        /* AQUÍ SE HACEN LAS PETICIONES DE PERMISOS QUE VA A NECESITAR LA APP: UBICACIÓN, ACCESO A ESCRITURA PARA LOS TILES DE LOS MAPAS, ACCESO A LA CÁMARA*/
+
         if ( Build.VERSION.SDK_INT >= 23){
             if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) !=
                     PackageManager.PERMISSION_GRANTED  ){
@@ -67,6 +69,8 @@ public class SplashActivity extends AppCompatActivity {
         titulo.setAnimation(bottomAnim);
         slogan.setAnimation(bottomAnim);
 
+        // AQUÍ SE VERIFICA SI EL USUARIO YA SE HABÍA LOGEADO ANTERIORMENTE, SI ES ASÍ, LE LLEVA DIRECTAMENTE A LA HOME.
+
         verificarLog();
 
 
@@ -76,9 +80,9 @@ public class SplashActivity extends AppCompatActivity {
 
         SessionManager session = new SessionManager(getApplicationContext());
         if(session.isLoggedIn()==true){
-            esperarYMain(SPLASH_SCREEN);
+            esperarYMain(SPLASH_SCREEN); // SI YA ESTABA LOGEADO SE LE LLEVA A LA HOME.
         } else if (session.isLoggedIn()==false){
-            esperarYLogin(SPLASH_SCREEN);
+            esperarYLogin(SPLASH_SCREEN); // SI NO ESTABA LOGEADO SE LE LLEVA A LA PANTALLA DE LOGIN.
         }
 
     }

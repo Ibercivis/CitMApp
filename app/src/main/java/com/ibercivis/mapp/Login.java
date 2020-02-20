@@ -236,7 +236,7 @@ public class Login extends AppCompatActivity {
         // valid is evaluated in the second part to force the check function being called always, so all the errors are displayed at the same time (&& conditional evaluation)
         valid = checkLength( login_username_textview.getText().toString(), "username", 3, 16 ) && valid;
         valid = checkLength( login_password_textview.getText().toString(), "password", 5, 16 ) && valid;
-//"/^[a-z]([0-9a-z_ ])+$/i"
+        //"/^[a-z]([0-9a-z_ ])+$/i"
         // In the regular expression for the username and password we do not use {3,16} (for instance),
         // to control the length through the regex, since it is most accurate to indicate the length error
         // separately, so it is not considered the length in the regex (it has been taken into account previously

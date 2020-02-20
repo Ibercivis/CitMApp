@@ -107,14 +107,6 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
 
         getInfoRequest();
 
-        /* recyclerLista = findViewById(R.id.recyclerproyectos);
-        //llenarLista(ListaProyectos);
-        getInfoRequest();
-        recyclerLista.setHasFixedSize(true);
-        LinearLayoutManager layout = new LinearLayoutManager(this);
-        layout.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerLista.setAdapter(new Adaptador(ListaProyectos));
-        recyclerLista.setLayoutManager(layout); */
     }
 
     @Override
@@ -165,19 +157,6 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
 
-    }
-
-    private void llenarLista(ArrayList<proyectos> lista) {
-     /*   lista.add(new proyectos("OdourCollect", "Proyecto para reportar malos olores en tu ciudad", getRandomColor(), 20, 0, false));
-        lista.add(new proyectos("Stop Amianto", "Proyecto para reportar amianto", getRandomColor(), 250, 54, true));
-        lista.add(new proyectos("OSM", "Ayuda a elaborar un mapa de tu ciudad", getRandomColor(), 76, 7, false));
-        lista.add(new proyectos("D-NOSES", "Proyecto para reportar malos olores en tu continente", getRandomColor(), 47, 4, false));
-        lista.add(new proyectos("Movilidad Inteligente", "Localiza puntos críticos para personas con movilidad reducida", getRandomColor(), 121, 19, true));
-        lista.add(new proyectos("Vigilantes del Aire", "Mide la calidad del aire en tu barrio", getRandomColor(), 19, 6, false));
-        lista.add(new proyectos("Amigos de las Plantas", "Proyecto para reportar especies insectívoras", getRandomColor(), 7, 2, false));
-        lista.add(new proyectos("Luces para las Sombras", "Proyecto para localizar sitios de interés", getRandomColor(), 476, 145, false));
-        lista.add(new proyectos("Almozara Intoxicada", "Proyecto para reportar residuos toxicos", getRandomColor(), 55, 5, false));
-        lista.add(new proyectos("Localiza tu Almendro", "Proyecto para localizar almendros", getRandomColor(), 25, 13, false)); */
     }
 
     public int getRandomColor(){
@@ -292,42 +271,6 @@ public class ListadoProyectos extends AppCompatActivity implements NavigationVie
         sr.setShouldCache(false);
         queue.add(sr);
     }
-
-   /* public class GetImageFromUrl extends AsyncTask<String, Void, Bitmap> {
-        ImageView imageView;
-        Bitmap bitmap;
-        Bitmap bitmap_para_logo;
-        proyectos proyecto;
-        public GetImageFromUrl(proyectos proyecto){
-
-            this.proyecto = proyecto;
-        }
-        @Override
-        protected Bitmap doInBackground(String... url) {
-            String stringUrl = url[0];
-            bitmap = null;
-            InputStream inputStream;
-            try {
-                inputStream = new java.net.URL(stringUrl).openStream();
-                bitmap = BitmapFactory.decodeStream(inputStream);
-                bitmap_logo = bitmap;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return bitmap;
-        }
-        @Override
-        protected void onPostExecute(Bitmap bitmap){
-            super.onPostExecute(bitmap);
-            // imageView.setImageBitmap(bitmap);
-
-            bitmap_para_logo = bitmap;
-            bitmap_logo = bitmap;
-            proyecto.setLogo(bitmap);
-
-
-        }
-    } */
 
     public boolean onCreateOptionsMenu(Menu menu){
 

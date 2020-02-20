@@ -374,27 +374,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
 
 
 
-
-
-
-
-
-      //  isWriteStoragePermissionGranted();
-
-
-      //  OpenStreetMapTileProviderConstants.setUserAgentValue(BuildConfig.APPLICATION_ID);
-
         Configuration.getInstance().setUserAgentValue(BuildConfig.APPLICATION_ID);
-
-
-        // Configuration.getInstance().load(getContext(), PreferenceManager.getDefaultSharedPreferences(getContext()));
-
-
-        //map.setTileSource(TileSourceFactory.MAPNIK);
-        //map.setTileSource(TileSourceFactory.OpenTopo); // TOPOGRÁFICO
-        // map.setTileSource(TileSourceFactory.USGS_SAT); //ORTOFOTO
-
-
 
 
         map.setMultiTouchControls(true);
@@ -403,7 +383,6 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         mapController.setZoom(9);
         map.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.NEVER);
 
-        // GeoPoint myPoint = new GeoPoint(currentLocation.getLatitude(), currentLocation.getLongitude());
 
         GeoPoint myPoint = mLocationOverlay.getMyLocation();
         mapController.setCenter(myPoint);
@@ -411,7 +390,7 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         mapController.setZoom(17.00);
         markpress = new Marker(map);
         /*-----MÉTODOS PROPIOS DE ESTA ACTIVITY-----*/
-        //addMarcadores(map, marcador_prueba);
+
         getCustomMarkerRequest();
 
         btCenterMap = (ImageButton) findViewById(R.id.ic_center_map);
@@ -674,19 +653,6 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         });
 
 
-
-   /*     markpress.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker, MapView mapView) {
-
-                marcador_pulsado = mapaMarcadores.get(marker.getId());
-
-                System.out.print(marcador_pulsado.getAtributo1());
-                System.out.print(String.valueOf(marcador_pulsado.getAtributo2()));
-
-                return true;
-            }
-        }); */
 
         int duration = Toast.LENGTH_SHORT;
         Toast toast;
@@ -1556,14 +1522,12 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         String id = String.valueOf(contador);
 
 
-
         GeoPoint startPoint = new GeoPoint(marc.getLatitud(), marc.getLongitud());
         Marker startMarker = new Marker(mapa);
         startMarker.setPosition(startPoint);
         startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
         startMarker.setTitle("");
 
-        // startMarker.setSnippet(marcador_prueba.getAtributo1() + "Resultado 1" + "<br>" + " y <br>tal vez<br> saltos de<br> línea"); // Confirmado que los saltos de línea se hacen con <br>
 
         snippet = generarSnippet(marc, marcadortipo);
         startMarker.setSnippet(snippet);
@@ -1591,7 +1555,6 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             marcador_mostrado.setVisibility(View.VISIBLE);
 
         SessionManager session = new SessionManager(Mapa.this);
-
 
 
         if(marcador.getIdUser() == session.getIdUser()) {
@@ -1625,7 +1588,6 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         } else {
             btnedit.setVisibility(View.GONE);
         }
-
 
 
 
@@ -2010,13 +1972,13 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
 
 
         urlfoto = "https://citmapp.ibercivis.es/uploads/marcadores/"+String.valueOf(marcador.getId())+".jpg";
-       // Bitmap foto = new DownloadFilesTask().execute(urlfoto);
+
         Picasso.with(this).load(urlfoto).into(marco_foto);
 
         marco_foto.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
 
-       // marco_foto.setRotation(90);
+
 
     }
 
@@ -2319,9 +2281,6 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         cargar.setVisibility(View.VISIBLE);
 
 
-
-
-
         // Url for the webservice
         String url = getString(R.string.base_url) + "/deleteMarcador.php";
 
@@ -2403,118 +2362,6 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         queue.add(sr);
     }
 
-    public void WMS_Ortofoto(){
-        HttpURLConnection c = null;
-        InputStream is = null;
-        WMSEndpoint wmsEndpoint = new WMSEndpoint();
-        List<WMSLayer> ArrayCapas;
-        String url = "http://localhost:8080/geoserver/ows?service=wms&version=1.1.1&request=GetCapabilities";
-
-        try {
-            c = (HttpURLConnection) new URL(url).openConnection();
-            is = c.getInputStream();
-            wmsEndpoint = parse(is);
-
-            is.close();
-            c.disconnect();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        if(wmsEndpoint.getLayers() != null){
-
-            ArrayCapas = wmsEndpoint.getLayers();
-
-            System.out.println("Tamaño del array " + String.valueOf(ArrayCapas.size()));
-
-            WMSTileSource source = WMSTileSource.createFrom(wmsEndpoint, wmsEndpoint.getLayers().get(0));
-            WMSLayer layer = wmsEndpoint.getLayers().get(0);
-
-            if (layer.getBbox() != null) {
-                //center map on this location
-                map.zoomToBoundingBox(layer.getBbox(),true);
-            }
-
-            map.setTileSource(source);
-
-        }
-
-
-    }
-
-
-    static class descargarWMS extends AsyncTask<String, Integer, WMSEndpoint> {
-
-        HttpURLConnection c = null;
-        InputStream is = null;
-        WMSEndpoint wmsEndpoint = new WMSEndpoint();
-        List<WMSLayer> ArrayCapas;
-        String url;
-        MapView mapView;
-        // String url = "http://localhost:8080/geoserver/ows?service=wms&version=1.1.1&request=GetCapabilities";
-
-        descargarWMS(String url, MapView mapView, WMSEndpoint wmsEndpoint) {
-            this.url = url;
-            this.mapView = mapView;
-            this.wmsEndpoint = wmsEndpoint;
-        }
-
-
-        @Override
-        protected WMSEndpoint doInBackground(String... params) {
-
-
-            try {
-
-                c = (HttpURLConnection) new URL(url).openConnection();
-                c.connect();
-                is = c.getInputStream();
-                wmsEndpoint = parse(is);
-
-
-                is.close();
-                c.disconnect();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-
-            WMSEndpoint result = wmsEndpoint;
-
-            return result;
-        }
-
-        @Override
-        protected void onPostExecute(WMSEndpoint result) {
-            super.onPostExecute(result);
-
-
-
-            if(result.getLayers() != null){
-
-                ArrayCapas = result.getLayers();
-
-                System.out.println("Tamaño del array " + String.valueOf(ArrayCapas.size()));
-
-                WMSTileSource source = WMSTileSource.createFrom(result, result.getLayers().get(0));
-                WMSLayer layer = result.getLayers().get(0);
-
-                if (layer.getBbox() != null) {
-                    //center map on this location
-                    mapView.zoomToBoundingBox(layer.getBbox(),true);
-                }
-
-                mapView.setTileSource(source);
-
-            }
-
-
-        }
-    }
 
     }
 

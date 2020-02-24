@@ -68,7 +68,7 @@
     <string name="crear6">Resolución recomendada 200x200</string>
     <string name="crear7">Marcadores</string>
     <string name="crear8">Incluye foto"    "</string>
-    <string name="crear9">Añade los atributos que necesites (max. 16)</string>
+    <string name="crear9">Añade los atributos que necesites (max. 23)</string>
     <string name="crear10">Privado"    "</string>
     <string name="crear11">Añadir atributo texto</string>
     <string name="crear12">Añadir atributo número</string>
@@ -124,6 +124,27 @@
     <string name="crear62">Has alcanzado el límite de atributos</string>
     <string name="crear63">Proyecto añadido correctamente</string>
     <string name="crear64">Se debe añadir al menos un atributo al marcador del proyecto.</string>
+    <string name="crear65">Atributo 17 (Respuesta texto)</string>
+    <string name="crear66">Descripción del atributo 17 (Opcional)</string>
+    <string name="crear67">Atributo 18 (Respuesta texto)</string>
+    <string name="crear68">Descripción del atributo 18 (Opcional)</string>
+    <string name="crear69">Atributo 19 (Respuesta texto)</string>
+    <string name="crear70">Descripción del atributo 19 (Opcional)</string>
+    <string name="crear71">Atributo 20 (Respuesta texto)</string>
+    <string name="crear72">Descripción del atributo 20 (Opcional)</string>
+    <string name="crear73">Atributo 21 (Respuesta texto)</string>
+    <string name="crear74">Descripción del atributo 21 (Opcional)</string>
+    <string name="crear75">Atributo 22 (Respuesta texto)</string>
+    <string name="crear76">Descripción del atributo 22 (Opcional)</string>
+    <string name="crear77">Atributo 23 (Respuesta texto)</string>
+    <string name="crear78">Descripción del atributo 23 (Opcional)</string>
+    <string name="crear79">Atributo 17 (Respuesta número)</string>
+    <string name="crear80">Atributo 18 (Respuesta número)</string>
+    <string name="crear81">Atributo 19 (Respuesta número)</string>
+    <string name="crear82">Atributo 20 (Respuesta número)</string>
+    <string name="crear83">Atributo 21 (Respuesta número)</string>
+    <string name="crear84">Atributo 22 (Respuesta número)</string>
+    <string name="crear85">Atributo 23 (Respuesta número)</string>
 
     <string name="descargar1">Escribe la dirección de correo electrónico en la que quieres recibir los datos de los marcadores de este proyecto. Los datos se enviarán en formato .CSV</string>
     <string name="descargar2">Aceptar</string>
@@ -139,6 +160,11 @@
     <string name="user4">Todavía no has dado Me Gusta a ningún proyecto. Recuerda dar Me Gusta a los proyectos en los que participas para que aparezcan aquí.</string>
 
     <string name="mapa">Mantén pulsado sobre el mapa en la posición en la que quieras añadir un Marcador</string>
+    <string name="mapa1">Cancelar</string>
+    <string name="mapa2">Añadir Marcador</string>
+    <string name="mapa3">Aceptar</string>
+    <string name="mapa4">Editar Marcador</string>
+    <string name="mapa5">Editar</string>
 
     <string name="quienes">CitMApp, es una plataforma de proyectos de mapeado colaborativo que tiene como objetivo visibilizar el día a día de la ciencia ciudadana en nuestros pueblos, ciudades y nuestro entorno más cercano.\n\n
 

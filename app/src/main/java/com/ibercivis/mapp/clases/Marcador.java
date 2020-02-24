@@ -8,9 +8,9 @@ public class Marcador {
     int idUser;
     double latitud, longitud;
     int hasPhoto;
-    String atributo1, atributo2, atributo3, atributo4, atributo5, atributo6, atributo7, atributo8, atributo9, atributo10, atributo11, atributo12, atributo13, atributo14, atributo15, atributo16;
+    String atributo1, atributo2, atributo3, atributo4, atributo5, atributo6, atributo7, atributo8, atributo9, atributo10, atributo11, atributo12, atributo13, atributo14, atributo15, atributo16, atributo17, atributo18, atributo19, atributo20, atributo21, atributo22, atributo23;
 
-    public Marcador(int id, int idUser, int hasPhoto, double latitud, double longitud, String atributo1, String atributo2, String atributo3, String atributo4, String atributo5, String atributo6, String atributo7, String atributo8, String atributo9, String atributo10, String atributo11, String atributo12, String atributo13, String atributo14, String atributo15, String atributo16) {
+    public Marcador(int id, int idUser, int hasPhoto, double latitud, double longitud, String atributo1, String atributo2, String atributo3, String atributo4, String atributo5, String atributo6, String atributo7, String atributo8, String atributo9, String atributo10, String atributo11, String atributo12, String atributo13, String atributo14, String atributo15, String atributo16, String atributo17, String atributo18, String atributo19, String atributo20, String atributo21, String atributo22, String atributo23) {
 
         this.id = id;
         this.idUser = idUser;
@@ -33,6 +33,12 @@ public class Marcador {
         this.atributo14 = atributo14;
         this.atributo15 = atributo15;
         this.atributo16 = atributo16;
+        this.atributo17 = atributo17;
+        this.atributo18 = atributo18;
+        this.atributo19 = atributo19;
+        this.atributo20 = atributo21;
+        this.atributo22 = atributo22;
+        this.atributo23 = atributo23;
     }
 
     public int getIdUser() {
@@ -201,5 +207,61 @@ public class Marcador {
 
     public void setHasPhoto(int hasPhoto) {
         this.hasPhoto = hasPhoto;
+    }
+
+    public String getAtributo17() {
+        return atributo17;
+    }
+
+    public void setAtributo17(String atributo17) {
+        this.atributo17 = atributo17;
+    }
+
+    public String getAtributo18() {
+        return atributo18;
+    }
+
+    public void setAtributo18(String atributo18) {
+        this.atributo18 = atributo18;
+    }
+
+    public String getAtributo19() {
+        return atributo19;
+    }
+
+    public void setAtributo19(String atributo19) {
+        this.atributo19 = atributo19;
+    }
+
+    public String getAtributo20() {
+        return atributo20;
+    }
+
+    public void setAtributo20(String atributo20) {
+        this.atributo20 = atributo20;
+    }
+
+    public String getAtributo21() {
+        return atributo21;
+    }
+
+    public void setAtributo21(String atributo21) {
+        this.atributo21 = atributo21;
+    }
+
+    public String getAtributo22() {
+        return atributo22;
+    }
+
+    public void setAtributo22(String atributo22) {
+        this.atributo22 = atributo22;
+    }
+
+    public String getAtributo23() {
+        return atributo23;
+    }
+
+    public void setAtributo23(String atributo23) {
+        this.atributo23 = atributo23;
     }
 }

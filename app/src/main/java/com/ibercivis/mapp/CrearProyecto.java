@@ -55,12 +55,12 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
     int atributo_added = 0, photo_added = 0, esPrivado = 0, logo_added = 0;
     TextView textomarcadores;
     Button addLogo, addtextatribute, addnumberatribute, createproject;
-    LinearLayout phot, atri1, atri2, atri3, atri4, atri5, atri6, atri7, atri8, atri9, atri10, atri11, atri12, atri13, atri14, atri15, atri16;
-    Integer isText1 = 0, isText2 = 0, isText3 = 0, isText4 = 0, isText5 = 0, isText6 = 0, isText7 = 0, isText8 = 0, isText9 = 0, isText10 = 0, isText11 = 0, isText12 = 0, isText13 = 0, isText14 = 0, isText15 = 0, isText16 = 0;
-    ImageView logo_miniatura, cancelatri1, cancelatri2, cancelatri3, cancelatri4, cancelatri5, cancelatri6, cancelatri7, cancelatri8, cancelatri9, cancelatri10, cancelatri11, cancelatri12, cancelatri13, cancelatri14, cancelatri15, cancelatri16;
-    TextInputEditText atributo1, atributo2, atributo3, atributo4, atributo5, atributo6, atributo7, atributo8, atributo9, atributo10, atributo11, atributo12, atributo13, atributo14, atributo15, atributo16;
-    TextInputEditText desc1, desc2, desc3, desc4, desc5, desc6, desc7, desc8, desc9, desc10, desc11, desc12, desc13, desc14, desc15, desc16;
-    TextInputLayout pass_privado, hintatributo1, hintatributo2, hintatributo3, hintatributo4, hintatributo5, hintatributo6, hintatributo7, hintatributo8, hintatributo9, hintatributo10, hintatributo11, hintatributo12, hintatributo13, hintatributo14, hintatributo15, hintatributo16;
+    LinearLayout phot, atri1, atri2, atri3, atri4, atri5, atri6, atri7, atri8, atri9, atri10, atri11, atri12, atri13, atri14, atri15, atri16, atri17, atri18, atri19, atri20, atri21, atri22, atri23;
+    Integer isText1 = 0, isText2 = 0, isText3 = 0, isText4 = 0, isText5 = 0, isText6 = 0, isText7 = 0, isText8 = 0, isText9 = 0, isText10 = 0, isText11 = 0, isText12 = 0, isText13 = 0, isText14 = 0, isText15 = 0, isText16 = 0, isText17 = 0, isText18 = 0, isText19 = 0, isText20 = 0, isText21 = 0, isText22 = 0, isText23 = 0;
+    ImageView logo_miniatura, cancelatri1, cancelatri2, cancelatri3, cancelatri4, cancelatri5, cancelatri6, cancelatri7, cancelatri8, cancelatri9, cancelatri10, cancelatri11, cancelatri12, cancelatri13, cancelatri14, cancelatri15, cancelatri16, cancelatri17, cancelatri18, cancelatri19, cancelatri20, cancelatri21, cancelatri22, cancelatri23;
+    TextInputEditText atributo1, atributo2, atributo3, atributo4, atributo5, atributo6, atributo7, atributo8, atributo9, atributo10, atributo11, atributo12, atributo13, atributo14, atributo15, atributo16, atributo17, atributo18, atributo19, atributo20, atributo21, atributo22, atributo23;
+    TextInputEditText desc1, desc2, desc3, desc4, desc5, desc6, desc7, desc8, desc9, desc10, desc11, desc12, desc13, desc14, desc15, desc16, desc17, desc18, desc19, desc20, desc21, desc22, desc23;
+    TextInputLayout pass_privado, hintatributo1, hintatributo2, hintatributo3, hintatributo4, hintatributo5, hintatributo6, hintatributo7, hintatributo8, hintatributo9, hintatributo10, hintatributo11, hintatributo12, hintatributo13, hintatributo14, hintatributo15, hintatributo16, hintatributo17, hintatributo18, hintatributo19, hintatributo20, hintatributo21, hintatributo22, hintatributo23;
     TextInputEditText titulo_proyecto, descripcion_proyecto, web_proyecto, pass_proyecto;
     Switch foto, switch_privado;
 
@@ -104,21 +104,31 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
         atributo6 = findViewById(R.id.edit_atributo6); atributo14 = findViewById(R.id.edit_atributo14);
         atributo7 = findViewById(R.id.edit_atributo7); atributo15 = findViewById(R.id.edit_atributo15);
         atributo8 = findViewById(R.id.edit_atributo8); atributo16 = findViewById(R.id.edit_atributo16);
+        atributo17 = findViewById(R.id.edit_atributo17); atributo18 = findViewById(R.id.edit_atributo18);
+        atributo19 = findViewById(R.id.edit_atributo19); atributo20 = findViewById(R.id.edit_atributo20);
+        atributo21 = findViewById(R.id.edit_atributo21); atributo22 = findViewById(R.id.edit_atributo22);
+        atributo23 = findViewById(R.id.edit_atributo23);
 
         atributo1.setText(""); atributo2.setText(""); atributo3.setText(""); atributo4.setText("");
         atributo5.setText(""); atributo6.setText(""); atributo7.setText(""); atributo8.setText("");
         atributo9.setText(""); atributo10.setText(""); atributo11.setText(""); atributo12.setText("");
         atributo13.setText(""); atributo14.setText(""); atributo15.setText(""); atributo16.setText("");
+        atributo17.setText(""); atributo18.setText(""); atributo19.setText(""); atributo20.setText("");
+        atributo21.setText(""); atributo22.setText(""); atributo23.setText("");
 
         desc1 = findViewById(R.id.edit_desc1); desc2 = findViewById(R.id.edit_desc2); desc3 = findViewById(R.id.edit_desc3); desc4 = findViewById(R.id.edit_desc4);
         desc5 = findViewById(R.id.edit_desc5); desc6 = findViewById(R.id.edit_desc6); desc7 = findViewById(R.id.edit_desc7); desc8 = findViewById(R.id.edit_desc8);
         desc9 = findViewById(R.id.edit_desc9); desc10 = findViewById(R.id.edit_desc10); desc11 = findViewById(R.id.edit_desc11); desc12 = findViewById(R.id.edit_desc12);
         desc13 = findViewById(R.id.edit_desc13); desc14 = findViewById(R.id.edit_desc14); desc15 = findViewById(R.id.edit_desc15); desc16 = findViewById(R.id.edit_desc16);
+        desc17 = findViewById(R.id.edit_desc17); desc18 = findViewById(R.id.edit_desc18); desc19 = findViewById(R.id.edit_desc19); desc20 = findViewById(R.id.edit_desc20);
+        desc21 = findViewById(R.id.edit_desc21); desc22 = findViewById(R.id.edit_desc22); desc23 = findViewById(R.id.edit_desc23);
 
         desc1.setText(""); desc2.setText(""); desc3.setText(""); desc4.setText("");
         desc5.setText(""); desc6.setText(""); desc7.setText(""); desc8.setText("");
         desc9.setText(""); desc10.setText(""); desc11.setText(""); desc12.setText("");
         desc13.setText(""); desc14.setText(""); desc15.setText(""); desc16.setText("");
+        desc17.setText(""); desc18.setText(""); desc19.setText(""); desc20.setText("");
+        desc21.setText(""); desc22.setText(""); desc23.setText("");
         //  atributo1.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo2.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo3.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo4.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS);
       //  atributo5.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo6.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo7.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo8.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS);
       //  atributo9.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo10.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo11.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS); atributo12.setInputType(InputType.TYPE_CLASS_TEXT |InputType.TYPE_TEXT_FLAG_CAP_WORDS);
@@ -133,6 +143,10 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
         hintatributo6 = findViewById(R.id.hint6); hintatributo14 = findViewById(R.id.hint14);
         hintatributo7 = findViewById(R.id.hint7); hintatributo15 = findViewById(R.id.hint15);
         hintatributo8 = findViewById(R.id.hint8); hintatributo16 = findViewById(R.id.hint16);
+        hintatributo17 = findViewById(R.id.hint17); hintatributo18 = findViewById(R.id.hint18);
+        hintatributo19 = findViewById(R.id.hint19); hintatributo20 = findViewById(R.id.hint20);
+        hintatributo21 = findViewById(R.id.hint21); hintatributo22 = findViewById(R.id.hint22);
+        hintatributo23 = findViewById(R.id.hint23);
 
         //LinearLayouts
         phot = findViewById(R.id.photo);
@@ -144,6 +158,10 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
         atri6 = findViewById(R.id.atributo6); atri14 = findViewById(R.id.atributo14);
         atri7 = findViewById(R.id.atributo7); atri15 = findViewById(R.id.atributo15);
         atri8 = findViewById(R.id.atributo8); atri16 = findViewById(R.id.atributo16);
+        atri17 = findViewById(R.id.atributo17); atri18 = findViewById(R.id.atributo18);
+        atri19 = findViewById(R.id.atributo19); atri20 = findViewById(R.id.atributo20);
+        atri21 = findViewById(R.id.atributo21); atri22 = findViewById(R.id.atributo22);
+        atri23 = findViewById(R.id.atributo23);
         pass_privado = findViewById(R.id.edit_privado);
 
         //ImageViews
@@ -155,6 +173,10 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
         cancelatri6 = findViewById(R.id.cancel_atributo6); cancelatri14 = findViewById(R.id.cancel_atributo14);
         cancelatri7 = findViewById(R.id.cancel_atributo7); cancelatri15 = findViewById(R.id.cancel_atributo15);
         cancelatri8 = findViewById(R.id.cancel_atributo8); cancelatri16 = findViewById(R.id.cancel_atributo16);
+        cancelatri17 = findViewById(R.id.cancel_atributo17); cancelatri18 = findViewById(R.id.cancel_atributo18);
+        cancelatri19 = findViewById(R.id.cancel_atributo19); cancelatri20 = findViewById(R.id.cancel_atributo20);
+        cancelatri21 = findViewById(R.id.cancel_atributo21); cancelatri22 = findViewById(R.id.cancel_atributo22);
+        cancelatri23 = findViewById(R.id.cancel_atributo23);
 
         /*-----Toolbar-----*/
         setSupportActionBar(toolbar);
@@ -213,7 +235,7 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
         addtextatribute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(atributo_added != 16) {
+                if(atributo_added != 23) {
 
                     atributo_added = atributo_added + 1;
 
@@ -346,6 +368,62 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
                             atributo16.setInputType(InputType.TYPE_CLASS_TEXT);
                             hintatributo16.setHint(getResources().getString(R.string.crear43));
                             break;
+                        case 17:
+                            atri17.setVisibility(View.VISIBLE);
+                            cancelatri17.setVisibility(View.VISIBLE);
+                            cancelatri16.setVisibility(View.GONE);
+                            isText17 = 1;
+                            atributo17.setInputType(InputType.TYPE_CLASS_TEXT);
+                            hintatributo17.setHint(getResources().getString(R.string.crear65));
+                            break;
+                        case 18:
+                            atri18.setVisibility(View.VISIBLE);
+                            cancelatri18.setVisibility(View.VISIBLE);
+                            cancelatri17.setVisibility(View.GONE);
+                            isText18 = 1;
+                            atributo18.setInputType(InputType.TYPE_CLASS_TEXT);
+                            hintatributo18.setHint(getResources().getString(R.string.crear67));
+                            break;
+                        case 19:
+                            atri19.setVisibility(View.VISIBLE);
+                            cancelatri19.setVisibility(View.VISIBLE);
+                            cancelatri18.setVisibility(View.GONE);
+                            isText19 = 1;
+                            atributo19.setInputType(InputType.TYPE_CLASS_TEXT);
+                            hintatributo19.setHint(getResources().getString(R.string.crear69));
+                            break;
+                        case 20:
+                            atri20.setVisibility(View.VISIBLE);
+                            cancelatri20.setVisibility(View.VISIBLE);
+                            cancelatri19.setVisibility(View.GONE);
+                            isText20 = 1;
+                            atributo20.setInputType(InputType.TYPE_CLASS_TEXT);
+                            hintatributo20.setHint(getResources().getString(R.string.crear71));
+                            break;
+                        case 21:
+                            atri21.setVisibility(View.VISIBLE);
+                            cancelatri21.setVisibility(View.VISIBLE);
+                            cancelatri20.setVisibility(View.GONE);
+                            isText21 = 1;
+                            atributo21.setInputType(InputType.TYPE_CLASS_TEXT);
+                            hintatributo21.setHint(getResources().getString(R.string.crear73));
+                            break;
+                        case 22:
+                            atri22.setVisibility(View.VISIBLE);
+                            cancelatri22.setVisibility(View.VISIBLE);
+                            cancelatri21.setVisibility(View.GONE);
+                            isText22 = 1;
+                            atributo22.setInputType(InputType.TYPE_CLASS_TEXT);
+                            hintatributo22.setHint(getResources().getString(R.string.crear75));
+                            break;
+                        case 23:
+                            atri23.setVisibility(View.VISIBLE);
+                            cancelatri23.setVisibility(View.VISIBLE);
+                            cancelatri22.setVisibility(View.GONE);
+                            isText23 = 1;
+                            atributo23.setInputType(InputType.TYPE_CLASS_TEXT);
+                            hintatributo23.setHint(getResources().getString(R.string.crear77));
+                            break;
                     }
                 } else {
                     Toast.makeText(getBaseContext(), getResources().getString(R.string.crear62), Toast.LENGTH_SHORT).show();
@@ -356,7 +434,7 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
         addnumberatribute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(atributo_added != 16) {
+                if(atributo_added != 23) {
 
                     atributo_added = atributo_added + 1;
 
@@ -488,6 +566,62 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
                             isText16 = 0;
                             //atributo16.setInputType(InputType.TYPE_CLASS_NUMBER);
                             hintatributo16.setHint(getResources().getString(R.string.crear61));
+                            break;
+                        case 17:
+                            atri17.setVisibility(View.VISIBLE);
+                            cancelatri17.setVisibility(View.VISIBLE);
+                            cancelatri16.setVisibility(View.GONE);
+                            isText17 = 0;
+                            atributo17.setInputType(InputType.TYPE_CLASS_TEXT);
+                            hintatributo17.setHint(getResources().getString(R.string.crear79));
+                            break;
+                        case 18:
+                            atri18.setVisibility(View.VISIBLE);
+                            cancelatri18.setVisibility(View.VISIBLE);
+                            cancelatri17.setVisibility(View.GONE);
+                            isText18 = 0;
+                            atributo18.setInputType(InputType.TYPE_CLASS_TEXT);
+                            hintatributo18.setHint(getResources().getString(R.string.crear80));
+                            break;
+                        case 19:
+                            atri19.setVisibility(View.VISIBLE);
+                            cancelatri19.setVisibility(View.VISIBLE);
+                            cancelatri18.setVisibility(View.GONE);
+                            isText19 = 0;
+                            atributo19.setInputType(InputType.TYPE_CLASS_TEXT);
+                            hintatributo19.setHint(getResources().getString(R.string.crear81));
+                            break;
+                        case 20:
+                            atri20.setVisibility(View.VISIBLE);
+                            cancelatri20.setVisibility(View.VISIBLE);
+                            cancelatri19.setVisibility(View.GONE);
+                            isText20 = 0;
+                            atributo20.setInputType(InputType.TYPE_CLASS_TEXT);
+                            hintatributo20.setHint(getResources().getString(R.string.crear82));
+                            break;
+                        case 21:
+                            atri21.setVisibility(View.VISIBLE);
+                            cancelatri21.setVisibility(View.VISIBLE);
+                            cancelatri20.setVisibility(View.GONE);
+                            isText21 = 0;
+                            atributo21.setInputType(InputType.TYPE_CLASS_TEXT);
+                            hintatributo21.setHint(getResources().getString(R.string.crear83));
+                            break;
+                        case 22:
+                            atri22.setVisibility(View.VISIBLE);
+                            cancelatri22.setVisibility(View.VISIBLE);
+                            cancelatri21.setVisibility(View.GONE);
+                            isText22 = 0;
+                            atributo22.setInputType(InputType.TYPE_CLASS_TEXT);
+                            hintatributo22.setHint(getResources().getString(R.string.crear84));
+                            break;
+                        case 23:
+                            atri23.setVisibility(View.VISIBLE);
+                            cancelatri23.setVisibility(View.VISIBLE);
+                            cancelatri22.setVisibility(View.GONE);
+                            isText23 = 0;
+                            atributo23.setInputType(InputType.TYPE_CLASS_TEXT);
+                            hintatributo23.setHint(getResources().getString(R.string.crear85));
                             break;
                     }
                 } else {
@@ -651,6 +785,69 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
                 atri16.setVisibility(View.GONE);
                 cancelatri15.setVisibility(View.VISIBLE);
                 atributo_added = 15;
+            }
+        });
+
+        cancelatri17.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                atri17.setVisibility(View.GONE);
+                cancelatri16.setVisibility(View.VISIBLE);
+                atributo_added = 16;
+            }
+        });
+
+        cancelatri18.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                atri18.setVisibility(View.GONE);
+                cancelatri17.setVisibility(View.VISIBLE);
+                atributo_added = 17;
+            }
+        });
+
+        cancelatri19.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                atri19.setVisibility(View.GONE);
+                cancelatri18.setVisibility(View.VISIBLE);
+                atributo_added = 18;
+            }
+        });
+
+        cancelatri20.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                atri20.setVisibility(View.GONE);
+                cancelatri19.setVisibility(View.VISIBLE);
+                atributo_added = 19;
+            }
+        });
+
+        cancelatri21.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                atri21.setVisibility(View.GONE);
+                cancelatri20.setVisibility(View.VISIBLE);
+                atributo_added = 20;
+            }
+        });
+
+        cancelatri22.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                atri22.setVisibility(View.GONE);
+                cancelatri21.setVisibility(View.VISIBLE);
+                atributo_added = 21;
+            }
+        });
+
+        cancelatri23.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                atri23.setVisibility(View.GONE);
+                cancelatri22.setVisibility(View.VISIBLE);
+                atributo_added = 22;
             }
         });
 
@@ -823,6 +1020,13 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
                         login_params.put("atributo14", atributo14.getText().toString());
                         login_params.put("atributo15", atributo15.getText().toString());
                         login_params.put("atributo16", atributo16.getText().toString());
+                        login_params.put("atributo17", atributo17.getText().toString());
+                        login_params.put("atributo18", atributo18.getText().toString());
+                        login_params.put("atributo19", atributo19.getText().toString());
+                        login_params.put("atributo20", atributo20.getText().toString());
+                        login_params.put("atributo21", atributo21.getText().toString());
+                        login_params.put("atributo22", atributo22.getText().toString());
+                        login_params.put("atributo23", atributo23.getText().toString());
                         login_params.put("isText1", String.valueOf(isText1));
                         login_params.put("isText2", String.valueOf(isText2));
                         login_params.put("isText3", String.valueOf(isText3));
@@ -839,6 +1043,13 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
                         login_params.put("isText14", String.valueOf(isText14));
                         login_params.put("isText15", String.valueOf(isText15));
                         login_params.put("isText16", String.valueOf(isText16));
+                        login_params.put("isText17", String.valueOf(isText17));
+                        login_params.put("isText18", String.valueOf(isText18));
+                        login_params.put("isText19", String.valueOf(isText19));
+                        login_params.put("isText20", String.valueOf(isText20));
+                        login_params.put("isText21", String.valueOf(isText21));
+                        login_params.put("isText22", String.valueOf(isText22));
+                        login_params.put("isText23", String.valueOf(isText23));
                         login_params.put("desc1", desc1.getText().toString());
                         login_params.put("desc2", desc2.getText().toString());
                         login_params.put("desc3", desc3.getText().toString());
@@ -855,6 +1066,13 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
                         login_params.put("desc14", desc14.getText().toString());
                         login_params.put("desc15", desc15.getText().toString());
                         login_params.put("desc16", desc16.getText().toString());
+                        login_params.put("desc17", desc17.getText().toString());
+                        login_params.put("desc18", desc18.getText().toString());
+                        login_params.put("desc19", desc19.getText().toString());
+                        login_params.put("desc20", desc20.getText().toString());
+                        login_params.put("desc21", desc21.getText().toString());
+                        login_params.put("desc22", desc22.getText().toString());
+                        login_params.put("desc23", desc23.getText().toString());
                         login_params.put("logo", base64String);
 
                         return login_params;
@@ -1210,37 +1428,174 @@ public class CrearProyecto extends AppCompatActivity implements NavigationView.O
 
         } else if(atributo_added == 16){
             valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
-           // valid = checkRegexp( atributo1.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
-           // valid = checkRegexp( atributo2.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
-           // valid = checkRegexp( atributo3.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
-           // valid = checkRegexp( atributo4.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
-           // valid = checkRegexp( atributo5.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
-           // valid = checkRegexp( atributo6.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
-            // valid = checkRegexp( atributo7.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
-            // valid = checkRegexp( atributo8.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo9.getText().toString(), "Atributo 9", 1, 100 ) && valid;
-           // valid = checkRegexp( atributo9.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo10.getText().toString(), "Atributo 10", 1, 100 ) && valid;
-           // valid = checkRegexp( atributo10.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo11.getText().toString(), "Atributo 11", 1, 100 ) && valid;
-           // valid = checkRegexp( atributo11.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo12.getText().toString(), "Atributo 12", 1, 100 ) && valid;
-           // valid = checkRegexp( atributo12.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo13.getText().toString(), "Atributo 13", 1, 100 ) && valid;
-           // valid = checkRegexp( atributo13.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo14.getText().toString(), "Atributo 14", 1, 100 ) && valid;
-           // valid = checkRegexp( atributo14.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo15.getText().toString(), "Atributo 15", 1, 100 ) && valid;
-           // valid = checkRegexp( atributo15.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
             valid = checkLength( atributo16.getText().toString(), "Atributo 16", 1, 100 ) && valid;
-           // valid = checkRegexp( atributo16.getText().toString(), Pattern.compile("^[a-zA-Z][a-zA-Z0-9 _]+$"), "Los atributos deben estar completados adecuadamente." ) && valid;
+        } else if(atributo_added == 17){
+            valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
+            valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
+            valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
+            valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
+            valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
+            valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
+            valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
+            valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
+            valid = checkLength( atributo9.getText().toString(), "Atributo 9", 1, 100 ) && valid;
+            valid = checkLength( atributo10.getText().toString(), "Atributo 10", 1, 100 ) && valid;
+            valid = checkLength( atributo11.getText().toString(), "Atributo 11", 1, 100 ) && valid;
+            valid = checkLength( atributo12.getText().toString(), "Atributo 12", 1, 100 ) && valid;
+            valid = checkLength( atributo13.getText().toString(), "Atributo 13", 1, 100 ) && valid;
+            valid = checkLength( atributo14.getText().toString(), "Atributo 14", 1, 100 ) && valid;
+            valid = checkLength( atributo15.getText().toString(), "Atributo 15", 1, 100 ) && valid;
+            valid = checkLength( atributo16.getText().toString(), "Atributo 16", 1, 100 ) && valid;
+            valid = checkLength( atributo17.getText().toString(), "Atributo 17", 1, 100 ) && valid;
+
+        } else if(atributo_added == 18){
+            valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
+            valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
+            valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
+            valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
+            valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
+            valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
+            valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
+            valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
+            valid = checkLength( atributo9.getText().toString(), "Atributo 9", 1, 100 ) && valid;
+            valid = checkLength( atributo10.getText().toString(), "Atributo 10", 1, 100 ) && valid;
+            valid = checkLength( atributo11.getText().toString(), "Atributo 11", 1, 100 ) && valid;
+            valid = checkLength( atributo12.getText().toString(), "Atributo 12", 1, 100 ) && valid;
+            valid = checkLength( atributo13.getText().toString(), "Atributo 13", 1, 100 ) && valid;
+            valid = checkLength( atributo14.getText().toString(), "Atributo 14", 1, 100 ) && valid;
+            valid = checkLength( atributo15.getText().toString(), "Atributo 15", 1, 100 ) && valid;
+            valid = checkLength( atributo16.getText().toString(), "Atributo 16", 1, 100 ) && valid;
+            valid = checkLength( atributo17.getText().toString(), "Atributo 17", 1, 100 ) && valid;
+            valid = checkLength( atributo18.getText().toString(), "Atributo 18", 1, 100 ) && valid;
+
+        } else if(atributo_added == 19){
+            valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
+            valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
+            valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
+            valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
+            valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
+            valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
+            valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
+            valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
+            valid = checkLength( atributo9.getText().toString(), "Atributo 9", 1, 100 ) && valid;
+            valid = checkLength( atributo10.getText().toString(), "Atributo 10", 1, 100 ) && valid;
+            valid = checkLength( atributo11.getText().toString(), "Atributo 11", 1, 100 ) && valid;
+            valid = checkLength( atributo12.getText().toString(), "Atributo 12", 1, 100 ) && valid;
+            valid = checkLength( atributo13.getText().toString(), "Atributo 13", 1, 100 ) && valid;
+            valid = checkLength( atributo14.getText().toString(), "Atributo 14", 1, 100 ) && valid;
+            valid = checkLength( atributo15.getText().toString(), "Atributo 15", 1, 100 ) && valid;
+            valid = checkLength( atributo16.getText().toString(), "Atributo 16", 1, 100 ) && valid;
+            valid = checkLength( atributo17.getText().toString(), "Atributo 17", 1, 100 ) && valid;
+            valid = checkLength( atributo18.getText().toString(), "Atributo 18", 1, 100 ) && valid;
+            valid = checkLength( atributo19.getText().toString(), "Atributo 19", 1, 100 ) && valid;
+
+        } else if(atributo_added == 20){
+            valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
+            valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
+            valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
+            valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
+            valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
+            valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
+            valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
+            valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
+            valid = checkLength( atributo9.getText().toString(), "Atributo 9", 1, 100 ) && valid;
+            valid = checkLength( atributo10.getText().toString(), "Atributo 10", 1, 100 ) && valid;
+            valid = checkLength( atributo11.getText().toString(), "Atributo 11", 1, 100 ) && valid;
+            valid = checkLength( atributo12.getText().toString(), "Atributo 12", 1, 100 ) && valid;
+            valid = checkLength( atributo13.getText().toString(), "Atributo 13", 1, 100 ) && valid;
+            valid = checkLength( atributo14.getText().toString(), "Atributo 14", 1, 100 ) && valid;
+            valid = checkLength( atributo15.getText().toString(), "Atributo 15", 1, 100 ) && valid;
+            valid = checkLength( atributo16.getText().toString(), "Atributo 16", 1, 100 ) && valid;
+            valid = checkLength( atributo17.getText().toString(), "Atributo 17", 1, 100 ) && valid;
+            valid = checkLength( atributo18.getText().toString(), "Atributo 18", 1, 100 ) && valid;
+            valid = checkLength( atributo19.getText().toString(), "Atributo 19", 1, 100 ) && valid;
+            valid = checkLength( atributo20.getText().toString(), "Atributo 20", 1, 100 ) && valid;
+
+        } else if(atributo_added == 21){
+            valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
+            valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
+            valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
+            valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
+            valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
+            valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
+            valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
+            valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
+            valid = checkLength( atributo9.getText().toString(), "Atributo 9", 1, 100 ) && valid;
+            valid = checkLength( atributo10.getText().toString(), "Atributo 10", 1, 100 ) && valid;
+            valid = checkLength( atributo11.getText().toString(), "Atributo 11", 1, 100 ) && valid;
+            valid = checkLength( atributo12.getText().toString(), "Atributo 12", 1, 100 ) && valid;
+            valid = checkLength( atributo13.getText().toString(), "Atributo 13", 1, 100 ) && valid;
+            valid = checkLength( atributo14.getText().toString(), "Atributo 14", 1, 100 ) && valid;
+            valid = checkLength( atributo15.getText().toString(), "Atributo 15", 1, 100 ) && valid;
+            valid = checkLength( atributo16.getText().toString(), "Atributo 16", 1, 100 ) && valid;
+            valid = checkLength( atributo17.getText().toString(), "Atributo 17", 1, 100 ) && valid;
+            valid = checkLength( atributo18.getText().toString(), "Atributo 18", 1, 100 ) && valid;
+            valid = checkLength( atributo19.getText().toString(), "Atributo 19", 1, 100 ) && valid;
+            valid = checkLength( atributo20.getText().toString(), "Atributo 20", 1, 100 ) && valid;
+            valid = checkLength( atributo21.getText().toString(), "Atributo 21", 1, 100 ) && valid;
+
+        } else if(atributo_added == 22){
+            valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
+            valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
+            valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
+            valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
+            valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
+            valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
+            valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
+            valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
+            valid = checkLength( atributo9.getText().toString(), "Atributo 9", 1, 100 ) && valid;
+            valid = checkLength( atributo10.getText().toString(), "Atributo 10", 1, 100 ) && valid;
+            valid = checkLength( atributo11.getText().toString(), "Atributo 11", 1, 100 ) && valid;
+            valid = checkLength( atributo12.getText().toString(), "Atributo 12", 1, 100 ) && valid;
+            valid = checkLength( atributo13.getText().toString(), "Atributo 13", 1, 100 ) && valid;
+            valid = checkLength( atributo14.getText().toString(), "Atributo 14", 1, 100 ) && valid;
+            valid = checkLength( atributo15.getText().toString(), "Atributo 15", 1, 100 ) && valid;
+            valid = checkLength( atributo16.getText().toString(), "Atributo 16", 1, 100 ) && valid;
+            valid = checkLength( atributo17.getText().toString(), "Atributo 17", 1, 100 ) && valid;
+            valid = checkLength( atributo18.getText().toString(), "Atributo 18", 1, 100 ) && valid;
+            valid = checkLength( atributo19.getText().toString(), "Atributo 19", 1, 100 ) && valid;
+            valid = checkLength( atributo20.getText().toString(), "Atributo 20", 1, 100 ) && valid;
+            valid = checkLength( atributo21.getText().toString(), "Atributo 21", 1, 100 ) && valid;
+            valid = checkLength( atributo22.getText().toString(), "Atributo 22", 1, 100 ) && valid;
+
+        } else if(atributo_added == 23){
+            valid = checkLength( atributo1.getText().toString(), "Atributo 1", 1, 100 ) && valid;
+            valid = checkLength( atributo2.getText().toString(), "Atributo 2", 1, 100 ) && valid;
+            valid = checkLength( atributo3.getText().toString(), "Atributo 3", 1, 100 ) && valid;
+            valid = checkLength( atributo4.getText().toString(), "Atributo 4", 1, 100 ) && valid;
+            valid = checkLength( atributo5.getText().toString(), "Atributo 5", 1, 100 ) && valid;
+            valid = checkLength( atributo6.getText().toString(), "Atributo 6", 1, 100 ) && valid;
+            valid = checkLength( atributo7.getText().toString(), "Atributo 7", 1, 100 ) && valid;
+            valid = checkLength( atributo8.getText().toString(), "Atributo 8", 1, 100 ) && valid;
+            valid = checkLength( atributo9.getText().toString(), "Atributo 9", 1, 100 ) && valid;
+            valid = checkLength( atributo10.getText().toString(), "Atributo 10", 1, 100 ) && valid;
+            valid = checkLength( atributo11.getText().toString(), "Atributo 11", 1, 100 ) && valid;
+            valid = checkLength( atributo12.getText().toString(), "Atributo 12", 1, 100 ) && valid;
+            valid = checkLength( atributo13.getText().toString(), "Atributo 13", 1, 100 ) && valid;
+            valid = checkLength( atributo14.getText().toString(), "Atributo 14", 1, 100 ) && valid;
+            valid = checkLength( atributo15.getText().toString(), "Atributo 15", 1, 100 ) && valid;
+            valid = checkLength( atributo16.getText().toString(), "Atributo 16", 1, 100 ) && valid;
+            valid = checkLength( atributo17.getText().toString(), "Atributo 17", 1, 100 ) && valid;
+            valid = checkLength( atributo18.getText().toString(), "Atributo 18", 1, 100 ) && valid;
+            valid = checkLength( atributo19.getText().toString(), "Atributo 19", 1, 100 ) && valid;
+            valid = checkLength( atributo20.getText().toString(), "Atributo 20", 1, 100 ) && valid;
+            valid = checkLength( atributo21.getText().toString(), "Atributo 21", 1, 100 ) && valid;
+            valid = checkLength( atributo22.getText().toString(), "Atributo 22", 1, 100 ) && valid;
+            valid = checkLength( atributo23.getText().toString(), "Atributo 23", 1, 100 ) && valid;
         }
 
 

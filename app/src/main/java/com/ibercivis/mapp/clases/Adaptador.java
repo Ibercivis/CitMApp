@@ -61,6 +61,8 @@ public class Adaptador extends RecyclerView.Adapter<viewHolder> {
 
         if(ListaObjeto.get(position).legusta == 1) {
             holder.animation.setProgress(1);
+        } else {
+            holder.animation.setProgress(0.2f);
         }
 
     }

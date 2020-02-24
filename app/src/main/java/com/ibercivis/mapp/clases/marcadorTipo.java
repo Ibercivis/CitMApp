@@ -2,10 +2,10 @@ package com.ibercivis.mapp.clases;
 
 public class marcadorTipo {
     int num_atributos, foto;
-    String atributo1, atributo2, atributo3, atributo4, atributo5, atributo6, atributo7, atributo8, atributo9, atributo10, atributo11, atributo12, atributo13, atributo14, atributo15, atributo16;
-    int isText1 = 0, isText2 = 0, isText3 = 0, isText4 = 0, isText5 = 0, isText6 = 0, isText7 = 0, isText8 = 0, isText9 = 0, isText10 = 0, isText11 = 0, isText12 = 0, isText13 = 0, isText14 = 0, isText15 = 0, isText16 = 0;
+    String atributo1, atributo2, atributo3, atributo4, atributo5, atributo6, atributo7, atributo8, atributo9, atributo10, atributo11, atributo12, atributo13, atributo14, atributo15, atributo16, atributo17, atributo18, atributo19, atributo20, atributo21, atributo22, atributo23;
+    int isText1 = 0, isText2 = 0, isText3 = 0, isText4 = 0, isText5 = 0, isText6 = 0, isText7 = 0, isText8 = 0, isText9 = 0, isText10 = 0, isText11 = 0, isText12 = 0, isText13 = 0, isText14 = 0, isText15 = 0, isText16 = 0, isText17 = 0, isText18 = 0, isText19 = 0, isText20 = 0, isText21 = 0, isText22 = 0, isText23 = 0;
 
-    public marcadorTipo(int num_atributos, int foto, String atributo1, String atributo2, String atributo3, String atributo4, String atributo5, String atributo6, String atributo7, String atributo8, String atributo9, String atributo10, String atributo11, String atributo12, String atributo13, String atributo14, String atributo15, String atributo16, int isText1, int isText2, int isText3, int isText4, int isText5, int isText6, int isText7, int isText8, int isText9, int isText10, int isText11, int isText12, int isText13, int isText14, int isText15, int isText16) {
+    public marcadorTipo(int num_atributos, int foto, String atributo1, String atributo2, String atributo3, String atributo4, String atributo5, String atributo6, String atributo7, String atributo8, String atributo9, String atributo10, String atributo11, String atributo12, String atributo13, String atributo14, String atributo15, String atributo16, String atributo17, String atributo18, String atributo19, String atributo20, String atributo21, String atributo22, String atributo23, int isText1, int isText2, int isText3, int isText4, int isText5, int isText6, int isText7, int isText8, int isText9, int isText10, int isText11, int isText12, int isText13, int isText14, int isText15, int isText16, int isText17, int isText18, int isText19, int isText20, int isText21, int isText22, int isText23) {
         this.num_atributos = num_atributos;
         this.foto = foto;
         this.atributo1 = atributo1;
@@ -24,6 +24,13 @@ public class marcadorTipo {
         this.atributo14 = atributo14;
         this.atributo15 = atributo15;
         this.atributo16 = atributo16;
+        this.atributo17 = atributo17;
+        this.atributo18 = atributo18;
+        this.atributo19 = atributo19;
+        this.atributo20 = atributo20;
+        this.atributo21 = atributo21;
+        this.atributo22 = atributo22;
+        this.atributo23 = atributo23;
         this.isText1 = isText1;
         this.isText2 = isText2;
         this.isText3 = isText3;
@@ -40,6 +47,13 @@ public class marcadorTipo {
         this.isText14 = isText14;
         this.isText15 = isText15;
         this.isText16 = isText16;
+        this.isText17 = isText17;
+        this.isText18 = isText18;
+        this.isText19 = isText19;
+        this.isText20 = isText20;
+        this.isText21 = isText21;
+        this.isText22 = isText22;
+        this.isText23 = isText23;
     }
 
     public int getNum_atributos() {
@@ -184,6 +198,118 @@ public class marcadorTipo {
 
     public void setAtributo16(String atributo16) {
         this.atributo16 = atributo16;
+    }
+
+    public String getAtributo17() {
+        return atributo17;
+    }
+
+    public void setAtributo17(String atributo17) {
+        this.atributo17 = atributo17;
+    }
+
+    public String getAtributo18() {
+        return atributo18;
+    }
+
+    public void setAtributo18(String atributo18) {
+        this.atributo18 = atributo18;
+    }
+
+    public String getAtributo19() {
+        return atributo19;
+    }
+
+    public void setAtributo19(String atributo19) {
+        this.atributo19 = atributo19;
+    }
+
+    public String getAtributo20() {
+        return atributo20;
+    }
+
+    public void setAtributo20(String atributo20) {
+        this.atributo20 = atributo20;
+    }
+
+    public String getAtributo21() {
+        return atributo21;
+    }
+
+    public void setAtributo21(String atributo21) {
+        this.atributo21 = atributo21;
+    }
+
+    public String getAtributo22() {
+        return atributo22;
+    }
+
+    public void setAtributo22(String atributo22) {
+        this.atributo22 = atributo22;
+    }
+
+    public String getAtributo23() {
+        return atributo23;
+    }
+
+    public void setAtributo23(String atributo23) {
+        this.atributo23 = atributo23;
+    }
+
+    public int getIsText17() {
+        return isText17;
+    }
+
+    public void setIsText17(int isText17) {
+        this.isText17 = isText17;
+    }
+
+    public int getIsText18() {
+        return isText18;
+    }
+
+    public void setIsText18(int isText18) {
+        this.isText18 = isText18;
+    }
+
+    public int getIsText19() {
+        return isText19;
+    }
+
+    public void setIsText19(int isText19) {
+        this.isText19 = isText19;
+    }
+
+    public int getIsText20() {
+        return isText20;
+    }
+
+    public void setIsText20(int isText20) {
+        this.isText20 = isText20;
+    }
+
+    public int getIsText21() {
+        return isText21;
+    }
+
+    public void setIsText21(int isText21) {
+        this.isText21 = isText21;
+    }
+
+    public int getIsText22() {
+        return isText22;
+    }
+
+    public void setIsText22(int isText22) {
+        this.isText22 = isText22;
+    }
+
+    public int getIsText23() {
+        return isText23;
+    }
+
+    public void setIsText23(int isText23) {
+        this.isText23 = isText23;
     }
 
     public int getIsText1() {

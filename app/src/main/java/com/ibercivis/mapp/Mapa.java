@@ -122,14 +122,14 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
     NavigationView navigationView;
     Toolbar toolbar;
     RelativeLayout paraMapa;
-    LinearLayout layout_marcador, layout_foto, atri1, atri2, atri3, atri4, atri5, atri6, atri7, atri8, atri9, atri10, atri11, atri12, atri13, atri14, atri15, atri16;
-    LinearLayout layout_atributo1, layout_atributo2, layout_atributo3, layout_atributo4, layout_atributo5, layout_atributo6, layout_atributo7, layout_atributo8, layout_atributo9, layout_atributo10, layout_atributo11, layout_atributo12, layout_atributo13, layout_atributo14, layout_atributo15, layout_atributo16;
-    TextInputLayout titulo1, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, titulo11, titulo12, titulo13, titulo14, titulo15, titulo16;
-    TextInputEditText edit_atri1, edit_atri2, edit_atri3, edit_atri4, edit_atri5, edit_atri6, edit_atri7, edit_atri8, edit_atri9, edit_atri10, edit_atri11, edit_atri12, edit_atri13, edit_atri14, edit_atri15, edit_atri16;
+    LinearLayout layout_marcador, layout_foto, atri1, atri2, atri3, atri4, atri5, atri6, atri7, atri8, atri9, atri10, atri11, atri12, atri13, atri14, atri15, atri16, atri17, atri18, atri19, atri20, atri21, atri22, atri23;
+    LinearLayout layout_atributo1, layout_atributo2, layout_atributo3, layout_atributo4, layout_atributo5, layout_atributo6, layout_atributo7, layout_atributo8, layout_atributo9, layout_atributo10, layout_atributo11, layout_atributo12, layout_atributo13, layout_atributo14, layout_atributo15, layout_atributo16, layout_atributo17, layout_atributo18, layout_atributo19, layout_atributo20, layout_atributo21, layout_atributo22, layout_atributo23;
+    TextInputLayout titulo1, titulo2, titulo3, titulo4, titulo5, titulo6, titulo7, titulo8, titulo9, titulo10, titulo11, titulo12, titulo13, titulo14, titulo15, titulo16, titulo17, titulo18, titulo19, titulo20, titulo21, titulo22, titulo23;
+    TextInputEditText edit_atri1, edit_atri2, edit_atri3, edit_atri4, edit_atri5, edit_atri6, edit_atri7, edit_atri8, edit_atri9, edit_atri10, edit_atri11, edit_atri12, edit_atri13, edit_atri14, edit_atri15, edit_atri16, edit_atri17, edit_atri18, edit_atri19, edit_atri20, edit_atri21, edit_atri22, edit_atri23;
     ImageView marco_foto;
     LinearLayout marcador_mostrado, layout_info;
-    TextView titulo_addmarker, enunciado_atri1, enunciado_atri2, enunciado_atri3, enunciado_atri4, enunciado_atri5, enunciado_atri6, enunciado_atri7, enunciado_atri8, enunciado_atri9, enunciado_atri10, enunciado_atri11, enunciado_atri12, enunciado_atri13, enunciado_atri14, enunciado_atri15, enunciado_atri16;
-    TextView respuesta_atri1, respuesta_atri2, respuesta_atri3, respuesta_atri4, respuesta_atri5, respuesta_atri6, respuesta_atri7, respuesta_atri8, respuesta_atri9, respuesta_atri10, respuesta_atri11, respuesta_atri12, respuesta_atri13, respuesta_atri14, respuesta_atri15, respuesta_atri16;
+    TextView titulo_addmarker, enunciado_atri1, enunciado_atri2, enunciado_atri3, enunciado_atri4, enunciado_atri5, enunciado_atri6, enunciado_atri7, enunciado_atri8, enunciado_atri9, enunciado_atri10, enunciado_atri11, enunciado_atri12, enunciado_atri13, enunciado_atri14, enunciado_atri15, enunciado_atri16, enunciado_atri17, enunciado_atri18, enunciado_atri19, enunciado_atri20, enunciado_atri21, enunciado_atri22, enunciado_atri23;
+    TextView respuesta_atri1, respuesta_atri2, respuesta_atri3, respuesta_atri4, respuesta_atri5, respuesta_atri6, respuesta_atri7, respuesta_atri8, respuesta_atri9, respuesta_atri10, respuesta_atri11, respuesta_atri12, respuesta_atri13, respuesta_atri14, respuesta_atri15, respuesta_atri16, respuesta_atri17, respuesta_atri18, respuesta_atri19, respuesta_atri20, respuesta_atri21, respuesta_atri22, respuesta_atri23;
     Button back, back_info;
     Button cancelar, aceptar, btnfoto, btndelete, btnedit;
     double mLatitude, mLongitude;
@@ -149,9 +149,9 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
 
     String urlfoto;
     TextView txt_info;
-    ImageView btninfo1, btninfo2, btninfo3, btninfo4, btninfo5, btninfo6, btninfo7, btninfo8, btninfo9, btninfo10, btninfo11, btninfo12, btninfo13, btninfo14, btninfo15, btninfo16;
+    ImageView btninfo1, btninfo2, btninfo3, btninfo4, btninfo5, btninfo6, btninfo7, btninfo8, btninfo9, btninfo10, btninfo11, btninfo12, btninfo13, btninfo14, btninfo15, btninfo16, btninfo17, btninfo18, btninfo19, btninfo20, btninfo21, btninfo22, btninfo23;
 
-    String info_atributo1, info_atributo2, info_atributo3, info_atributo4, info_atributo5, info_atributo6, info_atributo7, info_atributo8, info_atributo9, info_atributo10, info_atributo11, info_atributo12, info_atributo13, info_atributo14, info_atributo15, info_atributo16;
+    String info_atributo1, info_atributo2, info_atributo3, info_atributo4, info_atributo5, info_atributo6, info_atributo7, info_atributo8, info_atributo9, info_atributo10, info_atributo11, info_atributo12, info_atributo13, info_atributo14, info_atributo15, info_atributo16, info_atributo17, info_atributo18, info_atributo19, info_atributo20, info_atributo21, info_atributo22, info_atributo23;
 
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
 
@@ -200,17 +200,23 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         enunciado_atri5 = findViewById(R.id.enunciado_at5); enunciado_atri6 = findViewById(R.id.enunciado_at6); enunciado_atri7 = findViewById(R.id.enunciado_at7); enunciado_atri8 = findViewById(R.id.enunciado_at8);
         enunciado_atri9 = findViewById(R.id.enunciado_at9); enunciado_atri10 = findViewById(R.id.enunciado_at10); enunciado_atri11 = findViewById(R.id.enunciado_at11); enunciado_atri12 = findViewById(R.id.enunciado_at12);
         enunciado_atri13 = findViewById(R.id.enunciado_at13); enunciado_atri14 = findViewById(R.id.enunciado_at14); enunciado_atri15 = findViewById(R.id.enunciado_at15); enunciado_atri16 = findViewById(R.id.enunciado_at16);
+        enunciado_atri17 = findViewById(R.id.enunciado_at17); enunciado_atri18 = findViewById(R.id.enunciado_at18); enunciado_atri19 = findViewById(R.id.enunciado_at19); enunciado_atri20 = findViewById(R.id.enunciado_at20);
+        enunciado_atri21 = findViewById(R.id.enunciado_at21); enunciado_atri22 = findViewById(R.id.enunciado_at22); enunciado_atri23 = findViewById(R.id.enunciado_at23);
 
 
         respuesta_atri1 = findViewById(R.id.respuesta_at1); respuesta_atri2 = findViewById(R.id.respuesta_at2); respuesta_atri3 = findViewById(R.id.respuesta_at3); respuesta_atri4 = findViewById(R.id.respuesta_at4);
         respuesta_atri5 = findViewById(R.id.respuesta_at5); respuesta_atri6 = findViewById(R.id.respuesta_at6); respuesta_atri7 = findViewById(R.id.respuesta_at7); respuesta_atri8 = findViewById(R.id.respuesta_at8);
         respuesta_atri9 = findViewById(R.id.respuesta_at9); respuesta_atri10 = findViewById(R.id.respuesta_at10); respuesta_atri11 = findViewById(R.id.respuesta_at11); respuesta_atri12 = findViewById(R.id.respuesta_at12);
         respuesta_atri13 = findViewById(R.id.respuesta_at13); respuesta_atri14 = findViewById(R.id.respuesta_at14); respuesta_atri15 = findViewById(R.id.respuesta_at15); respuesta_atri16 = findViewById(R.id.respuesta_at16);
+        respuesta_atri17 = findViewById(R.id.respuesta_at17); respuesta_atri18 = findViewById(R.id.respuesta_at18); respuesta_atri19 = findViewById(R.id.respuesta_at19); respuesta_atri20 = findViewById(R.id.respuesta_at20);
+        respuesta_atri21 = findViewById(R.id.respuesta_at21); respuesta_atri22 = findViewById(R.id.respuesta_at22); respuesta_atri23 = findViewById(R.id.respuesta_at23);
 
         layout_atributo1 = findViewById(R.id.marco_atributo1); layout_atributo2 = findViewById(R.id.marco_atributo2); layout_atributo3 = findViewById(R.id.marco_atributo3); layout_atributo4 = findViewById(R.id.marco_atributo4);
         layout_atributo5 = findViewById(R.id.marco_atributo5); layout_atributo6 = findViewById(R.id.marco_atributo6); layout_atributo7 = findViewById(R.id.marco_atributo7); layout_atributo8 = findViewById(R.id.marco_atributo8);
         layout_atributo9 = findViewById(R.id.marco_atributo9); layout_atributo10 = findViewById(R.id.marco_atributo10); layout_atributo11 = findViewById(R.id.marco_atributo11); layout_atributo12 = findViewById(R.id.marco_atributo12);
         layout_atributo13 = findViewById(R.id.marco_atributo13); layout_atributo14 = findViewById(R.id.marco_atributo14); layout_atributo15 = findViewById(R.id.marco_atributo15); layout_atributo16 = findViewById(R.id.marco_atributo16);
+        layout_atributo17 = findViewById(R.id.marco_atributo17); layout_atributo18 = findViewById(R.id.marco_atributo18); layout_atributo19 = findViewById(R.id.marco_atributo19); layout_atributo20 = findViewById(R.id.marco_atributo20);
+        layout_atributo21 = findViewById(R.id.marco_atributo21); layout_atributo22 = findViewById(R.id.marco_atributo22); layout_atributo23 = findViewById(R.id.marco_atributo23);
 
         layout_marcador = findViewById(R.id.marco_marker); layout_foto = findViewById(R.id.photo); paraMapa = findViewById(R.id.mapa); layout_info = findViewById(R.id.displayinfo);
 
@@ -218,19 +224,26 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         atri5 = findViewById(R.id.atributo5); atri6 = findViewById(R.id.atributo6); atri7 = findViewById(R.id.atributo7); atri8 = findViewById(R.id.atributo8);
         atri9 = findViewById(R.id.atributo9); atri10 = findViewById(R.id.atributo10); atri11 = findViewById(R.id.atributo11); atri12 = findViewById(R.id.atributo12);
         atri13 = findViewById(R.id.atributo13); atri14 = findViewById(R.id.atributo14); atri15 = findViewById(R.id.atributo15); atri16 = findViewById(R.id.atributo16);
+        atri17 = findViewById(R.id.atributo17); atri18 = findViewById(R.id.atributo18); atri19 = findViewById(R.id.atributo19); atri20 = findViewById(R.id.atributo20);
+        atri21 = findViewById(R.id.atributo21); atri22 = findViewById(R.id.atributo22); atri23 = findViewById(R.id.atributo23);
 
         edit_atri1 = findViewById(R.id.edit_atributo1); edit_atri2 = findViewById(R.id.edit_atributo2); edit_atri3 = findViewById(R.id.edit_atributo3); edit_atri4 = findViewById(R.id.edit_atributo4);
         edit_atri5 = findViewById(R.id.edit_atributo5); edit_atri6 = findViewById(R.id.edit_atributo6); edit_atri7 = findViewById(R.id.edit_atributo7); edit_atri8 = findViewById(R.id.edit_atributo8);
         edit_atri9 = findViewById(R.id.edit_atributo9); edit_atri10 = findViewById(R.id.edit_atributo10); edit_atri11 = findViewById(R.id.edit_atributo11); edit_atri12 = findViewById(R.id.edit_atributo12);
         edit_atri13 = findViewById(R.id.edit_atributo13); edit_atri14 = findViewById(R.id.edit_atributo14); edit_atri15 = findViewById(R.id.edit_atributo15); edit_atri16 = findViewById(R.id.edit_atributo16);
+        edit_atri17 = findViewById(R.id.edit_atributo17); edit_atri18 = findViewById(R.id.edit_atributo18); edit_atri19 = findViewById(R.id.edit_atributo19); edit_atri20 = findViewById(R.id.edit_atributo20);
+        edit_atri21 = findViewById(R.id.edit_atributo21); edit_atri22 = findViewById(R.id.edit_atributo22); edit_atri23 = findViewById(R.id.edit_atributo23);
 
         edit_atri1.setText(""); edit_atri2.setText(""); edit_atri3.setText(""); edit_atri4.setText(""); edit_atri5.setText(""); edit_atri6.setText(""); edit_atri7.setText(""); edit_atri8.setText("");
         edit_atri9.setText(""); edit_atri10.setText(""); edit_atri11.setText(""); edit_atri12.setText(""); edit_atri13.setText(""); edit_atri14.setText(""); edit_atri15.setText(""); edit_atri16.setText("");
+        edit_atri17.setText(""); edit_atri18.setText(""); edit_atri19.setText(""); edit_atri20.setText(""); edit_atri21.setText(""); edit_atri22.setText(""); edit_atri23.setText("");
 
         titulo1 = findViewById(R.id.txt_atributo1); titulo3 = findViewById(R.id.txt_atributo3); titulo4 = findViewById(R.id.txt_atributo4); titulo5 = findViewById(R.id.txt_atributo5);
         titulo6 = findViewById(R.id.txt_atributo6); titulo7 = findViewById(R.id.txt_atributo7); titulo2 = findViewById(R.id.txt_atributo2); titulo8 = findViewById(R.id.txt_atributo8);
         titulo9 = findViewById(R.id.txt_atributo9); titulo10 = findViewById(R.id.txt_atributo10); titulo11 = findViewById(R.id.txt_atributo11); titulo12 = findViewById(R.id.txt_atributo12);
         titulo13 = findViewById(R.id.txt_atributo13); titulo14 = findViewById(R.id.txt_atributo14); titulo15 = findViewById(R.id.txt_atributo15); titulo16 = findViewById(R.id.txt_atributo16);
+        titulo17 = findViewById(R.id.txt_atributo17); titulo18 = findViewById(R.id.txt_atributo18); titulo19 = findViewById(R.id.txt_atributo19); titulo20 = findViewById(R.id.txt_atributo20);
+        titulo21 = findViewById(R.id.txt_atributo21); titulo22 = findViewById(R.id.txt_atributo22); titulo23 = findViewById(R.id.txt_atributo23);
 
         cancelar = findViewById(R.id.cancel_but); aceptar = findViewById(R.id.acept_but); btnfoto = findViewById(R.id.btn_foto);
         miniatura_camara = findViewById(R.id.camera);
@@ -240,6 +253,8 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         btninfo5 = findViewById(R.id.info5); btninfo6 = findViewById(R.id.info6); btninfo7 = findViewById(R.id.info7); btninfo8 = findViewById(R.id.info8);
         btninfo9 = findViewById(R.id.info9); btninfo10 = findViewById(R.id.info10); btninfo11 = findViewById(R.id.info11); btninfo12 = findViewById(R.id.info12);
         btninfo13 = findViewById(R.id.info13); btninfo14 = findViewById(R.id.info14); btninfo15 = findViewById(R.id.info15); btninfo16 = findViewById(R.id.info16);
+        btninfo17 = findViewById(R.id.info17); btninfo19 = findViewById(R.id.info19); btninfo20 = findViewById(R.id.info20); btninfo21 = findViewById(R.id.info21);
+        btninfo22 = findViewById(R.id.info22); btninfo23 = findViewById(R.id.info23); btninfo18 = findViewById(R.id.info18);
 
         back_info = findViewById(R.id.volver_info);
         display_titulo = findViewById(R.id.txtTitulo);
@@ -652,6 +667,90 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             }
         });
 
+        btninfo17.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo17.equals("")){
+                    txt_info.setText(R.string.noInfo);
+                } else {
+                    txt_info.setText(info_atributo17);
+                }
+            }
+        });
+
+        btninfo18.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo18.equals("")){
+                    txt_info.setText(R.string.noInfo);
+                } else {
+                    txt_info.setText(info_atributo18);
+                }
+            }
+        });
+
+        btninfo19.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo19.equals("")){
+                    txt_info.setText(R.string.noInfo);
+                } else {
+                    txt_info.setText(info_atributo19);
+                }
+            }
+        });
+
+        btninfo20.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo20.equals("")){
+                    txt_info.setText(R.string.noInfo);
+                } else {
+                    txt_info.setText(info_atributo20);
+                }
+            }
+        });
+
+        btninfo21.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo21.equals("")){
+                    txt_info.setText(R.string.noInfo);
+                } else {
+                    txt_info.setText(info_atributo21);
+                }
+            }
+        });
+
+        btninfo22.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo22.equals("")){
+                    txt_info.setText(R.string.noInfo);
+                } else {
+                    txt_info.setText(info_atributo22);
+                }
+            }
+        });
+
+        btninfo23.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                layout_info.setVisibility(View.VISIBLE);
+                if(info_atributo23.equals("")){
+                    txt_info.setText(R.string.noInfo);
+                } else {
+                    txt_info.setText(info_atributo23);
+                }
+            }
+        });
+
 
 
         int duration = Toast.LENGTH_SHORT;
@@ -827,6 +926,22 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
 
     public void addmarker(marcadorTipo marcador){
 
+        aceptar.setText(getResources().getString(R.string.mapa3));
+        titulo_addmarker.setText(getResources().getString(R.string.mapa2));
+
+        edit_atri1.setText(""); edit_atri2.setText("");
+        edit_atri3.setText(""); edit_atri4.setText("");
+        edit_atri5.setText(""); edit_atri6.setText("");
+        edit_atri7.setText(""); edit_atri8.setText("");
+        edit_atri9.setText(""); edit_atri10.setText("");
+        edit_atri11.setText(""); edit_atri12.setText("");
+        edit_atri13.setText(""); edit_atri14.setText("");
+        edit_atri15.setText(""); edit_atri16.setText("");
+        edit_atri17.setText(""); edit_atri18.setText("");
+        edit_atri19.setText(""); edit_atri20.setText("");
+        edit_atri21.setText(""); edit_atri22.setText("");
+        edit_atri23.setText("");
+
         layout_marcador.setVisibility(View.VISIBLE);
         paraMapa.setVisibility(View.GONE);
         if(marcador_tipo.getFoto() == 1){
@@ -844,98 +959,187 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
             atri2.setVisibility(View.GONE); atri3.setVisibility(View.GONE); atri4.setVisibility(View.GONE); atri5.setVisibility(View.GONE);
             atri6.setVisibility(View.GONE); atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE);
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1());
         } else if (marcador.getNum_atributos()==2){
             atri3.setVisibility(View.GONE); atri4.setVisibility(View.GONE); atri5.setVisibility(View.GONE);
             atri6.setVisibility(View.GONE); atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE);
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2());
         } else if (marcador.getNum_atributos()==3){
             atri4.setVisibility(View.GONE); atri5.setVisibility(View.GONE);
             atri6.setVisibility(View.GONE); atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE);
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3());
         } else if (marcador.getNum_atributos()==4){
             atri5.setVisibility(View.GONE);
             atri6.setVisibility(View.GONE); atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE);
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
         } else if (marcador.getNum_atributos()==5){
             atri6.setVisibility(View.GONE); atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE);
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5());
         } else if (marcador.getNum_atributos()==6){
             atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE);
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6());
         } else if (marcador.getNum_atributos()==7){
             atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE);
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7());
         } else if (marcador.getNum_atributos()==8){
             atri9.setVisibility(View.GONE);
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE);
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
         } else if (marcador.getNum_atributos()==9){
 
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE);
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
             titulo9.setHint(marcador.getAtributo9());
         } else if (marcador.getNum_atributos()==10){
             atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE);
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
             titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10());
         } else if (marcador.getNum_atributos()==11){
             atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE);
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
             titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11());
         } else if (marcador.getNum_atributos()==12){
             atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE);
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
             titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
         } else if (marcador.getNum_atributos()==13){
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE);
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
             titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
             titulo13.setHint(marcador.getAtributo13());
         } else if (marcador.getNum_atributos()==14){
-            atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE);
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
             titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
             titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14());
         } else if (marcador.getNum_atributos()==15){
-            atri16.setVisibility(View.GONE);
+            atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE);
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
             titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
             titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15());
         } else if (marcador.getNum_atributos()==16){
+            atri17.setVisibility(View.GONE);
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
             titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
             titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+        } else if (marcador.getNum_atributos()==17){
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+            titulo17.setHint(marcador.getAtributo17());
+        } else if (marcador.getNum_atributos()==18){
+            atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+            titulo17.setHint(marcador.getAtributo17()); titulo18.setHint(marcador.getAtributo18());
+        } else if (marcador.getNum_atributos()==19){
+            atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+            titulo17.setHint(marcador.getAtributo17()); titulo18.setHint(marcador.getAtributo18()); titulo19.setHint(marcador.getAtributo19());
+        } else if (marcador.getNum_atributos()==20){
+            atri21.setVisibility(View.GONE);
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+            titulo17.setHint(marcador.getAtributo17()); titulo18.setHint(marcador.getAtributo18()); titulo19.setHint(marcador.getAtributo19()); titulo20.setHint(marcador.getAtributo20());
+        } else if (marcador.getNum_atributos()==21){
+
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+            titulo17.setHint(marcador.getAtributo17()); titulo18.setHint(marcador.getAtributo18()); titulo19.setHint(marcador.getAtributo19()); titulo20.setHint(marcador.getAtributo20());
+            titulo21.setHint(marcador.getAtributo21());
+        } else if (marcador.getNum_atributos()==22){
+            atri23.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+            titulo17.setHint(marcador.getAtributo17()); titulo18.setHint(marcador.getAtributo18()); titulo19.setHint(marcador.getAtributo19()); titulo20.setHint(marcador.getAtributo20());
+            titulo21.setHint(marcador.getAtributo21()); titulo22.setHint(marcador.getAtributo22());
+        } else if (marcador.getNum_atributos()==18){
+                        titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+            titulo17.setHint(marcador.getAtributo17()); titulo18.setHint(marcador.getAtributo18()); titulo19.setHint(marcador.getAtributo19()); titulo20.setHint(marcador.getAtributo20());
+            titulo21.setHint(marcador.getAtributo21()); titulo22.setHint(marcador.getAtributo22()); titulo23.setHint(marcador.getAtributo23());
         }
 
         if(marcador_tipo.getIsText1() == 0) {
@@ -985,6 +1189,27 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         }
         if(marcador_tipo.getIsText16() == 0) {
             edit_atri16.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText17() == 0) {
+            edit_atri17.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText18() == 0) {
+            edit_atri18.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText19() == 0) {
+            edit_atri19.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText20() == 0) {
+            edit_atri20.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText21() == 0) {
+            edit_atri21.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText22() == 0) {
+            edit_atri22.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText23() == 0) {
+            edit_atri23.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         }
 
         cancelar.setOnClickListener(new View.OnClickListener() {
@@ -1219,6 +1444,13 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
                             String atribu14 = String.valueOf(jsonArray.getJSONObject(i).get("atributo14"));
                             String atribu15 = String.valueOf(jsonArray.getJSONObject(i).get("atributo15"));
                             String atribu16 = String.valueOf(jsonArray.getJSONObject(i).get("atributo16"));
+                            String atribu17 = String.valueOf(jsonArray.getJSONObject(i).get("atributo17"));
+                            String atribu18 = String.valueOf(jsonArray.getJSONObject(i).get("atributo18"));
+                            String atribu19 = String.valueOf(jsonArray.getJSONObject(i).get("atributo19"));
+                            String atribu20 = String.valueOf(jsonArray.getJSONObject(i).get("atributo20"));
+                            String atribu21 = String.valueOf(jsonArray.getJSONObject(i).get("atributo21"));
+                            String atribu22 = String.valueOf(jsonArray.getJSONObject(i).get("atributo22"));
+                            String atribu23 = String.valueOf(jsonArray.getJSONObject(i).get("atributo23"));
                             int esTexto1 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText1")));
                             int esTexto2 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText2")));
                             int esTexto3 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText3")));
@@ -1235,6 +1467,13 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
                             int esTexto14 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText14")));
                             int esTexto15 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText15")));
                             int esTexto16 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText16")));
+                            int esTexto17 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText17")));
+                            int esTexto18 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText18")));
+                            int esTexto19 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText19")));
+                            int esTexto20 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText20")));
+                            int esTexto21 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText21")));
+                            int esTexto22 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText22")));
+                            int esTexto23 = Integer.valueOf(String.valueOf(jsonArray.getJSONObject(i).get("isText23")));
                             info_atributo1 = String.valueOf(jsonArray.getJSONObject(i).get("desc1"));
                             info_atributo2 = String.valueOf(jsonArray.getJSONObject(i).get("desc2"));
                             info_atributo3 = String.valueOf(jsonArray.getJSONObject(i).get("desc3"));
@@ -1251,7 +1490,14 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
                             info_atributo14 = String.valueOf(jsonArray.getJSONObject(i).get("desc14"));
                             info_atributo15 = String.valueOf(jsonArray.getJSONObject(i).get("desc15"));
                             info_atributo16 = String.valueOf(jsonArray.getJSONObject(i).get("desc16"));
-                            marcador_tipo = new marcadorTipo(numeroatributos, tieneFoto, atribu1, atribu2, atribu3, atribu4, atribu5, atribu6, atribu7, atribu8, atribu9, atribu10, atribu11, atribu12, atribu13, atribu14, atribu15, atribu16, esTexto1, esTexto2, esTexto3, esTexto4, esTexto5, esTexto6, esTexto7, esTexto8, esTexto9, esTexto10, esTexto11, esTexto12, esTexto13, esTexto14, esTexto15, esTexto16);
+                            info_atributo17 = String.valueOf(jsonArray.getJSONObject(i).get("desc17"));
+                            info_atributo18 = String.valueOf(jsonArray.getJSONObject(i).get("desc18"));
+                            info_atributo19 = String.valueOf(jsonArray.getJSONObject(i).get("desc19"));
+                            info_atributo20 = String.valueOf(jsonArray.getJSONObject(i).get("desc20"));
+                            info_atributo21 = String.valueOf(jsonArray.getJSONObject(i).get("desc21"));
+                            info_atributo22 = String.valueOf(jsonArray.getJSONObject(i).get("desc22"));
+                            info_atributo23 = String.valueOf(jsonArray.getJSONObject(i).get("desc23"));
+                            marcador_tipo = new marcadorTipo(numeroatributos, tieneFoto, atribu1, atribu2, atribu3, atribu4, atribu5, atribu6, atribu7, atribu8, atribu9, atribu10, atribu11, atribu12, atribu13, atribu14, atribu15, atribu16, atribu17, atribu18, atribu19, atribu20, atribu21, atribu22, atribu23, esTexto1, esTexto2, esTexto3, esTexto4, esTexto5, esTexto6, esTexto7, esTexto8, esTexto9, esTexto10, esTexto11, esTexto12, esTexto13, esTexto14, esTexto15, esTexto16, esTexto17, esTexto18, esTexto19, esTexto20, esTexto21, esTexto22, esTexto23);
 
 
                         }
@@ -1353,8 +1599,15 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
                             String atributo14 = String.valueOf(jsonArray.getJSONObject(i).get("atributo14"));
                             String atributo15 = String.valueOf(jsonArray.getJSONObject(i).get("atributo15"));
                             String atributo16 = String.valueOf(jsonArray.getJSONObject(i).get("atributo16"));
+                            String atributo17 = String.valueOf(jsonArray.getJSONObject(i).get("atributo17"));
+                            String atributo18 = String.valueOf(jsonArray.getJSONObject(i).get("atributo18"));
+                            String atributo19 = String.valueOf(jsonArray.getJSONObject(i).get("atributo19"));
+                            String atributo20 = String.valueOf(jsonArray.getJSONObject(i).get("atributo20"));
+                            String atributo21 = String.valueOf(jsonArray.getJSONObject(i).get("atributo21"));
+                            String atributo22 = String.valueOf(jsonArray.getJSONObject(i).get("atributo22"));
+                            String atributo23 = String.valueOf(jsonArray.getJSONObject(i).get("atributo23"));
 
-                            marcador_descargado = new Marcador(id, idUser, hasFoto, latitud, longitud, atributo1, atributo2, atributo3, atributo4, atributo5, atributo6, atributo7, atributo8, atributo9, atributo10, atributo11, atributo12, atributo13, atributo14, atributo15, atributo16);
+                            marcador_descargado = new Marcador(id, idUser, hasFoto, latitud, longitud, atributo1, atributo2, atributo3, atributo4, atributo5, atributo6, atributo7, atributo8, atributo9, atributo10, atributo11, atributo12, atributo13, atributo14, atributo15, atributo16, atributo17, atributo18, atributo19, atributo20, atributo21, atributo22, atributo23);
 
                             addMarcadores2(map, marcador_descargado, marcador_tipo, mapaMarcadores, i);
 
@@ -1435,6 +1688,10 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
                             edit_atri11.setText(""); edit_atri12.setText("");
                             edit_atri13.setText(""); edit_atri14.setText("");
                             edit_atri15.setText(""); edit_atri16.setText("");
+                            edit_atri17.setText(""); edit_atri18.setText("");
+                            edit_atri19.setText(""); edit_atri20.setText("");
+                            edit_atri21.setText(""); edit_atri22.setText("");
+                            edit_atri23.setText("");
                             miniatura_camara.setImageDrawable(getResources().getDrawable(R.drawable.ic_photo_camera_black_24dp));
 
                             text = "Marcador subido correctamente";
@@ -1500,6 +1757,13 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
                     login_params.put("atributo14", edit_atri14.getText().toString());
                     login_params.put("atributo15", edit_atri15.getText().toString());
                     login_params.put("atributo16", edit_atri16.getText().toString());
+                    login_params.put("atributo17", edit_atri17.getText().toString());
+                    login_params.put("atributo18", edit_atri18.getText().toString());
+                    login_params.put("atributo19", edit_atri19.getText().toString());
+                    login_params.put("atributo20", edit_atri20.getText().toString());
+                    login_params.put("atributo21", edit_atri21.getText().toString());
+                    login_params.put("atributo22", edit_atri22.getText().toString());
+                    login_params.put("atributo23", edit_atri23.getText().toString());
 
                     return login_params;
                 }
@@ -1958,6 +2222,330 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
                 layout_atributo11.setVisibility(View.VISIBLE); layout_atributo12.setVisibility(View.VISIBLE);
                 layout_atributo13.setVisibility(View.VISIBLE); layout_atributo14.setVisibility(View.VISIBLE);
                 layout_atributo15.setVisibility(View.VISIBLE); layout_atributo16.setVisibility(View.VISIBLE);
+            } else if(marcadorTipo.getNum_atributos() == 17){
+                enunciado_atri1.setText(marcadorTipo.getAtributo1()+":"); respuesta_atri1.setText(marcador.getAtributo1());
+                enunciado_atri2.setText(marcadorTipo.getAtributo2()+":"); respuesta_atri2.setText(marcador.getAtributo2());
+                enunciado_atri3.setText(marcadorTipo.getAtributo3()+":"); respuesta_atri3.setText(marcador.getAtributo3());
+                enunciado_atri4.setText(marcadorTipo.getAtributo4()+":"); respuesta_atri4.setText(marcador.getAtributo4());
+                enunciado_atri5.setText(marcadorTipo.getAtributo5()+":"); respuesta_atri5.setText(marcador.getAtributo5());
+                enunciado_atri6.setText(marcadorTipo.getAtributo6()+":"); respuesta_atri6.setText(marcador.getAtributo6());
+                enunciado_atri7.setText(marcadorTipo.getAtributo7()+":"); respuesta_atri7.setText(marcador.getAtributo7());
+                enunciado_atri8.setText(marcadorTipo.getAtributo8()+":"); respuesta_atri8.setText(marcador.getAtributo8());
+                enunciado_atri9.setText(marcadorTipo.getAtributo9()+":"); respuesta_atri9.setText(marcador.getAtributo9());
+                enunciado_atri10.setText(marcadorTipo.getAtributo10()+":"); respuesta_atri10.setText(marcador.getAtributo10());
+                enunciado_atri11.setText(marcadorTipo.getAtributo11()+":"); respuesta_atri11.setText(marcador.getAtributo11());
+                enunciado_atri12.setText(marcadorTipo.getAtributo12()+":"); respuesta_atri12.setText(marcador.getAtributo12());
+                enunciado_atri13.setText(marcadorTipo.getAtributo13()+":"); respuesta_atri13.setText(marcador.getAtributo13());
+                enunciado_atri14.setText(marcadorTipo.getAtributo14()+":"); respuesta_atri14.setText(marcador.getAtributo14());
+                enunciado_atri15.setText(marcadorTipo.getAtributo15()+":"); respuesta_atri15.setText(marcador.getAtributo15());
+                enunciado_atri16.setText(marcadorTipo.getAtributo16()+":"); respuesta_atri16.setText(marcador.getAtributo16());
+                enunciado_atri17.setText(marcadorTipo.getAtributo17()+":"); respuesta_atri17.setText(marcador.getAtributo17());
+                enunciado_atri1.setVisibility(View.VISIBLE); respuesta_atri1.setVisibility(View.VISIBLE);
+                enunciado_atri2.setVisibility(View.VISIBLE); respuesta_atri2.setVisibility(View.VISIBLE);
+                enunciado_atri3.setVisibility(View.VISIBLE); respuesta_atri3.setVisibility(View.VISIBLE);
+                enunciado_atri4.setVisibility(View.VISIBLE); respuesta_atri4.setVisibility(View.VISIBLE);
+                enunciado_atri5.setVisibility(View.VISIBLE); respuesta_atri5.setVisibility(View.VISIBLE);
+                enunciado_atri6.setVisibility(View.VISIBLE); respuesta_atri6.setVisibility(View.VISIBLE);
+                enunciado_atri7.setVisibility(View.VISIBLE); respuesta_atri7.setVisibility(View.VISIBLE);
+                enunciado_atri8.setVisibility(View.VISIBLE); respuesta_atri8.setVisibility(View.VISIBLE);
+                enunciado_atri9.setVisibility(View.VISIBLE); respuesta_atri9.setVisibility(View.VISIBLE);
+                enunciado_atri10.setVisibility(View.VISIBLE); respuesta_atri10.setVisibility(View.VISIBLE);
+                enunciado_atri12.setVisibility(View.VISIBLE); respuesta_atri12.setVisibility(View.VISIBLE);
+                enunciado_atri13.setVisibility(View.VISIBLE); respuesta_atri13.setVisibility(View.VISIBLE);
+                enunciado_atri14.setVisibility(View.VISIBLE); respuesta_atri14.setVisibility(View.VISIBLE);
+                enunciado_atri15.setVisibility(View.VISIBLE); respuesta_atri15.setVisibility(View.VISIBLE);
+                enunciado_atri16.setVisibility(View.VISIBLE); respuesta_atri16.setVisibility(View.VISIBLE);
+                layout_atributo1.setVisibility(View.VISIBLE); layout_atributo5.setVisibility(View.VISIBLE);
+                layout_atributo2.setVisibility(View.VISIBLE); layout_atributo6.setVisibility(View.VISIBLE);
+                layout_atributo3.setVisibility(View.VISIBLE); layout_atributo7.setVisibility(View.VISIBLE);
+                layout_atributo4.setVisibility(View.VISIBLE); layout_atributo8.setVisibility(View.VISIBLE);
+                layout_atributo9.setVisibility(View.VISIBLE); layout_atributo10.setVisibility(View.VISIBLE);
+                layout_atributo11.setVisibility(View.VISIBLE); layout_atributo12.setVisibility(View.VISIBLE);
+                layout_atributo13.setVisibility(View.VISIBLE); layout_atributo14.setVisibility(View.VISIBLE);
+                layout_atributo15.setVisibility(View.VISIBLE); layout_atributo16.setVisibility(View.VISIBLE);
+                layout_atributo17.setVisibility(View.VISIBLE);
+            } else if(marcadorTipo.getNum_atributos() == 18){
+                enunciado_atri1.setText(marcadorTipo.getAtributo1()+":"); respuesta_atri1.setText(marcador.getAtributo1());
+                enunciado_atri2.setText(marcadorTipo.getAtributo2()+":"); respuesta_atri2.setText(marcador.getAtributo2());
+                enunciado_atri3.setText(marcadorTipo.getAtributo3()+":"); respuesta_atri3.setText(marcador.getAtributo3());
+                enunciado_atri4.setText(marcadorTipo.getAtributo4()+":"); respuesta_atri4.setText(marcador.getAtributo4());
+                enunciado_atri5.setText(marcadorTipo.getAtributo5()+":"); respuesta_atri5.setText(marcador.getAtributo5());
+                enunciado_atri6.setText(marcadorTipo.getAtributo6()+":"); respuesta_atri6.setText(marcador.getAtributo6());
+                enunciado_atri7.setText(marcadorTipo.getAtributo7()+":"); respuesta_atri7.setText(marcador.getAtributo7());
+                enunciado_atri8.setText(marcadorTipo.getAtributo8()+":"); respuesta_atri8.setText(marcador.getAtributo8());
+                enunciado_atri9.setText(marcadorTipo.getAtributo9()+":"); respuesta_atri9.setText(marcador.getAtributo9());
+                enunciado_atri10.setText(marcadorTipo.getAtributo10()+":"); respuesta_atri10.setText(marcador.getAtributo10());
+                enunciado_atri11.setText(marcadorTipo.getAtributo11()+":"); respuesta_atri11.setText(marcador.getAtributo11());
+                enunciado_atri12.setText(marcadorTipo.getAtributo12()+":"); respuesta_atri12.setText(marcador.getAtributo12());
+                enunciado_atri13.setText(marcadorTipo.getAtributo13()+":"); respuesta_atri13.setText(marcador.getAtributo13());
+                enunciado_atri14.setText(marcadorTipo.getAtributo14()+":"); respuesta_atri14.setText(marcador.getAtributo14());
+                enunciado_atri15.setText(marcadorTipo.getAtributo15()+":"); respuesta_atri15.setText(marcador.getAtributo15());
+                enunciado_atri16.setText(marcadorTipo.getAtributo16()+":"); respuesta_atri16.setText(marcador.getAtributo16());
+                enunciado_atri17.setText(marcadorTipo.getAtributo17()+":"); respuesta_atri17.setText(marcador.getAtributo17());
+                enunciado_atri18.setText(marcadorTipo.getAtributo18()+":"); respuesta_atri18.setText(marcador.getAtributo18());
+                enunciado_atri1.setVisibility(View.VISIBLE); respuesta_atri1.setVisibility(View.VISIBLE);
+                enunciado_atri2.setVisibility(View.VISIBLE); respuesta_atri2.setVisibility(View.VISIBLE);
+                enunciado_atri3.setVisibility(View.VISIBLE); respuesta_atri3.setVisibility(View.VISIBLE);
+                enunciado_atri4.setVisibility(View.VISIBLE); respuesta_atri4.setVisibility(View.VISIBLE);
+                enunciado_atri5.setVisibility(View.VISIBLE); respuesta_atri5.setVisibility(View.VISIBLE);
+                enunciado_atri6.setVisibility(View.VISIBLE); respuesta_atri6.setVisibility(View.VISIBLE);
+                enunciado_atri7.setVisibility(View.VISIBLE); respuesta_atri7.setVisibility(View.VISIBLE);
+                enunciado_atri8.setVisibility(View.VISIBLE); respuesta_atri8.setVisibility(View.VISIBLE);
+                enunciado_atri9.setVisibility(View.VISIBLE); respuesta_atri9.setVisibility(View.VISIBLE);
+                enunciado_atri10.setVisibility(View.VISIBLE); respuesta_atri10.setVisibility(View.VISIBLE);
+                enunciado_atri12.setVisibility(View.VISIBLE); respuesta_atri12.setVisibility(View.VISIBLE);
+                enunciado_atri13.setVisibility(View.VISIBLE); respuesta_atri13.setVisibility(View.VISIBLE);
+                enunciado_atri14.setVisibility(View.VISIBLE); respuesta_atri14.setVisibility(View.VISIBLE);
+                enunciado_atri15.setVisibility(View.VISIBLE); respuesta_atri15.setVisibility(View.VISIBLE);
+                enunciado_atri16.setVisibility(View.VISIBLE); respuesta_atri16.setVisibility(View.VISIBLE);
+                layout_atributo1.setVisibility(View.VISIBLE); layout_atributo5.setVisibility(View.VISIBLE);
+                layout_atributo2.setVisibility(View.VISIBLE); layout_atributo6.setVisibility(View.VISIBLE);
+                layout_atributo3.setVisibility(View.VISIBLE); layout_atributo7.setVisibility(View.VISIBLE);
+                layout_atributo4.setVisibility(View.VISIBLE); layout_atributo8.setVisibility(View.VISIBLE);
+                layout_atributo9.setVisibility(View.VISIBLE); layout_atributo10.setVisibility(View.VISIBLE);
+                layout_atributo11.setVisibility(View.VISIBLE); layout_atributo12.setVisibility(View.VISIBLE);
+                layout_atributo13.setVisibility(View.VISIBLE); layout_atributo14.setVisibility(View.VISIBLE);
+                layout_atributo15.setVisibility(View.VISIBLE); layout_atributo16.setVisibility(View.VISIBLE);
+                layout_atributo17.setVisibility(View.VISIBLE); layout_atributo18.setVisibility(View.VISIBLE);
+            } else if(marcadorTipo.getNum_atributos() == 19){
+                enunciado_atri1.setText(marcadorTipo.getAtributo1()+":"); respuesta_atri1.setText(marcador.getAtributo1());
+                enunciado_atri2.setText(marcadorTipo.getAtributo2()+":"); respuesta_atri2.setText(marcador.getAtributo2());
+                enunciado_atri3.setText(marcadorTipo.getAtributo3()+":"); respuesta_atri3.setText(marcador.getAtributo3());
+                enunciado_atri4.setText(marcadorTipo.getAtributo4()+":"); respuesta_atri4.setText(marcador.getAtributo4());
+                enunciado_atri5.setText(marcadorTipo.getAtributo5()+":"); respuesta_atri5.setText(marcador.getAtributo5());
+                enunciado_atri6.setText(marcadorTipo.getAtributo6()+":"); respuesta_atri6.setText(marcador.getAtributo6());
+                enunciado_atri7.setText(marcadorTipo.getAtributo7()+":"); respuesta_atri7.setText(marcador.getAtributo7());
+                enunciado_atri8.setText(marcadorTipo.getAtributo8()+":"); respuesta_atri8.setText(marcador.getAtributo8());
+                enunciado_atri9.setText(marcadorTipo.getAtributo9()+":"); respuesta_atri9.setText(marcador.getAtributo9());
+                enunciado_atri10.setText(marcadorTipo.getAtributo10()+":"); respuesta_atri10.setText(marcador.getAtributo10());
+                enunciado_atri11.setText(marcadorTipo.getAtributo11()+":"); respuesta_atri11.setText(marcador.getAtributo11());
+                enunciado_atri12.setText(marcadorTipo.getAtributo12()+":"); respuesta_atri12.setText(marcador.getAtributo12());
+                enunciado_atri13.setText(marcadorTipo.getAtributo13()+":"); respuesta_atri13.setText(marcador.getAtributo13());
+                enunciado_atri14.setText(marcadorTipo.getAtributo14()+":"); respuesta_atri14.setText(marcador.getAtributo14());
+                enunciado_atri15.setText(marcadorTipo.getAtributo15()+":"); respuesta_atri15.setText(marcador.getAtributo15());
+                enunciado_atri16.setText(marcadorTipo.getAtributo16()+":"); respuesta_atri16.setText(marcador.getAtributo16());
+                enunciado_atri17.setText(marcadorTipo.getAtributo17()+":"); respuesta_atri17.setText(marcador.getAtributo17());
+                enunciado_atri18.setText(marcadorTipo.getAtributo18()+":"); respuesta_atri18.setText(marcador.getAtributo18());
+                enunciado_atri19.setText(marcadorTipo.getAtributo19()+":"); respuesta_atri19.setText(marcador.getAtributo19());
+                enunciado_atri1.setVisibility(View.VISIBLE); respuesta_atri1.setVisibility(View.VISIBLE);
+                enunciado_atri2.setVisibility(View.VISIBLE); respuesta_atri2.setVisibility(View.VISIBLE);
+                enunciado_atri3.setVisibility(View.VISIBLE); respuesta_atri3.setVisibility(View.VISIBLE);
+                enunciado_atri4.setVisibility(View.VISIBLE); respuesta_atri4.setVisibility(View.VISIBLE);
+                enunciado_atri5.setVisibility(View.VISIBLE); respuesta_atri5.setVisibility(View.VISIBLE);
+                enunciado_atri6.setVisibility(View.VISIBLE); respuesta_atri6.setVisibility(View.VISIBLE);
+                enunciado_atri7.setVisibility(View.VISIBLE); respuesta_atri7.setVisibility(View.VISIBLE);
+                enunciado_atri8.setVisibility(View.VISIBLE); respuesta_atri8.setVisibility(View.VISIBLE);
+                enunciado_atri9.setVisibility(View.VISIBLE); respuesta_atri9.setVisibility(View.VISIBLE);
+                enunciado_atri10.setVisibility(View.VISIBLE); respuesta_atri10.setVisibility(View.VISIBLE);
+                enunciado_atri12.setVisibility(View.VISIBLE); respuesta_atri12.setVisibility(View.VISIBLE);
+                enunciado_atri13.setVisibility(View.VISIBLE); respuesta_atri13.setVisibility(View.VISIBLE);
+                enunciado_atri14.setVisibility(View.VISIBLE); respuesta_atri14.setVisibility(View.VISIBLE);
+                enunciado_atri15.setVisibility(View.VISIBLE); respuesta_atri15.setVisibility(View.VISIBLE);
+                enunciado_atri16.setVisibility(View.VISIBLE); respuesta_atri16.setVisibility(View.VISIBLE);
+                layout_atributo1.setVisibility(View.VISIBLE); layout_atributo5.setVisibility(View.VISIBLE);
+                layout_atributo2.setVisibility(View.VISIBLE); layout_atributo6.setVisibility(View.VISIBLE);
+                layout_atributo3.setVisibility(View.VISIBLE); layout_atributo7.setVisibility(View.VISIBLE);
+                layout_atributo4.setVisibility(View.VISIBLE); layout_atributo8.setVisibility(View.VISIBLE);
+                layout_atributo9.setVisibility(View.VISIBLE); layout_atributo10.setVisibility(View.VISIBLE);
+                layout_atributo11.setVisibility(View.VISIBLE); layout_atributo12.setVisibility(View.VISIBLE);
+                layout_atributo13.setVisibility(View.VISIBLE); layout_atributo14.setVisibility(View.VISIBLE);
+                layout_atributo15.setVisibility(View.VISIBLE); layout_atributo16.setVisibility(View.VISIBLE);
+                layout_atributo18.setVisibility(View.VISIBLE); layout_atributo19.setVisibility(View.VISIBLE);
+                layout_atributo17.setVisibility(View.VISIBLE);
+            }  else if(marcadorTipo.getNum_atributos() == 20){
+                enunciado_atri1.setText(marcadorTipo.getAtributo1()+":"); respuesta_atri1.setText(marcador.getAtributo1());
+                enunciado_atri2.setText(marcadorTipo.getAtributo2()+":"); respuesta_atri2.setText(marcador.getAtributo2());
+                enunciado_atri3.setText(marcadorTipo.getAtributo3()+":"); respuesta_atri3.setText(marcador.getAtributo3());
+                enunciado_atri4.setText(marcadorTipo.getAtributo4()+":"); respuesta_atri4.setText(marcador.getAtributo4());
+                enunciado_atri5.setText(marcadorTipo.getAtributo5()+":"); respuesta_atri5.setText(marcador.getAtributo5());
+                enunciado_atri6.setText(marcadorTipo.getAtributo6()+":"); respuesta_atri6.setText(marcador.getAtributo6());
+                enunciado_atri7.setText(marcadorTipo.getAtributo7()+":"); respuesta_atri7.setText(marcador.getAtributo7());
+                enunciado_atri8.setText(marcadorTipo.getAtributo8()+":"); respuesta_atri8.setText(marcador.getAtributo8());
+                enunciado_atri9.setText(marcadorTipo.getAtributo9()+":"); respuesta_atri9.setText(marcador.getAtributo9());
+                enunciado_atri10.setText(marcadorTipo.getAtributo10()+":"); respuesta_atri10.setText(marcador.getAtributo10());
+                enunciado_atri11.setText(marcadorTipo.getAtributo11()+":"); respuesta_atri11.setText(marcador.getAtributo11());
+                enunciado_atri12.setText(marcadorTipo.getAtributo12()+":"); respuesta_atri12.setText(marcador.getAtributo12());
+                enunciado_atri13.setText(marcadorTipo.getAtributo13()+":"); respuesta_atri13.setText(marcador.getAtributo13());
+                enunciado_atri14.setText(marcadorTipo.getAtributo14()+":"); respuesta_atri14.setText(marcador.getAtributo14());
+                enunciado_atri15.setText(marcadorTipo.getAtributo15()+":"); respuesta_atri15.setText(marcador.getAtributo15());
+                enunciado_atri16.setText(marcadorTipo.getAtributo16()+":"); respuesta_atri16.setText(marcador.getAtributo16());
+                enunciado_atri17.setText(marcadorTipo.getAtributo17()+":"); respuesta_atri17.setText(marcador.getAtributo17());
+                enunciado_atri18.setText(marcadorTipo.getAtributo18()+":"); respuesta_atri18.setText(marcador.getAtributo18());
+                enunciado_atri19.setText(marcadorTipo.getAtributo19()+":"); respuesta_atri19.setText(marcador.getAtributo19());
+                enunciado_atri20.setText(marcadorTipo.getAtributo20()+":"); respuesta_atri20.setText(marcador.getAtributo20());
+                enunciado_atri1.setVisibility(View.VISIBLE); respuesta_atri1.setVisibility(View.VISIBLE);
+                enunciado_atri2.setVisibility(View.VISIBLE); respuesta_atri2.setVisibility(View.VISIBLE);
+                enunciado_atri3.setVisibility(View.VISIBLE); respuesta_atri3.setVisibility(View.VISIBLE);
+                enunciado_atri4.setVisibility(View.VISIBLE); respuesta_atri4.setVisibility(View.VISIBLE);
+                enunciado_atri5.setVisibility(View.VISIBLE); respuesta_atri5.setVisibility(View.VISIBLE);
+                enunciado_atri6.setVisibility(View.VISIBLE); respuesta_atri6.setVisibility(View.VISIBLE);
+                enunciado_atri7.setVisibility(View.VISIBLE); respuesta_atri7.setVisibility(View.VISIBLE);
+                enunciado_atri8.setVisibility(View.VISIBLE); respuesta_atri8.setVisibility(View.VISIBLE);
+                enunciado_atri9.setVisibility(View.VISIBLE); respuesta_atri9.setVisibility(View.VISIBLE);
+                enunciado_atri10.setVisibility(View.VISIBLE); respuesta_atri10.setVisibility(View.VISIBLE);
+                enunciado_atri12.setVisibility(View.VISIBLE); respuesta_atri12.setVisibility(View.VISIBLE);
+                enunciado_atri13.setVisibility(View.VISIBLE); respuesta_atri13.setVisibility(View.VISIBLE);
+                enunciado_atri14.setVisibility(View.VISIBLE); respuesta_atri14.setVisibility(View.VISIBLE);
+                enunciado_atri15.setVisibility(View.VISIBLE); respuesta_atri15.setVisibility(View.VISIBLE);
+                enunciado_atri16.setVisibility(View.VISIBLE); respuesta_atri16.setVisibility(View.VISIBLE);
+                layout_atributo1.setVisibility(View.VISIBLE); layout_atributo5.setVisibility(View.VISIBLE);
+                layout_atributo2.setVisibility(View.VISIBLE); layout_atributo6.setVisibility(View.VISIBLE);
+                layout_atributo3.setVisibility(View.VISIBLE); layout_atributo7.setVisibility(View.VISIBLE);
+                layout_atributo4.setVisibility(View.VISIBLE); layout_atributo8.setVisibility(View.VISIBLE);
+                layout_atributo9.setVisibility(View.VISIBLE); layout_atributo10.setVisibility(View.VISIBLE);
+                layout_atributo11.setVisibility(View.VISIBLE); layout_atributo12.setVisibility(View.VISIBLE);
+                layout_atributo13.setVisibility(View.VISIBLE); layout_atributo14.setVisibility(View.VISIBLE);
+                layout_atributo15.setVisibility(View.VISIBLE); layout_atributo16.setVisibility(View.VISIBLE);
+                layout_atributo18.setVisibility(View.VISIBLE); layout_atributo19.setVisibility(View.VISIBLE);
+                layout_atributo17.setVisibility(View.VISIBLE); layout_atributo20.setVisibility(View.VISIBLE);
+            } else if(marcadorTipo.getNum_atributos() == 21){
+                enunciado_atri1.setText(marcadorTipo.getAtributo1()+":"); respuesta_atri1.setText(marcador.getAtributo1());
+                enunciado_atri2.setText(marcadorTipo.getAtributo2()+":"); respuesta_atri2.setText(marcador.getAtributo2());
+                enunciado_atri3.setText(marcadorTipo.getAtributo3()+":"); respuesta_atri3.setText(marcador.getAtributo3());
+                enunciado_atri4.setText(marcadorTipo.getAtributo4()+":"); respuesta_atri4.setText(marcador.getAtributo4());
+                enunciado_atri5.setText(marcadorTipo.getAtributo5()+":"); respuesta_atri5.setText(marcador.getAtributo5());
+                enunciado_atri6.setText(marcadorTipo.getAtributo6()+":"); respuesta_atri6.setText(marcador.getAtributo6());
+                enunciado_atri7.setText(marcadorTipo.getAtributo7()+":"); respuesta_atri7.setText(marcador.getAtributo7());
+                enunciado_atri8.setText(marcadorTipo.getAtributo8()+":"); respuesta_atri8.setText(marcador.getAtributo8());
+                enunciado_atri9.setText(marcadorTipo.getAtributo9()+":"); respuesta_atri9.setText(marcador.getAtributo9());
+                enunciado_atri10.setText(marcadorTipo.getAtributo10()+":"); respuesta_atri10.setText(marcador.getAtributo10());
+                enunciado_atri11.setText(marcadorTipo.getAtributo11()+":"); respuesta_atri11.setText(marcador.getAtributo11());
+                enunciado_atri12.setText(marcadorTipo.getAtributo12()+":"); respuesta_atri12.setText(marcador.getAtributo12());
+                enunciado_atri13.setText(marcadorTipo.getAtributo13()+":"); respuesta_atri13.setText(marcador.getAtributo13());
+                enunciado_atri14.setText(marcadorTipo.getAtributo14()+":"); respuesta_atri14.setText(marcador.getAtributo14());
+                enunciado_atri15.setText(marcadorTipo.getAtributo15()+":"); respuesta_atri15.setText(marcador.getAtributo15());
+                enunciado_atri16.setText(marcadorTipo.getAtributo16()+":"); respuesta_atri16.setText(marcador.getAtributo16());
+                enunciado_atri17.setText(marcadorTipo.getAtributo17()+":"); respuesta_atri17.setText(marcador.getAtributo17());
+                enunciado_atri18.setText(marcadorTipo.getAtributo18()+":"); respuesta_atri18.setText(marcador.getAtributo18());
+                enunciado_atri19.setText(marcadorTipo.getAtributo19()+":"); respuesta_atri19.setText(marcador.getAtributo19());
+                enunciado_atri20.setText(marcadorTipo.getAtributo20()+":"); respuesta_atri20.setText(marcador.getAtributo20());
+                enunciado_atri21.setText(marcadorTipo.getAtributo21()+":"); respuesta_atri21.setText(marcador.getAtributo21());
+                enunciado_atri1.setVisibility(View.VISIBLE); respuesta_atri1.setVisibility(View.VISIBLE);
+                enunciado_atri2.setVisibility(View.VISIBLE); respuesta_atri2.setVisibility(View.VISIBLE);
+                enunciado_atri3.setVisibility(View.VISIBLE); respuesta_atri3.setVisibility(View.VISIBLE);
+                enunciado_atri4.setVisibility(View.VISIBLE); respuesta_atri4.setVisibility(View.VISIBLE);
+                enunciado_atri5.setVisibility(View.VISIBLE); respuesta_atri5.setVisibility(View.VISIBLE);
+                enunciado_atri6.setVisibility(View.VISIBLE); respuesta_atri6.setVisibility(View.VISIBLE);
+                enunciado_atri7.setVisibility(View.VISIBLE); respuesta_atri7.setVisibility(View.VISIBLE);
+                enunciado_atri8.setVisibility(View.VISIBLE); respuesta_atri8.setVisibility(View.VISIBLE);
+                enunciado_atri9.setVisibility(View.VISIBLE); respuesta_atri9.setVisibility(View.VISIBLE);
+                enunciado_atri10.setVisibility(View.VISIBLE); respuesta_atri10.setVisibility(View.VISIBLE);
+                enunciado_atri12.setVisibility(View.VISIBLE); respuesta_atri12.setVisibility(View.VISIBLE);
+                enunciado_atri13.setVisibility(View.VISIBLE); respuesta_atri13.setVisibility(View.VISIBLE);
+                enunciado_atri14.setVisibility(View.VISIBLE); respuesta_atri14.setVisibility(View.VISIBLE);
+                enunciado_atri15.setVisibility(View.VISIBLE); respuesta_atri15.setVisibility(View.VISIBLE);
+                enunciado_atri16.setVisibility(View.VISIBLE); respuesta_atri16.setVisibility(View.VISIBLE);
+                layout_atributo1.setVisibility(View.VISIBLE); layout_atributo5.setVisibility(View.VISIBLE);
+                layout_atributo2.setVisibility(View.VISIBLE); layout_atributo6.setVisibility(View.VISIBLE);
+                layout_atributo3.setVisibility(View.VISIBLE); layout_atributo7.setVisibility(View.VISIBLE);
+                layout_atributo4.setVisibility(View.VISIBLE); layout_atributo8.setVisibility(View.VISIBLE);
+                layout_atributo9.setVisibility(View.VISIBLE); layout_atributo10.setVisibility(View.VISIBLE);
+                layout_atributo11.setVisibility(View.VISIBLE); layout_atributo12.setVisibility(View.VISIBLE);
+                layout_atributo13.setVisibility(View.VISIBLE); layout_atributo14.setVisibility(View.VISIBLE);
+                layout_atributo15.setVisibility(View.VISIBLE); layout_atributo16.setVisibility(View.VISIBLE);
+                layout_atributo18.setVisibility(View.VISIBLE); layout_atributo19.setVisibility(View.VISIBLE);
+                layout_atributo17.setVisibility(View.VISIBLE); layout_atributo20.setVisibility(View.VISIBLE);
+                layout_atributo21.setVisibility(View.VISIBLE);
+            } else if(marcadorTipo.getNum_atributos() == 22){
+                enunciado_atri1.setText(marcadorTipo.getAtributo1()+":"); respuesta_atri1.setText(marcador.getAtributo1());
+                enunciado_atri2.setText(marcadorTipo.getAtributo2()+":"); respuesta_atri2.setText(marcador.getAtributo2());
+                enunciado_atri3.setText(marcadorTipo.getAtributo3()+":"); respuesta_atri3.setText(marcador.getAtributo3());
+                enunciado_atri4.setText(marcadorTipo.getAtributo4()+":"); respuesta_atri4.setText(marcador.getAtributo4());
+                enunciado_atri5.setText(marcadorTipo.getAtributo5()+":"); respuesta_atri5.setText(marcador.getAtributo5());
+                enunciado_atri6.setText(marcadorTipo.getAtributo6()+":"); respuesta_atri6.setText(marcador.getAtributo6());
+                enunciado_atri7.setText(marcadorTipo.getAtributo7()+":"); respuesta_atri7.setText(marcador.getAtributo7());
+                enunciado_atri8.setText(marcadorTipo.getAtributo8()+":"); respuesta_atri8.setText(marcador.getAtributo8());
+                enunciado_atri9.setText(marcadorTipo.getAtributo9()+":"); respuesta_atri9.setText(marcador.getAtributo9());
+                enunciado_atri10.setText(marcadorTipo.getAtributo10()+":"); respuesta_atri10.setText(marcador.getAtributo10());
+                enunciado_atri11.setText(marcadorTipo.getAtributo11()+":"); respuesta_atri11.setText(marcador.getAtributo11());
+                enunciado_atri12.setText(marcadorTipo.getAtributo12()+":"); respuesta_atri12.setText(marcador.getAtributo12());
+                enunciado_atri13.setText(marcadorTipo.getAtributo13()+":"); respuesta_atri13.setText(marcador.getAtributo13());
+                enunciado_atri14.setText(marcadorTipo.getAtributo14()+":"); respuesta_atri14.setText(marcador.getAtributo14());
+                enunciado_atri15.setText(marcadorTipo.getAtributo15()+":"); respuesta_atri15.setText(marcador.getAtributo15());
+                enunciado_atri16.setText(marcadorTipo.getAtributo16()+":"); respuesta_atri16.setText(marcador.getAtributo16());
+                enunciado_atri17.setText(marcadorTipo.getAtributo17()+":"); respuesta_atri17.setText(marcador.getAtributo17());
+                enunciado_atri18.setText(marcadorTipo.getAtributo18()+":"); respuesta_atri18.setText(marcador.getAtributo18());
+                enunciado_atri19.setText(marcadorTipo.getAtributo19()+":"); respuesta_atri19.setText(marcador.getAtributo19());
+                enunciado_atri20.setText(marcadorTipo.getAtributo20()+":"); respuesta_atri20.setText(marcador.getAtributo20());
+                enunciado_atri21.setText(marcadorTipo.getAtributo21()+":"); respuesta_atri21.setText(marcador.getAtributo21());
+                enunciado_atri22.setText(marcadorTipo.getAtributo22()+":"); respuesta_atri22.setText(marcador.getAtributo22());
+                enunciado_atri1.setVisibility(View.VISIBLE); respuesta_atri1.setVisibility(View.VISIBLE);
+                enunciado_atri2.setVisibility(View.VISIBLE); respuesta_atri2.setVisibility(View.VISIBLE);
+                enunciado_atri3.setVisibility(View.VISIBLE); respuesta_atri3.setVisibility(View.VISIBLE);
+                enunciado_atri4.setVisibility(View.VISIBLE); respuesta_atri4.setVisibility(View.VISIBLE);
+                enunciado_atri5.setVisibility(View.VISIBLE); respuesta_atri5.setVisibility(View.VISIBLE);
+                enunciado_atri6.setVisibility(View.VISIBLE); respuesta_atri6.setVisibility(View.VISIBLE);
+                enunciado_atri7.setVisibility(View.VISIBLE); respuesta_atri7.setVisibility(View.VISIBLE);
+                enunciado_atri8.setVisibility(View.VISIBLE); respuesta_atri8.setVisibility(View.VISIBLE);
+                enunciado_atri9.setVisibility(View.VISIBLE); respuesta_atri9.setVisibility(View.VISIBLE);
+                enunciado_atri10.setVisibility(View.VISIBLE); respuesta_atri10.setVisibility(View.VISIBLE);
+                enunciado_atri12.setVisibility(View.VISIBLE); respuesta_atri12.setVisibility(View.VISIBLE);
+                enunciado_atri13.setVisibility(View.VISIBLE); respuesta_atri13.setVisibility(View.VISIBLE);
+                enunciado_atri14.setVisibility(View.VISIBLE); respuesta_atri14.setVisibility(View.VISIBLE);
+                enunciado_atri15.setVisibility(View.VISIBLE); respuesta_atri15.setVisibility(View.VISIBLE);
+                enunciado_atri16.setVisibility(View.VISIBLE); respuesta_atri16.setVisibility(View.VISIBLE);
+                layout_atributo1.setVisibility(View.VISIBLE); layout_atributo5.setVisibility(View.VISIBLE);
+                layout_atributo2.setVisibility(View.VISIBLE); layout_atributo6.setVisibility(View.VISIBLE);
+                layout_atributo3.setVisibility(View.VISIBLE); layout_atributo7.setVisibility(View.VISIBLE);
+                layout_atributo4.setVisibility(View.VISIBLE); layout_atributo8.setVisibility(View.VISIBLE);
+                layout_atributo9.setVisibility(View.VISIBLE); layout_atributo10.setVisibility(View.VISIBLE);
+                layout_atributo11.setVisibility(View.VISIBLE); layout_atributo12.setVisibility(View.VISIBLE);
+                layout_atributo13.setVisibility(View.VISIBLE); layout_atributo14.setVisibility(View.VISIBLE);
+                layout_atributo15.setVisibility(View.VISIBLE); layout_atributo16.setVisibility(View.VISIBLE);
+                layout_atributo18.setVisibility(View.VISIBLE); layout_atributo19.setVisibility(View.VISIBLE);
+                layout_atributo17.setVisibility(View.VISIBLE); layout_atributo20.setVisibility(View.VISIBLE);
+                layout_atributo21.setVisibility(View.VISIBLE); layout_atributo22.setVisibility(View.VISIBLE);
+            } else if(marcadorTipo.getNum_atributos() == 23){
+                enunciado_atri1.setText(marcadorTipo.getAtributo1()+":"); respuesta_atri1.setText(marcador.getAtributo1());
+                enunciado_atri2.setText(marcadorTipo.getAtributo2()+":"); respuesta_atri2.setText(marcador.getAtributo2());
+                enunciado_atri3.setText(marcadorTipo.getAtributo3()+":"); respuesta_atri3.setText(marcador.getAtributo3());
+                enunciado_atri4.setText(marcadorTipo.getAtributo4()+":"); respuesta_atri4.setText(marcador.getAtributo4());
+                enunciado_atri5.setText(marcadorTipo.getAtributo5()+":"); respuesta_atri5.setText(marcador.getAtributo5());
+                enunciado_atri6.setText(marcadorTipo.getAtributo6()+":"); respuesta_atri6.setText(marcador.getAtributo6());
+                enunciado_atri7.setText(marcadorTipo.getAtributo7()+":"); respuesta_atri7.setText(marcador.getAtributo7());
+                enunciado_atri8.setText(marcadorTipo.getAtributo8()+":"); respuesta_atri8.setText(marcador.getAtributo8());
+                enunciado_atri9.setText(marcadorTipo.getAtributo9()+":"); respuesta_atri9.setText(marcador.getAtributo9());
+                enunciado_atri10.setText(marcadorTipo.getAtributo10()+":"); respuesta_atri10.setText(marcador.getAtributo10());
+                enunciado_atri11.setText(marcadorTipo.getAtributo11()+":"); respuesta_atri11.setText(marcador.getAtributo11());
+                enunciado_atri12.setText(marcadorTipo.getAtributo12()+":"); respuesta_atri12.setText(marcador.getAtributo12());
+                enunciado_atri13.setText(marcadorTipo.getAtributo13()+":"); respuesta_atri13.setText(marcador.getAtributo13());
+                enunciado_atri14.setText(marcadorTipo.getAtributo14()+":"); respuesta_atri14.setText(marcador.getAtributo14());
+                enunciado_atri15.setText(marcadorTipo.getAtributo15()+":"); respuesta_atri15.setText(marcador.getAtributo15());
+                enunciado_atri16.setText(marcadorTipo.getAtributo16()+":"); respuesta_atri16.setText(marcador.getAtributo16());
+                enunciado_atri17.setText(marcadorTipo.getAtributo17()+":"); respuesta_atri17.setText(marcador.getAtributo17());
+                enunciado_atri18.setText(marcadorTipo.getAtributo18()+":"); respuesta_atri18.setText(marcador.getAtributo18());
+                enunciado_atri19.setText(marcadorTipo.getAtributo19()+":"); respuesta_atri19.setText(marcador.getAtributo19());
+                enunciado_atri20.setText(marcadorTipo.getAtributo20()+":"); respuesta_atri20.setText(marcador.getAtributo20());
+                enunciado_atri21.setText(marcadorTipo.getAtributo21()+":"); respuesta_atri21.setText(marcador.getAtributo21());
+                enunciado_atri22.setText(marcadorTipo.getAtributo22()+":"); respuesta_atri22.setText(marcador.getAtributo22());
+                enunciado_atri23.setText(marcadorTipo.getAtributo23()+":"); respuesta_atri23.setText(marcador.getAtributo23());
+                enunciado_atri1.setVisibility(View.VISIBLE); respuesta_atri1.setVisibility(View.VISIBLE);
+                enunciado_atri2.setVisibility(View.VISIBLE); respuesta_atri2.setVisibility(View.VISIBLE);
+                enunciado_atri3.setVisibility(View.VISIBLE); respuesta_atri3.setVisibility(View.VISIBLE);
+                enunciado_atri4.setVisibility(View.VISIBLE); respuesta_atri4.setVisibility(View.VISIBLE);
+                enunciado_atri5.setVisibility(View.VISIBLE); respuesta_atri5.setVisibility(View.VISIBLE);
+                enunciado_atri6.setVisibility(View.VISIBLE); respuesta_atri6.setVisibility(View.VISIBLE);
+                enunciado_atri7.setVisibility(View.VISIBLE); respuesta_atri7.setVisibility(View.VISIBLE);
+                enunciado_atri8.setVisibility(View.VISIBLE); respuesta_atri8.setVisibility(View.VISIBLE);
+                enunciado_atri9.setVisibility(View.VISIBLE); respuesta_atri9.setVisibility(View.VISIBLE);
+                enunciado_atri10.setVisibility(View.VISIBLE); respuesta_atri10.setVisibility(View.VISIBLE);
+                enunciado_atri12.setVisibility(View.VISIBLE); respuesta_atri12.setVisibility(View.VISIBLE);
+                enunciado_atri13.setVisibility(View.VISIBLE); respuesta_atri13.setVisibility(View.VISIBLE);
+                enunciado_atri14.setVisibility(View.VISIBLE); respuesta_atri14.setVisibility(View.VISIBLE);
+                enunciado_atri15.setVisibility(View.VISIBLE); respuesta_atri15.setVisibility(View.VISIBLE);
+                enunciado_atri16.setVisibility(View.VISIBLE); respuesta_atri16.setVisibility(View.VISIBLE);
+                layout_atributo1.setVisibility(View.VISIBLE); layout_atributo5.setVisibility(View.VISIBLE);
+                layout_atributo2.setVisibility(View.VISIBLE); layout_atributo6.setVisibility(View.VISIBLE);
+                layout_atributo3.setVisibility(View.VISIBLE); layout_atributo7.setVisibility(View.VISIBLE);
+                layout_atributo4.setVisibility(View.VISIBLE); layout_atributo8.setVisibility(View.VISIBLE);
+                layout_atributo9.setVisibility(View.VISIBLE); layout_atributo10.setVisibility(View.VISIBLE);
+                layout_atributo11.setVisibility(View.VISIBLE); layout_atributo12.setVisibility(View.VISIBLE);
+                layout_atributo13.setVisibility(View.VISIBLE); layout_atributo14.setVisibility(View.VISIBLE);
+                layout_atributo15.setVisibility(View.VISIBLE); layout_atributo16.setVisibility(View.VISIBLE);
+                layout_atributo18.setVisibility(View.VISIBLE); layout_atributo19.setVisibility(View.VISIBLE);
+                layout_atributo17.setVisibility(View.VISIBLE); layout_atributo20.setVisibility(View.VISIBLE);
+                layout_atributo21.setVisibility(View.VISIBLE); layout_atributo22.setVisibility(View.VISIBLE);
+                layout_atributo23.setVisibility(View.VISIBLE);
             }
 
             back.setOnClickListener(new View.OnClickListener() {
@@ -1986,109 +2574,164 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
 
         layout_marcador.setVisibility(View.VISIBLE);
         paraMapa.setVisibility(View.GONE);
-        aceptar.setText("Editar");
-        titulo_addmarker.setText("Editar Marcador");
+        aceptar.setText(getResources().getString(R.string.mapa5));
+        titulo_addmarker.setText(getResources().getString(R.string.mapa4));
 
         edit_atri1.setText(marker.getAtributo1()); edit_atri2.setText(marker.getAtributo2()); edit_atri3.setText(marker.getAtributo3()); edit_atri4.setText(marker.getAtributo4());
         edit_atri5.setText(marker.getAtributo5()); edit_atri6.setText(marker.getAtributo6()); edit_atri7.setText(marker.getAtributo7()); edit_atri8.setText(marker.getAtributo8());
         edit_atri9.setText(marker.getAtributo9()); edit_atri10.setText(marker.getAtributo10()); edit_atri11.setText(marker.getAtributo11()); edit_atri12.setText(marker.getAtributo12());
         edit_atri13.setText(marker.getAtributo13()); edit_atri14.setText(marker.getAtributo14()); edit_atri15.setText(marker.getAtributo15()); edit_atri16.setText(marker.getAtributo16());
+        edit_atri17.setText(marker.getAtributo17()); edit_atri18.setText(marker.getAtributo18()); edit_atri19.setText(marker.getAtributo19()); edit_atri20.setText(marker.getAtributo20());
+        edit_atri21.setText(marker.getAtributo21()); edit_atri22.setText(marker.getAtributo22()); edit_atri23.setText(marker.getAtributo23());
         if(marcador.getNum_atributos()==1){
             atri2.setVisibility(View.GONE); atri3.setVisibility(View.GONE); atri4.setVisibility(View.GONE); atri5.setVisibility(View.GONE);
             atri6.setVisibility(View.GONE); atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE); atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1());
         } else if (marcador.getNum_atributos()==2){
             atri3.setVisibility(View.GONE); atri4.setVisibility(View.GONE); atri5.setVisibility(View.GONE);
             atri6.setVisibility(View.GONE); atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE); atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2());
         } else if (marcador.getNum_atributos()==3){
             atri4.setVisibility(View.GONE); atri5.setVisibility(View.GONE);
             atri6.setVisibility(View.GONE); atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE); atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3());
         } else if (marcador.getNum_atributos()==4){
             atri5.setVisibility(View.GONE);
             atri6.setVisibility(View.GONE); atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE); atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
         } else if (marcador.getNum_atributos()==5){
             atri6.setVisibility(View.GONE); atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE); atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5());
         } else if (marcador.getNum_atributos()==6){
             atri7.setVisibility(View.GONE); atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE); atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6());
         } else if (marcador.getNum_atributos()==7){
             atri8.setVisibility(View.GONE); atri9.setVisibility(View.GONE);
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE); atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7());
         } else if (marcador.getNum_atributos()==8){
             atri9.setVisibility(View.GONE);
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE); atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
         } else if (marcador.getNum_atributos()==9){
 
             atri10.setVisibility(View.GONE); atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE); atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
             titulo9.setHint(marcador.getAtributo9());
         } else if (marcador.getNum_atributos()==10){
             atri11.setVisibility(View.GONE); atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE); atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
             titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10());
         } else if (marcador.getNum_atributos()==11){
             atri12.setVisibility(View.GONE); atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE); atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
             titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11());
         } else if (marcador.getNum_atributos()==12){
             atri13.setVisibility(View.GONE);
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE); atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
             titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
         } else if (marcador.getNum_atributos()==13){
-            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri14.setVisibility(View.GONE); atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE); atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
             titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
             titulo13.setHint(marcador.getAtributo13());
         } else if (marcador.getNum_atributos()==14){
-            atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE);
+            atri15.setVisibility(View.GONE); atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE); atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
             titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
             titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14());
         } else if (marcador.getNum_atributos()==15){
-            atri16.setVisibility(View.GONE);
+            atri16.setVisibility(View.GONE); atri17.setVisibility(View.GONE); atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
             titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
             titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15());
         } else if (marcador.getNum_atributos()==16){
+            atri17.setVisibility(View.GONE); atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
             titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
             titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
             titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
             titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+        } else if (marcador.getNum_atributos()==17){
+            atri18.setVisibility(View.GONE); atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+            titulo17.setHint(marcador.getAtributo17());
+        } else if (marcador.getNum_atributos()==18){
+            atri19.setVisibility(View.GONE); atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+            titulo17.setHint(marcador.getAtributo17()); titulo18.setHint(marcador.getAtributo18());
+        } else if (marcador.getNum_atributos()==19){
+            atri20.setVisibility(View.GONE); atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+            titulo17.setHint(marcador.getAtributo17()); titulo18.setHint(marcador.getAtributo18()); titulo19.setHint(marcador.getAtributo19());
+        } else if (marcador.getNum_atributos()==20){
+            atri21.setVisibility(View.GONE); atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+            titulo17.setHint(marcador.getAtributo17()); titulo18.setHint(marcador.getAtributo18()); titulo19.setHint(marcador.getAtributo19()); titulo20.setHint(marcador.getAtributo20());
+        } else if (marcador.getNum_atributos()==21){
+            atri22.setVisibility(View.GONE); atri23.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+            titulo17.setHint(marcador.getAtributo17()); titulo18.setHint(marcador.getAtributo18()); titulo19.setHint(marcador.getAtributo19()); titulo20.setHint(marcador.getAtributo20());
+            titulo21.setHint(marcador.getAtributo21());
+        } else if (marcador.getNum_atributos()==22){
+            atri23.setVisibility(View.GONE);
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+            titulo17.setHint(marcador.getAtributo17()); titulo18.setHint(marcador.getAtributo18()); titulo19.setHint(marcador.getAtributo19()); titulo20.setHint(marcador.getAtributo20());
+            titulo21.setHint(marcador.getAtributo21()); titulo22.setHint(marcador.getAtributo22());
+        } else if (marcador.getNum_atributos()==23){
+
+            titulo1.setHint(marcador.getAtributo1()); titulo2.setHint(marcador.getAtributo2()); titulo3.setHint(marcador.getAtributo3()); titulo4.setHint(marcador.getAtributo4());
+            titulo5.setHint(marcador.getAtributo5()); titulo6.setHint(marcador.getAtributo6()); titulo7.setHint(marcador.getAtributo7()); titulo8.setHint(marcador.getAtributo8());
+            titulo9.setHint(marcador.getAtributo9()); titulo10.setHint(marcador.getAtributo10()); titulo11.setHint(marcador.getAtributo11()); titulo12.setHint(marcador.getAtributo12());
+            titulo13.setHint(marcador.getAtributo13()); titulo14.setHint(marcador.getAtributo14()); titulo15.setHint(marcador.getAtributo15()); titulo16.setHint(marcador.getAtributo16());
+            titulo17.setHint(marcador.getAtributo17()); titulo18.setHint(marcador.getAtributo18()); titulo19.setHint(marcador.getAtributo19()); titulo20.setHint(marcador.getAtributo20());
+            titulo21.setHint(marcador.getAtributo21()); titulo22.setHint(marcador.getAtributo22()); titulo23.setHint(marcador.getAtributo23());
         }
 
         if(marcador_tipo.getIsText1() == 0) {
@@ -2138,6 +2781,27 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
         }
         if(marcador_tipo.getIsText16() == 0) {
             edit_atri16.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText17() == 0) {
+            edit_atri17.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText18() == 0) {
+            edit_atri18.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText19() == 0) {
+            edit_atri19.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText20() == 0) {
+            edit_atri20.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText21() == 0) {
+            edit_atri21.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText22() == 0) {
+            edit_atri22.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+        if(marcador_tipo.getIsText23() == 0) {
+            edit_atri23.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         }
 
         cancelar.setOnClickListener(new View.OnClickListener() {
@@ -2191,6 +2855,10 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
                         edit_atri11.setText(""); edit_atri12.setText("");
                         edit_atri13.setText(""); edit_atri14.setText("");
                         edit_atri15.setText(""); edit_atri16.setText("");
+                        edit_atri17.setText(""); edit_atri18.setText("");
+                        edit_atri19.setText(""); edit_atri20.setText("");
+                        edit_atri21.setText(""); edit_atri22.setText("");
+                        edit_atri23.setText("");
                         miniatura_camara.setImageDrawable(getResources().getDrawable(R.drawable.ic_photo_camera_black_24dp));
 
                         text = "Marcador editado correctamente";
@@ -2259,6 +2927,13 @@ public class Mapa extends AppCompatActivity implements NavigationView.OnNavigati
                 login_params.put("atributo14", edit_atri14.getText().toString());
                 login_params.put("atributo15", edit_atri15.getText().toString());
                 login_params.put("atributo16", edit_atri16.getText().toString());
+                login_params.put("atributo17", edit_atri17.getText().toString());
+                login_params.put("atributo18", edit_atri18.getText().toString());
+                login_params.put("atributo19", edit_atri19.getText().toString());
+                login_params.put("atributo20", edit_atri20.getText().toString());
+                login_params.put("atributo21", edit_atri21.getText().toString());
+                login_params.put("atributo22", edit_atri22.getText().toString());
+                login_params.put("atributo23", edit_atri23.getText().toString());
 
 
                 return login_params;

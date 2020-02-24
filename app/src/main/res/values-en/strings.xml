@@ -124,6 +124,27 @@
     <string name="crear62">You have reached the limit of attributes</string>
     <string name="crear63">Project successfully added</string>
     <string name="crear64">At least one attribute must be added to the project marker.</string>
+    <string name="crear65">Attribute 17 (Text response)</string>
+    <string name="crear66">Description of attribute 17 (Optional)</string>
+    <string name="crear67">Attribute 18 (Text response)</string>
+    <string name="crear68">Description of attribute 18 (Optional)</string>
+    <string name="crear69">Attribute 19 (Text response)</string>
+    <string name="crear70">Description of attribute 19 (Optional)</string>
+    <string name="crear71">Attribute 20 (Text response)</string>
+    <string name="crear72">Description of attribute 20 (Optional)</string>
+    <string name="crear73">Attribute 21 (Text response)</string>
+    <string name="crear74">Description of attribute 21 (Optional)</string>
+    <string name="crear75">Attribute 22 (Text response)</string>
+    <string name="crear76">Description of attribute 22 (Optional)</string>
+    <string name="crear77">Attribute 23 (Text response)</string>
+    <string name="crear78">Description of attribute 23 (Optional)</string>
+    <string name="crear79">Attribute 17 (Number response)</string>
+    <string name="crear80">Attribute 18 (Number response)</string>
+    <string name="crear81">Attribute 19 (Number response)</string>
+    <string name="crear82">Attribute 20 (Number response)</string>
+    <string name="crear83">Attribute 21 (Number response)</string>
+    <string name="crear84">Attribute 22 (Number response)</string>
+    <string name="crear85">Attribute 23 (Number response)</string>
 
     <string name="descargar1">Enter the email address where you want to receive bookmark data for this project. The data will be sent in .CSV format</string>
     <string name="descargar2">Accept</string>
@@ -139,6 +160,11 @@
     <string name="user4">You have not liked any project yet. Remember to like the projects in which you participate so that they appear here.</string>
 
     <string name="mapa">Press and hold on the map at the position where you want to add a Marker</string>
+    <string name="mapa1">Cancel</string>
+    <string name="mapa2">Add Marker</string>
+    <string name="mapa3">Accept</string>
+    <string name="mapa4">Edit Marker</string>
+    <string name="mapa5">Edit</string>
 
     <string name="quienes">CitMApp is a collaborative mapping project platform that aims to make visible the day-to-day life of citizen science in our towns, cities and our closest environment.\n\n
 

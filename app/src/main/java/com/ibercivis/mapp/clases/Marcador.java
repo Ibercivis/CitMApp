@@ -36,7 +36,8 @@ public class Marcador {
         this.atributo17 = atributo17;
         this.atributo18 = atributo18;
         this.atributo19 = atributo19;
-        this.atributo20 = atributo21;
+        this.atributo20 = atributo20;
+        this.atributo21 = atributo21;
         this.atributo22 = atributo22;
         this.atributo23 = atributo23;
     }

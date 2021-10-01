@@ -13,9 +13,11 @@ La aplicación está desarrollada por la Fundación Ibercivis, promovida por el 
 La aplicación CitMApp utiliza como mapa base de los mapas planteados la librería OSMdroid (https://github.com/osmdroid/osmdroid) y también hace uso del OSMBonusPack (https://github.com/MKergall/osmbonuspack). Además, para la visualización de imágenes on-line utiliza la librería Picasso (https://github.com/square/picasso) y para los HTTP Request emplea la librería Volley (https://github.com/google/volley).
 Algunos de los iconos utilizados en las pantallas de CitMApp provienen de FlatIcon (https://www.flaticon.es/)
 
-Para cualquier duda o sugerencia, contactar con: info@ibercivis.es
+Para cualquier duda o sugerencia puedes [abrir un issue](https://github.com/Ibercivis/CitMApp/issues) en este repositorio o contactar con info@ibercivis.es
 
-----------------------------------------------------------------------------------------------------------------------------
+[Enlace de descarga de la app en Google Play](https://play.google.com/store/apps/details?id=com.ibercivis.mapp)
+
+- - -
 
 CitMApp, is a collaborative mapping project platform that aims to make visible the daily life of citizen science in our towns, cities and our closest environment.
 
@@ -27,5 +29,7 @@ The application is developed by the Ibercivis Foundation, promoted by the Zarago
 
 The CitMApp application uses the OSMdroid library as a base map (https://github.com/osmdroid/osmdroid) and also uses the OSMBonusPack (https://github.com/MKergall/osmbonuspack). In addition, for the visualization of images online, it uses the Picasso library (https://github.com/square/picasso) and for the HTTP Request it uses the Volley library (https://github.com/google/volley). Some of the icons used on CitMApp screens come from FlatIcon (https://www.flaticon.es/)
 
-For any questions or suggestions, contact: info@ibercivis.es
+For any questions or suggestions you can [open an issue here](https://github.com/Ibercivis/CitMApp/issues) or contact to info@ibercivis.es
+
+[Link to Google Play where you can download the app](https://play.google.com/store/apps/details?id=com.ibercivis.mapp)
 

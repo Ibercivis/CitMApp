@@ -13,10 +13,11 @@ Los usuarios recogen la posición y actividad, realizan mediciones o captan imá
 El usuario de CitMApp puede convertirse en gestor de su propio proyecto de ciencia ciudadana, colaborar en proyectos existentes o valorarlos para que otros ciudadanos puedan encontrarlos con facilidad.
 Como gestor de proyecto, el usuario define los parámetros que considera útiles para el estudio, y que usarán el resto de científicos ciudadanos para añadir más información al proyecto.
 
-La aplicación está desarrollada por la Fundación Ibercivis, promovida por el Grupo Residente Mapeado Colaborativo de Zaragoza Activa / Geoinquietos Zaragoza y financiada por el ayuntamiento de Zaragoza a través de Zaragoza Activa.
+La aplicación está desarrollada por la [Fundación Ibercivis](https://ibercivis.es), promovida por el grupo [Mapeado Colaborativo/Geoinquietos Zaragoza](https://mapcolabora.org) y financiada por el ayuntamiento de Zaragoza a través de Zaragoza Activa.
 
-La aplicación CitMApp utiliza como mapa base de los mapas planteados la librería OSMdroid (https://github.com/osmdroid/osmdroid) y también hace uso del OSMBonusPack (https://github.com/MKergall/osmbonuspack). Además, para la visualización de imágenes on-line utiliza la librería Picasso (https://github.com/square/picasso) y para los HTTP Request emplea la librería Volley (https://github.com/google/volley).
-Algunos de los iconos utilizados en las pantallas de CitMApp provienen de FlatIcon (https://www.flaticon.es/)
+La aplicación CitMApp utiliza como mapa base de los mapas planteados la [librería OSMdroid](https://github.com/osmdroid/osmdroid) y también hace uso del [OSMBonusPack](https://github.com/MKergall/osmbonuspack). Además, para la visualización de imágenes on-line utiliza la [librería Picasso](https://github.com/square/picasso) y para los HTTP Request emplea la [librería Volley](https://github.com/google/volley).
+
+Algunos de los iconos utilizados en las pantallas de CitMApp provienen de [FlatIcon](https://www.flaticon.es/)
 
 Para cualquier duda o sugerencia puedes [abrir un issue](https://github.com/Ibercivis/CitMApp/issues) en este repositorio o contactar con info@ibercivis.es
 
@@ -30,9 +31,11 @@ The application allows the collection of data in real time and favors the implem
 
 The CitMApp user can become a manager of their own citizen science project, collaborate on existing projects or value them so that other citizens can find them easily. As a project manager, the user defines the parameters that he considers useful for the study, and that the rest of citizen scientists will use to add more information to the project.
 
-The application is developed by the Ibercivis Foundation, promoted by the Zaragoza Activa / Geoinquietos Zaragoza Collaborative Mapped Resident Group and financed by the Zaragoza City Council through Zaragoza Activa.
+The application is developed by the [Ibercivis Foundation](https://ibercivis.es), promoted by the group [Mapeado Colaborativo/Geoinquietos Zaragoza](https://mapcolabora.org) and financed by the Zaragoza City Council through Zaragoza Activa.
 
-The CitMApp application uses the OSMdroid library as a base map (https://github.com/osmdroid/osmdroid) and also uses the OSMBonusPack (https://github.com/MKergall/osmbonuspack). In addition, for the visualization of images online, it uses the Picasso library (https://github.com/square/picasso) and for the HTTP Request it uses the Volley library (https://github.com/google/volley). Some of the icons used on CitMApp screens come from FlatIcon (https://www.flaticon.es/)
+The CitMApp application uses the [OSMdroid library](https://github.com/osmdroid/osmdroid) as a base map and also uses the [OSMBonusPack](https://github.com/MKergall/osmbonuspack). In addition, for the visualization of images online, it uses the [Picasso library](https://github.com/square/picasso) and for the HTTP Request it uses the [Volley library](https://github.com/google/volley). 
+
+Some of the icons used on CitMApp screens come from [FlatIcon](https://www.flaticon.es/)
 
 For any questions or suggestions you can [open an issue here](https://github.com/Ibercivis/CitMApp/issues) or contact to info@ibercivis.es
 

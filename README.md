@@ -1,4 +1,9 @@
-# CitMApp
+# CitMApp - *Citizen science Mapping Application*
+<img alt='Logo CitMApp' src='images/logo_citmapp.jpg' height=250px/> <img alt='Pantalla de inicio' src='images/pant_inicio.png' height=250px/> <img alt='Pantalla de mapa' src='images/pant_map1.png' height=250px/> <img alt='Pantalla de formulario' src='images/pant_form1.png' height=250px/>
+
+[See below for English description](#description)
+
+## Descripción
 
 CitMApp, es una plataforma de proyectos de mapeado colaborativo que tiene como objetivo visibilizar el día a día de la ciencia ciudadana en nuestros pueblos, ciudades y nuestro entorno más cercano.
 
@@ -15,9 +20,9 @@ Algunos de los iconos utilizados en las pantallas de CitMApp provienen de FlatIc
 
 Para cualquier duda o sugerencia puedes [abrir un issue](https://github.com/Ibercivis/CitMApp/issues) en este repositorio o contactar con info@ibercivis.es
 
-[Enlace de descarga de la app en Google Play](https://play.google.com/store/apps/details?id=com.ibercivis.mapp)
+[<img alt='Descargalo en Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height=60px/>](https://play.google.com/store/apps/details?id=com.ibercivis.mapp)
 
-- - -
+## Description
 
 CitMApp, is a collaborative mapping project platform that aims to make visible the daily life of citizen science in our towns, cities and our closest environment.
 
@@ -31,5 +36,5 @@ The CitMApp application uses the OSMdroid library as a base map (https://github.
 
 For any questions or suggestions you can [open an issue here](https://github.com/Ibercivis/CitMApp/issues) or contact to info@ibercivis.es
 
-[Link to Google Play where you can download the app](https://play.google.com/store/apps/details?id=com.ibercivis.mapp)
+[<img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height=60px/>](https://play.google.com/store/apps/details?id=com.ibercivis.mapp)
 

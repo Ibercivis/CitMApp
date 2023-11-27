@@ -21,7 +21,7 @@ Algunos de los iconos utilizados en las pantallas de CitMApp provienen de [FlatI
 
 Para cualquier duda o sugerencia puedes [abrir un issue](https://github.com/Ibercivis/CitMApp/issues) en este repositorio o contactar con info@ibercivis.es
 
-[<img alt='Descargalo en Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height=60px/>](https://play.google.com/store/apps/details?id=com.ibercivis.mapp)
+[<img alt='Descargalo en Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height=60px/>](https://play.google.com/store/apps/details?id=com.ibercivis.mapp2)
 
 ## Description
 
@@ -39,5 +39,5 @@ Some of the icons used on CitMApp screens come from [FlatIcon](https://www.flati
 
 For any questions or suggestions you can [open an issue here](https://github.com/Ibercivis/CitMApp/issues) or contact to info@ibercivis.es
 
-[<img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height=60px/>](https://play.google.com/store/apps/details?id=com.ibercivis.mapp)
+[<img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height=60px/>](https://play.google.com/store/apps/details?id=com.ibercivis.mapp2)
 
